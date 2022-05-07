@@ -6,13 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/button"
+        android:layout_width="211dp"
+        android:layout_height="49dp"
+        android:text="Entrar"
+        tools:layout_editor_absoluteX="90dp"
+        tools:layout_editor_absoluteY="418dp" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="234dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="117dp"
+        android:layout_height="55dp"
+        android:text="Iniciar sesión"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="148dp" />
+
+    <TextView
+        android:layout_width="143dp"
+        android:layout_height="60dp"
+        android:text="Qué como hoy?"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.104" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="326dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear cuenta"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="498dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
