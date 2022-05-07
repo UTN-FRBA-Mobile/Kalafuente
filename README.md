@@ -1,2 +1,0 @@
-# QueComoHoy
-Qué como hoy
