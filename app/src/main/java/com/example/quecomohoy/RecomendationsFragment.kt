@@ -1,4 +1,4 @@
-package com.example.quecomohoy.ui.login
+package com.example.quecomohoy
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.quecomohoy.R
 import com.example.quecomohoy.databinding.FragmentRecomendationsBinding
 import android.util.Log
+import com.example.quecomohoy.ui.login.LoginViewModel
+import com.example.quecomohoy.ui.login.LoginViewModelFactory
 
 
 class RecomendationsFragment : Fragment() {
