@@ -30,7 +30,7 @@ class RecomendationsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("Volvi a entrar","")
+        Log.d("Volvi a entrar a on View Created Recomendations Fragment","")
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)

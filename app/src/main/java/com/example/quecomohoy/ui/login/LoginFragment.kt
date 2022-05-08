@@ -116,8 +116,8 @@ class LoginFragment : Fragment() {
                 passwordEditText.text.toString()
             )
 
-            Log.d("HOLAAAAAAAA------------------------------------------------------","")
-            Log.d("HOLAAAAAAAA------------------------------------------------------",loginViewModel.userInformation.value.toString())
+            Log.d("Login fragment set on click listener-------------","")
+            Log.d("Info del login view model-------------",loginViewModel.userInformation.value.toString())
 
             // YA QUE SE LOGGEO VUELVO A RECOMENDACIONES
            NavHostFragment.findNavController(this).popBackStack()
