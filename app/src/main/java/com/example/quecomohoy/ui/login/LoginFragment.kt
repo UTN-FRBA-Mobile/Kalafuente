@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.quecomohoy.databinding.FragmentLoginBinding
 
@@ -42,6 +44,8 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d("LOGINFRAGMENT----------------------------------------------------------------","---------------------")
+
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -111,6 +115,12 @@ class LoginFragment : Fragment() {
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
+
+            Log.d("HOLAAAAAAAA------------------------------------------------------","")
+            Log.d("HOLAAAAAAAA------------------------------------------------------",loginViewModel.userInformation.value.toString())
+
+            // YA QUE SE LOGGEO VUELVO A RECOMENDACIONES
+           NavHostFragment.findNavController(this).popBackStack()
         }
     }
 
@@ -126,8 +136,4 @@ class LoginFragment : Fragment() {
         Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

@@ -1,5 +1,6 @@
 package com.example.quecomohoy.ui.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,18 +18,22 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun isLogged(): Boolean {
-        //Lógica para saber si está loggeado
-        return false;
-    }
+    private val _userInformation = MutableLiveData<LoggedInUserView>(
+        LoggedInUserView(displayName = "")
+    );
+    val userInformation: LiveData<LoggedInUserView> = _userInformation
 
     fun login(username: String, password: String) {
         // can be launched in a separate asynchronous job
         val result = loginRepository.login(username, password)
-
+        Log.d("Loggin view------", "entre---------------")
         if (result is Result.Success) {
+            val loggedUserView = LoggedInUserView(displayName = result.data.displayName)
             _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
+                LoginResult(success = loggedUserView)
+            //Por ahora solo el nombre
+           _userInformation.value = loggedUserView
+            Log.d("Loggin view------ userInformation()",userInformation.value.toString())
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)
         }

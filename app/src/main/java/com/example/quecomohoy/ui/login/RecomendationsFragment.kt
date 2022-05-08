@@ -6,40 +6,47 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.quecomohoy.ui.login.LoginViewModelFactory
 import androidx.lifecycle.Observer
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.inputmethod.EditorInfo
-import androidx.annotation.StringRes
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
-import com.example.quecomohoy.databinding.FragmentLoginBinding
-
 import com.example.quecomohoy.R
+import com.example.quecomohoy.databinding.FragmentRecomendationsBinding
+import android.util.Log
 
 
 class RecomendationsFragment : Fragment() {
+    private var _binding: FragmentRecomendationsBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recomendations, container, false)
+
+        _binding = FragmentRecomendationsBinding.inflate(inflater, container, false)
+        return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d("Volvi a entrar","")
         super.onViewCreated(view, savedInstanceState)
-        var loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
+        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
-        if(!loginViewModel.isLogged()){
-             val action = R.id.action_recomendationsFragment_to_loginFragment
-             findNavController().navigate(action)
-        }
+
+        loginViewModel.userInformation.observe(viewLifecycleOwner,
+            Observer {userInformation ->
+                Log.d("Recommendations Fragment userInformation ------", userInformation.toString())
+                if(userInformation.displayName == ""){
+                    Log.d("Recommendations Fragment", "NO HAY USER INFORMATION------------")
+                    val action = R.id.action_recomendationsFragment_to_loginFragment
+                    findNavController().navigate(action)
+                } else{
+                    binding.userName.setText("Recomendaciones para " + userInformation)
+                }
+            })
+
+
     }
 }
