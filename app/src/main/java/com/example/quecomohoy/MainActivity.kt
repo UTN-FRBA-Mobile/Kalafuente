@@ -21,15 +21,22 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.white)))
-        notShowBottomNavBarInLoggin(navController, bottomNavigationView)
+        notShowBottomNavBarAndActionBarInLoggin(navController, bottomNavigationView)
     }
 
-    private fun notShowBottomNavBarInLoggin(navController:NavController, bottomNavigationView:BottomNavigationView){
+    private fun notShowBottomNavBarAndActionBarInLoggin(navController:NavController, bottomNavigationView:BottomNavigationView){
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNavigationView.visibility = if(destination.id == R.id.loginFragment) {
                 View.GONE
             } else {
                 View.VISIBLE
+            }
+        }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.loginFragment) {
+                supportActionBar!!.hide()
+            } else {
+                supportActionBar!!.show()
             }
         }
     }
