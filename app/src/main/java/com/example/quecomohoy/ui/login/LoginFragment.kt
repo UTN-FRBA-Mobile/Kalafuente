@@ -47,7 +47,7 @@ class LoginFragment : Fragment() {
         Log.d("LOGINFRAGMENT----------------------------------------------------------------","---------------------")
 
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
+        loginViewModel = ViewModelProvider(requireActivity(), LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
         val usernameEditText = binding.username
