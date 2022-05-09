@@ -8,15 +8,30 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.quecomohoy.ui.login.LoginFragment"
-        android:label="fragment_login"
+        android:label="Ingresar"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/recomendationsFragment"
         android:name="com.example.quecomohoy.RecomendationsFragment"
-        android:label="fragment_recomendations"
+        android:label="Recomendaciones"
         tools:layout="@layout/fragment_recomendations" >
         <action
             android:id="@+id/action_recomendationsFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favouritesFragment"
+        android:name="com.example.quecomohoy.FavouritesFragment"
+        android:label="Recetas favoritas"
+        tools:layout="@layout/fragment_favourites" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.quecomohoy.SearchFragment"
+        android:label="Buscar receta"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.quecomohoy.ProfileFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
