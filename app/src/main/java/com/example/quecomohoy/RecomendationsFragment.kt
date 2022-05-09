@@ -39,7 +39,7 @@ class RecomendationsFragment : Fragment() {
         loginViewModel.userInformation.observe(viewLifecycleOwner,
             Observer {userInformation ->
                 Log.d("Recommendations Fragment userInformation ------", userInformation.toString())
-                if(userInformation.displayName == ""){
+                     if(userInformation.displayName == ""){
                     Log.d("Recommendations Fragment", "NO HAY USER INFORMATION------------")
                     val action = R.id.action_recomendationsFragment_to_loginFragment
                     findNavController().navigate(action)
