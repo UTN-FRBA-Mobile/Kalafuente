@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun notShowBottomNavBarAndActionBarInLoggin(navController:NavController, bottomNavigationView:BottomNavigationView){
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            bottomNavigationView.visibility = if(destination.id == R.id.loginFragment) {
+            bottomNavigationView.visibility = if(destination.id == R.id.loginFragment || destination.id == R.id.registrationFragment) {
                 View.GONE
             } else {
                 View.VISIBLE

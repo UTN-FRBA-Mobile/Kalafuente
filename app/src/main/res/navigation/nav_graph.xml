@@ -9,7 +9,11 @@
         android:id="@+id/loginFragment"
         android:name="com.example.quecomohoy.ui.login.LoginFragment"
         android:label="Ingresar"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/recomendationsFragment"
         android:name="com.example.quecomohoy.RecomendationsFragment"
@@ -34,4 +38,9 @@
         android:name="com.example.quecomohoy.ProfileFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.quecomohoy.ui.registration.RegistrationFragment"
+        android:label="Registrate"
+        tools:layout="@layout/fragment_registration" />
 </navigation>

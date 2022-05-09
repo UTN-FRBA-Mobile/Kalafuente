@@ -122,6 +122,13 @@ class LoginFragment : Fragment() {
             // YA QUE SE LOGGEO VUELVO A RECOMENDACIONES
            NavHostFragment.findNavController(this).popBackStack()
         }
+
+        val registerButton = binding.register
+        registerButton.setOnClickListener {
+
+            val action = R.id.action_loginFragment_to_registrationFragment
+            findNavController().navigate(action);
+        }
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
