@@ -96,10 +96,13 @@
 
     <Button
         android:id="@+id/create_account_button"
-        android:background="@color/button_color"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/signup_create_account"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

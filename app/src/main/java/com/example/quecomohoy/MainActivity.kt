@@ -17,19 +17,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val navController = findNavController(R.id.fragment)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.recomendationsFragment, R.id.searchFragment, R.id.favouritesFragment, R.id.profileFragment, R.id.registrationFragment))
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.recomendationsFragment, R.id.searchFragment, R.id.favouritesFragment, R.id.profileFragment))
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.white)))
-        notShowBottomNavBarInLoggin(navController, bottomNavigationView)
+        notShowBottomNavBarAndActionBarInLoggin(navController, bottomNavigationView)
     }
 
-    private fun notShowBottomNavBarInLoggin(navController:NavController, bottomNavigationView:BottomNavigationView){
+    private fun notShowBottomNavBarAndActionBarInLoggin(navController:NavController, bottomNavigationView:BottomNavigationView){
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            bottomNavigationView.visibility = if(destination.id == R.id.loginFragment) {
+            bottomNavigationView.visibility = if(destination.id == R.id.loginFragment || destination.id == R.id.registrationFragment) {
                 View.GONE
             } else {
                 View.VISIBLE
+            }
+        }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.loginFragment) {
+                supportActionBar!!.hide()
+            } else {
+                supportActionBar!!.show()
             }
         }
     }

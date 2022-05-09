@@ -33,20 +33,18 @@ class RecomendationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.d("Volvi a entrar a on View Created Recomendations Fragment","")
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
+        loginViewModel = ViewModelProvider(requireActivity(), LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
         loginViewModel.userInformation.observe(viewLifecycleOwner,
             Observer {userInformation ->
                 Log.d("Recommendations Fragment userInformation ------", userInformation.toString())
-                    // if(userInformation.displayName == ""){ TODO: FIXLOGGIN
-                    if(false){
+                     if(userInformation.displayName == ""){
                     Log.d("Recommendations Fragment", "NO HAY USER INFORMATION------------")
                     val action = R.id.action_recomendationsFragment_to_loginFragment
                     findNavController().navigate(action)
                 } else{
-                     binding.userName.setText("Recomendaciones para Karen")
-                //   binding.userName.setText("Recomendaciones para " + userInformation) TODO: FIX
+                    binding.userName.setText("Recomendaciones para " + userInformation.displayName)
                 }
             })
 

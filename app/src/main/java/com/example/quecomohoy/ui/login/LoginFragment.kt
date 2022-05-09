@@ -45,9 +45,9 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.d("LOGINFRAGMENT----------------------------------------------------------------","---------------------")
-
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
+
+        loginViewModel = ViewModelProvider(requireActivity(), LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
         val usernameEditText = binding.username
@@ -121,6 +121,13 @@ class LoginFragment : Fragment() {
 
             // YA QUE SE LOGGEO VUELVO A RECOMENDACIONES
            NavHostFragment.findNavController(this).popBackStack()
+        }
+
+        val registerButton = binding.register
+        registerButton.setOnClickListener {
+
+            val action = R.id.action_loginFragment_to_registrationFragment
+            findNavController().navigate(action);
         }
     }
 
