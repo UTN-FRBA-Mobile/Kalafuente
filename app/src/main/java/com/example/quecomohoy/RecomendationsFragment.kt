@@ -25,7 +25,7 @@ class RecomendationsFragment : Fragment() {
     val recommendationsList : List<Recommendation> = listOf(
         Recommendation("Omelette", "https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg"),
         Recommendation("Espinacas a la crema", "https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png"),
-        Recommendation("Pancito", "https://www.lesaffre.es/wp-content/uploads/2017/04/pan-corteza-blanda.jpg")
+        Recommendation("Pancito", "https://i0.wp.com/blog.marianlaquecocina.com/wp-content/uploads/2018/04/20180416_144118.jpg")
     )
 
     override fun onCreateView(
@@ -53,7 +53,7 @@ class RecomendationsFragment : Fragment() {
                     val action = R.id.action_recomendationsFragment_to_loginFragment
                     findNavController().navigate(action)
                 } else{
-                    binding.userName.setText("Recomendaciones para " + userInformation.displayName)
+                  //  binding.userName.setText("Recomendaciones para " + userInformation.displayName)
                 }
             })
 
