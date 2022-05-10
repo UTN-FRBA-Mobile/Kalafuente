@@ -10,7 +10,7 @@ import com.example.quecomohoy.R
 import com.example.quecomohoy.data.model.Favourite
 import com.squareup.picasso.Picasso
 
-class FavouritesAdapter (private val dataset: MutableList<Favourite>) :
+class FavouritesAdapter (private val dataset: List<Favourite>) :
     RecyclerView.Adapter<FavouritesAdapter.FavouritesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouritesAdapter.FavouritesViewHolder {
