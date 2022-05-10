@@ -35,7 +35,7 @@ class FavouritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val viewManager = LinearLayoutManager(this.context)
-        val viewAdapter = MoviesAdapter(myDataset)
+        val viewAdapter = FavouritesAdapter(favouritesList)
 
         binding.favoritesRV.apply {
             layoutManager = viewManager

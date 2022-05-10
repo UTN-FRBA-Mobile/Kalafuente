@@ -17,4 +17,5 @@
     <string name="signup_password">Contraseña</string>
     <string name="signup_create_account">Crear cuenta</string>
     <string name="signup_lastname">Apellidos</string>
+    <string name="action_fav">Favorite</string>
 </resources>
