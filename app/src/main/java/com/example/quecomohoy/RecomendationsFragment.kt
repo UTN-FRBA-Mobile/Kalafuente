@@ -10,6 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.quecomohoy.databinding.FragmentRecomendationsBinding
 import android.util.Log
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.quecomohoy.data.model.Recommendation
 import com.example.quecomohoy.ui.login.LoginViewModel
 import com.example.quecomohoy.ui.login.LoginViewModelFactory
 
@@ -18,6 +21,12 @@ class RecomendationsFragment : Fragment() {
     private var _binding: FragmentRecomendationsBinding? = null
     private val binding get() = _binding!!
     private lateinit var loginViewModel: LoginViewModel
+
+    val recommendationsList : List<Recommendation> = listOf(
+        Recommendation("Omelette", "https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg"),
+        Recommendation("Espinacas a la crema", "https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png"),
+        Recommendation("Pancito", "https://www.lesaffre.es/wp-content/uploads/2017/04/pan-corteza-blanda.jpg")
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +57,10 @@ class RecomendationsFragment : Fragment() {
                 }
             })
 
-
+        binding.rvRecommendation.hasFixedSize()
+        binding.rvRecommendation.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvRecommendation.adapter = RecommendationsAdapter(recommendationsList)
     }
+
+
 }
