@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    style="@style/AppTheme.CardSettingView"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="8dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:layout_toStartOf="@+id/imageView">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dietasaaaaa"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_alignStart="@+id/title"
+                android:text="Vegetariano"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_pencil" />
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

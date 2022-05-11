@@ -34,13 +34,13 @@
         android:label="Buscar receta"
         tools:layout="@layout/fragment_search" />
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.quecomohoy.ProfileFragment"
-        android:label="Perfil"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
         android:id="@+id/registrationFragment"
         android:name="com.example.quecomohoy.ui.registration.RegistrationFragment"
         android:label="Registrate"
         tools:layout="@layout/fragment_registration" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.quecomohoy.ui.profile.ProfileFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
