@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
-        android:name="com.example.quecomohoy.FavouritesFragment"
+        android:name="com.example.quecomohoy.ui.favorites.FavouritesFragment"
         android:label="Recetas favoritas"
         tools:layout="@layout/fragment_favourites" />
     <fragment
