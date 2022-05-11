@@ -7,25 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.favorites.FavouritesFragment">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="105dp"
-        android:contentDescription="QCHLogo"
-        android:src="@drawable/logoqch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRV"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

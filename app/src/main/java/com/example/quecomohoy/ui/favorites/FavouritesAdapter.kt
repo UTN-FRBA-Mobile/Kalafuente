@@ -22,7 +22,7 @@ class FavouritesAdapter (private val dataset: List<Favourite>) :
     override fun onBindViewHolder(holder: FavouritesViewHolder, position: Int) {
         val favourite = dataset[position]
         holder.titleTextView.text = favourite.name
-        holder.authorTextView.text = favourite.authorName
+        holder.authorTextView.text = "By " + favourite.authorName
 
         Picasso.get()
             .load(favourite.image)
