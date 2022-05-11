@@ -6,11 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".RecomendationsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/userName"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/logoqch"
+        app:layout_constraintBottom_toTopOf="@+id/rvRecommendation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRecommendation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="76dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
