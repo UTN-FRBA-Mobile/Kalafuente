@@ -65,7 +65,7 @@ class ProfileFragment : Fragment() {
             UserPreference("Dietas", "Vegetariano"),
             UserPreference("Mis ingredientes", "Los ingredientes que me gustan"),
             UserPreference("Alergias", null),
-            UserPreference("Ingredientes que no me gustan", "Salmón, Huevos, Tomate")
+            UserPreference("Ingredientes que no me gustan", "Salmón, Huevos, Tomate, Lechuga, Carnes rojas, Pollos")
         )
     }
 }
