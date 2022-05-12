@@ -13,43 +13,56 @@
         android:layout_marginHorizontal="15dp"
         android:orientation="vertical">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            app:cardBackgroundColor="@android:color/transparent"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
+            android:layout_marginBottom="10dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="0dp">
 
-            <ImageView
-                android:id="@+id/profile_pic"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginEnd="5dp"
-                android:visibility="visible"
-                tools:src="@tools:sample/avatars" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="5dp"
-                android:orientation="vertical">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profile_pic"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="visible"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                    tools:src="@tools:sample/avatars" />
 
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="BRUNO COBOS"
-                    android:textSize="24sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="bruno.cobos@gmail.com"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@+id/profile_pic"
+                    android:layout_alignBottom="@+id/profile_pic"
+                    android:layout_toEndOf="@+id/profile_pic"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BRUNO COBOS"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="bruno.cobos@gmail.com"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/preferences"
@@ -60,6 +73,7 @@
             android:id="@+id/card"
             style="@style/AppTheme.CardSettingView"
             android:visibility="gone"
+            app:cardUseCompatPadding="true"
             tools:visibility="visible">
 
             <RelativeLayout

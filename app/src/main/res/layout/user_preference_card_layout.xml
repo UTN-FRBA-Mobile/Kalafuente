@@ -21,8 +21,9 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dietasaaaaa"
-                android:textSize="24sp" />
+                android:textColor="@color/black"
+                android:text="Dietas"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/subtitle"
@@ -31,7 +32,7 @@
                 android:layout_below="@+id/title"
                 android:layout_alignStart="@+id/title"
                 android:text="Vegetariano"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
         </RelativeLayout>
 
         <ImageView
