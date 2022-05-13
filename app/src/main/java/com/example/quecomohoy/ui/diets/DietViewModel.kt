@@ -13,6 +13,7 @@ class DietViewModel : ViewModel() {
         if(diets.isEmpty()){
             diets.addAll(PlaceholderContent.ITEMS)
         }
+        currentDietIndex = diets.indexOfFirst { it.selected }
         return diets;
     }
 
