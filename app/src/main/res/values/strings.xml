@@ -18,4 +18,6 @@
     <string name="signup_create_account">Crear cuenta</string>
     <string name="signup_lastname">Apellidos</string>
     <string name="action_fav">Favorite</string>
+    <string name="preference_label">{label}</string>
+    <string name="save">Guardar</string>
 </resources>
