@@ -25,7 +25,7 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<UserPreferencesAdapater.ViewHolder>? = null
+    private var adapter: RecyclerView.Adapter<UserProfilePreferencesAdapater.ViewHolder>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +33,8 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        return binding.root    }
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val profilePic = _binding?.profilePic
@@ -42,12 +43,12 @@ class ProfileFragment : Fragment() {
         layoutManager = LinearLayoutManager(context?.applicationContext)
         settings?.layoutManager = layoutManager
         val listOfSettings = getListOfUserPreferences();
-        adapter = UserPreferencesAdapater(listOfSettings);
+        adapter = UserProfilePreferencesAdapater(listOfSettings);
         settings?.adapter = adapter
 
         Picasso.get()
             .load("https://pbs.twimg.com/profile_images/1447703122927923206/2SNjVwEe_400x400.jpg")
-            .into(profilePic, object : Callback{
+            .into(profilePic, object : Callback {
                 override fun onSuccess() {
                     Log.d(TAG, "success")
                 }
@@ -55,17 +56,20 @@ class ProfileFragment : Fragment() {
                 override fun onError(e: Exception?) {
                     Log.e(TAG, "error", e)
                 }
-
             })
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun getListOfUserPreferences() : List<UserPreference>{
-       return listOf(
-            UserPreference("Dietas", "Vegetariano"),
-            UserPreference("Mis ingredientes", "Los ingredientes que me gustan"),
-            UserPreference("Alergias", null),
-            UserPreference("Ingredientes que no me gustan", "Salmón, Huevos, Tomate, Lechuga, Carnes rojas, Pollos")
+    private fun getListOfUserPreferences(): List<UserPreference> {
+        return listOf(
+            UserPreference(1, "Dietas", "Vegetariano"),
+            UserPreference(2, "Mis ingredientes", "Los ingredientes que me gustan"),
+            UserPreference(3, "Alergias", null),
+            UserPreference(
+                4,
+                "Ingredientes que no me gustan",
+                "Salmón, Huevos, Tomate, Lechuga, Carnes rojas, Pollos"
+            )
         )
     }
 }
