@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_favourites" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.quecomohoy.SearchFragment"
+        android:name="com.example.quecomohoy.ui.searchrecipes.SearchFragment"
         android:label="Buscar receta"
         tools:layout="@layout/fragment_search" />
     <fragment

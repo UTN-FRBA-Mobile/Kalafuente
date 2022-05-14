@@ -20,4 +20,8 @@
     <string name="action_fav">Favorite</string>
     <string name="preference_label">{label}</string>
     <string name="save">Guardar</string>
+    <string name="write_an_ingredient">Escribe un ingrediente</string>
+    <string name="recipe_name">Nombre de receta</string>
+    <string name="ingredients">Ingredientes</string>
+    <string name="write_recipe_name">Escribe una receta</string>
 </resources>
