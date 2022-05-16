@@ -9,26 +9,35 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searchRecipeLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_vertical_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:startIconDrawable="@drawable/ic_search"
-        app:endIconMode="clear_text"
-        app:layout_constraintWidth_percent="0.8"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-        android:hint="@string/write_recipe_name">
+        android:layout_width="379dp"
+        android:layout_height="118dp"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:hint="@string/write_recipe_name"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8"
+        app:startIconDrawable="@drawable/ic_search">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchRecipeInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:inputType="textFilter">
+            android:inputType="textFilter"
+            android:minHeight="48dp">
 
         </com.google.android.material.textfield.TextInputEditText>
+
+        <Button
+            android:id="@+id/cameraButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="cam" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.tabs.TabLayout

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.quecomohoy.R
@@ -69,6 +70,11 @@ class SearchFragment : Fragment() {
                 else -> throw Exception("No deberías estara acá")
             }
         }
+
+        binding.cameraButton.setOnClickListener{
+            findNavController().navigate(R.id.action_searchFragment_to_cameraFragment);
+        }
+
     }
 
     class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {

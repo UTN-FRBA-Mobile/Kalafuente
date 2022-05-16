@@ -24,4 +24,6 @@
     <string name="recipe_name">Nombre de receta</string>
     <string name="ingredients">Ingredientes</string>
     <string name="write_recipe_name">Escribe una receta</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
