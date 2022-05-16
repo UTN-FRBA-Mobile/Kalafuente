@@ -21,8 +21,6 @@ class RecipeViewFragment : Fragment() {
         fun newInstance() = RecipeViewFragment()
     }
 
-    private lateinit var viewModel: RecipeViewViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,12 +30,6 @@ class RecipeViewFragment : Fragment() {
         _binding = RecipeViewFragmentBinding.inflate(inflater, container, false)
         return binding.root
 
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RecipeViewViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
