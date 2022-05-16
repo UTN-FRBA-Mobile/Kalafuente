@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_recomendationsFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_recomendationsFragment_to_recipeViewFragment"
+            app:destination="@id/recipeViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
@@ -55,5 +58,14 @@
         <argument
             android:name="label"
             app:argType="string"/>
+    </fragment>
+    <fragment
+        android:id="@+id/recipeViewFragment"
+        android:name="com.example.quecomohoy.ui.recipe.RecipeViewFragment"
+        android:label="recipe_view_fragment"
+        tools:layout="@layout/recipe_view_fragment" >
+        <action
+            android:id="@+id/action_recipeViewFragment_to_recomendationsFragment2"
+            app:destination="@id/recomendationsFragment" />
     </fragment>
 </navigation>

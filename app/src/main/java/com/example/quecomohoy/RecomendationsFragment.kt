@@ -47,9 +47,7 @@ class RecomendationsFragment : Fragment() {
 
         loginViewModel.userInformation.observe(viewLifecycleOwner,
             Observer {userInformation ->
-                Log.d("Recommendations Fragment userInformation ------", userInformation.toString())
                      if(userInformation.displayName == ""){
-                    Log.d("Recommendations Fragment", "NO HAY USER INFORMATION------------")
                     val action = R.id.action_recomendationsFragment_to_loginFragment
                     findNavController().navigate(action)
                 } else{
@@ -59,7 +57,7 @@ class RecomendationsFragment : Fragment() {
 
         binding.rvRecommendation.hasFixedSize()
         binding.rvRecommendation.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvRecommendation.adapter = RecommendationsAdapter(recommendationsList)
+        binding.rvRecommendation.adapter = RecommendationsAdapter(recommendationsList, findNavController())
     }
 
 

@@ -23,5 +23,6 @@
     <string name="write_an_ingredient">Escribe un ingrediente</string>
     <string name="recipe_name">Nombre de receta</string>
     <string name="ingredients">Ingredientes</string>
+    <string name="steps">Pasos</string>
     <string name="write_recipe_name">Escribe una receta</string>
 </resources>
