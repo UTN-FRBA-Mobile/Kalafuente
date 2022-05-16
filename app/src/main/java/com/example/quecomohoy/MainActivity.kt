@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.loginFragment || destination.id == R.id.recomendationsFragment) {
+            if(destination.id == R.id.loginFragment || destination.id == R.id.recomendationsFragment
+                || destination.id == R.id.recipeViewFragment) {
                 supportActionBar!!.hide()
             } else {
                 supportActionBar!!.show()
