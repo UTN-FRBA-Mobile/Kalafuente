@@ -6,12 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.quecomohoy.data.model.Favourite
-import com.example.quecomohoy.data.model.Recommendation
 import com.example.quecomohoy.data.model.recipe.Recipe
 import com.example.quecomohoy.databinding.FragmentFavouritesBinding
-import com.example.quecomohoy.databinding.FragmentRecomendationsBinding
-import com.example.quecomohoy.ui.login.LoginViewModel
 import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
 
 class FavouritesFragment : Fragment() {
