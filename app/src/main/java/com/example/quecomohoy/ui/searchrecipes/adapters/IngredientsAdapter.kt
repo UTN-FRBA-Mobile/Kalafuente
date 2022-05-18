@@ -41,27 +41,19 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>()
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var name: TextView
-        var picture: ImageView
+        var name: TextView = view.findViewById(R.id.recipe_name)
+        var picture: ImageView = view.findViewById(R.id.recipe_pic)
 
         init {
-            name = view.findViewById(R.id.recipe_name)
-            picture = view.findViewById(R.id.recipe_pic)
             view.setOnClickListener {
                 Toast.makeText(view.context, name.text, Toast.LENGTH_SHORT).show()
             }
         }
 
         fun fill(ingredient: Ingredient) {
+            name.text = ingredient.name
             if(ingredient.picture.isNotEmpty()){
-                Picasso.get().load(ingredient.picture).fit().into(picture, object : Callback{
-                    override fun onSuccess() {
-                        name.text = ingredient.name
-                    }
-                    override fun onError(e: Exception?) {
-                       Log.e(TAG,"error",e)
-                    }
-                })
+                Picasso.get().load(ingredient.picture).fit().into(picture)
             }
         }
     }

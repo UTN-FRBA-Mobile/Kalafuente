@@ -27,7 +27,7 @@ class RecipesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adpater = RecipesAdapter()
+        val adpater = RecipesAdapter(listOf())
         binding.recipesRecycler.adapter = adpater
 
         viewModel.recipes.observe(viewLifecycleOwner){
