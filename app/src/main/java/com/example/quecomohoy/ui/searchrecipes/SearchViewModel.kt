@@ -12,6 +12,8 @@ class SearchViewModel(private val recipeRepository : RecipeRepository, private v
     val recipes = MutableLiveData<List<Recipe>>()
     val ingredients = MutableLiveData<List<Ingredient>>()
 
+    val selectedIngredients = listOf<Ingredient>().toMutableList();
+    val addedIngredient = MutableLiveData<Ingredient>()
 
     fun findRecipes(name : String){
         recipes.postValue(recipeRepository.findRecipesByName(name))
@@ -19,6 +21,15 @@ class SearchViewModel(private val recipeRepository : RecipeRepository, private v
 
     fun findIngredients(name : String){
         ingredients.postValue(ingredientRepository.findByName(name))
+    }
+
+    fun addIngredient(ingredient : Ingredient){
+        selectedIngredients.add(ingredient)
+        addedIngredient.postValue(ingredient)
+    }
+
+    fun removeIngredient(index : Int){
+        selectedIngredients.removeAt(index)
     }
 
 }

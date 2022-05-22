@@ -25,4 +25,6 @@
     <string name="ingredients">Ingredientes</string>
     <string name="steps">Pasos</string>
     <string name="write_recipe_name">Escribe una receta</string>
+    <string name="by_author">Hecha por %1$s</string>
+    <string name="selected_ingredients">Ingredientes seleccionados</string>
 </resources>
