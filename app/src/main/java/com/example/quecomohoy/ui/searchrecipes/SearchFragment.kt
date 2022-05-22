@@ -66,9 +66,7 @@ class SearchFragment : Fragment() {
 
         binding.searchRecipeInput.doAfterTextChanged {
             when (viewPager.currentItem) {
-                0 -> {
-                    searchViewModel.findRecipes(it.toString())
-                }
+                0 -> searchViewModel.findRecipes(it.toString())
                 1 -> {
                     searchViewModel.findIngredients(it.toString())
                     viewPagerAdapter.ingredientsFragment.showAddedIngredients(it.isNullOrEmpty())

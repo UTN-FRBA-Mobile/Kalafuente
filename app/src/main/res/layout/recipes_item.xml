@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:minWidth="0dp"
                         android:minHeight="0dp"
-                        android:button="@drawable/ic_like"
+                        android:button="@drawable/sl_favourite"
                         app:buttonTint="@android:color/black" />
                 </LinearLayout>
             </LinearLayout>
