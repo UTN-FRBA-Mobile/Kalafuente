@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.quecomohoy.databinding.FragmentRecipesBinding
+import com.example.quecomohoy.ui.RecipeViewModel
+import com.example.quecomohoy.ui.RecipeViewModelFactory
 import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
 
 class RecipesFragment : Fragment() {
@@ -15,7 +17,10 @@ class RecipesFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel: SearchViewModel by viewModels({requireParentFragment()}, {SearchViewModelFactory()})
+    private val recipeViewModel : RecipeViewModel by viewModels(
+        {requireParentFragment()},
+        {RecipeViewModelFactory()}
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +35,7 @@ class RecipesFragment : Fragment() {
         val adpater = RecipesAdapter(listOf())
         binding.recipesRecycler.adapter = adpater
 
-        viewModel.recipes.observe(viewLifecycleOwner){
+        recipeViewModel.recipes.observe(viewLifecycleOwner){
             adpater.updateData(it);
         }
     }

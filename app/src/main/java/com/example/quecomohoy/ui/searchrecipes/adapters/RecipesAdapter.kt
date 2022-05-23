@@ -61,8 +61,8 @@ class RecipesAdapter(recipes : List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
         fun fill(recipe: Recipe) {
             titleTextView.text = recipe.name
             authorTextView.text = itemView.context.getString(R.string.by_author, recipe.authorName)
-            if (recipe.picturePath.isNotEmpty()) {
-                Picasso.get().load(recipe.picturePath).fit().into(imageView)
+            if (recipe.picture.isNotEmpty()) {
+                Picasso.get().load(recipe.picture).fit().into(imageView)
             }
         }
 

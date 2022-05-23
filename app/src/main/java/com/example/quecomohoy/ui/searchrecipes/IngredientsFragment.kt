@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.quecomohoy.data.model.Ingredient
 import com.example.quecomohoy.databinding.FragmentIngredientsBinding
+import com.example.quecomohoy.ui.IngredientViewModel
+import com.example.quecomohoy.ui.IngredientViewModelFactory
 import com.example.quecomohoy.ui.searchrecipes.adapters.SelectedIngredientAdapter
 import com.example.quecomohoy.ui.searchrecipes.adapters.IngredientsAdapter
 
@@ -17,7 +19,10 @@ class IngredientsFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel: SearchViewModel by viewModels({requireParentFragment()}, {SearchViewModelFactory()})
+    private val ingredientViewModel : IngredientViewModel by viewModels(
+        factoryProducer = {IngredientViewModelFactory()},
+        ownerProducer = {requireParentFragment()}
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,23 +37,23 @@ class IngredientsFragment : Fragment() {
         showAddedIngredients(false)
 
         val adpater = IngredientsAdapter { ingredient: Ingredient ->
-            viewModel.addIngredient(ingredient)
+            ingredientViewModel.addIngredient(ingredient)
             showAddedIngredients(true)
         }
 
         val addedIngredientsAdapter = SelectedIngredientAdapter { index: Int ->
-            viewModel.removeIngredient(index)
-            showAddedIngredients(viewModel.selectedIngredients.isNotEmpty())
+            ingredientViewModel.removeIngredient(index)
+            showAddedIngredients(ingredientViewModel.hasSelectedIngredients())
         }
 
         binding.verticalRecyclerView.adapter = adpater
         binding.horizontalRecyclerView.adapter = addedIngredientsAdapter
 
-        viewModel.ingredients.observe(viewLifecycleOwner){
+        ingredientViewModel.ingredients.observe(viewLifecycleOwner){
             adpater.updateData(it)
         }
 
-        viewModel.addedIngredient.observe(viewLifecycleOwner){
+        ingredientViewModel.addedIngredient.observe(viewLifecycleOwner){
             addedIngredientsAdapter.addItem(it)
         }
     }

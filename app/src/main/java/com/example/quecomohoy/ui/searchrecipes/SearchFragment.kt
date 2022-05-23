@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +13,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.quecomohoy.R
 import com.example.quecomohoy.databinding.FragmentSearchBinding
+import com.example.quecomohoy.ui.IngredientViewModel
+import com.example.quecomohoy.ui.IngredientViewModelFactory
+import com.example.quecomohoy.ui.RecipeViewModel
+import com.example.quecomohoy.ui.RecipeViewModelFactory
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
@@ -24,7 +27,8 @@ class SearchFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val searchViewModel: SearchViewModel by viewModels(factoryProducer = { SearchViewModelFactory() })
+    private val recipeViewModel: RecipeViewModel by viewModels(factoryProducer = {RecipeViewModelFactory()})
+    private val ingredientViewModel : IngredientViewModel by viewModels(factoryProducer = {IngredientViewModelFactory()})
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,16 +70,16 @@ class SearchFragment : Fragment() {
 
         binding.searchRecipeInput.doAfterTextChanged {
             when (viewPager.currentItem) {
-                0 -> searchViewModel.findRecipes(it.toString())
+                0 -> recipeViewModel.getRecipesByName(it.toString())
                 1 -> {
-                    searchViewModel.findIngredients(it.toString())
+                    ingredientViewModel.getIngredientsByName(it.toString())
                     viewPagerAdapter.ingredientsFragment.showAddedIngredients(it.isNullOrEmpty())
                 }
                 else -> throw Exception("No deberías estara acá")
             }
         }
 
-        searchViewModel.addedIngredient.observe(viewLifecycleOwner){
+        ingredientViewModel.addedIngredient.observe(viewLifecycleOwner){
             binding.searchRecipeInput.text = null
             binding.searchRecipeInput.hideKeyboard()
         }
