@@ -20,4 +20,10 @@ class RecipeViewModel(private val recipeRepository : RecipeRepository) :
         }
     }
 
+    fun getRecipesByIngredients(ingredientIds: List<Int>) {
+        viewModelScope.launch {
+            recipes.postValue(recipeRepository.getRecipesByIngredients(ingredientIds))
+        }
+    }
+
 }

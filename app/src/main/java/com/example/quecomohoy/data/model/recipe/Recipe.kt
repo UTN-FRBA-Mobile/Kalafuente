@@ -1,6 +1,7 @@
 package com.example.quecomohoy.data.model.recipe
 
 import com.example.quecomohoy.data.model.Ingredient
+import java.io.Serializable
 
 data class Recipe(
     val id: Int,
@@ -10,4 +11,4 @@ data class Recipe(
     val isFavourite: Boolean = false,
     val ingredients : List<Ingredient>? = listOf(),
     val steps : List<String>? = listOf()
-)
+) : Serializable

@@ -16,6 +16,13 @@ class RecipeService {
         }
     }
 
+    suspend fun getRecipesByIngredients(ingredientIds : List<Int>) : List<Recipe>{
+        return withContext(Dispatchers.IO){
+            val response = retrofit.create(RecipesApiClient::class.java).getRecipesByIngredientIds(ingredientIds)
+            response.body()?: emptyList()
+        }
+    }
+
     suspend fun getRecipeById(id : Int): Recipe?{
         return withContext(Dispatchers.IO){
             val respose = retrofit.create(RecipesApiClient::class.java).getRecipeById(id)

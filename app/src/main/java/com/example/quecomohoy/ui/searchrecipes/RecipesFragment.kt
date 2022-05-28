@@ -32,11 +32,17 @@ class RecipesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adpater = RecipesAdapter(recipeViewModel.recipes.value)
-        binding.recipesRecycler.adapter = adpater
+        val adapter = RecipesAdapter(emptyList())
+        binding.recipesRecycler.adapter = adapter
 
         recipeViewModel.recipes.observe(viewLifecycleOwner){
-            adpater.updateData(it);
+            adapter.updateData(it);
+        }
+
+        val ingredientIds = arguments?.getIntArray("ids")?.toList()
+
+        ingredientIds?.also {
+            recipeViewModel.getRecipesByIngredients(it)
         }
     }
 

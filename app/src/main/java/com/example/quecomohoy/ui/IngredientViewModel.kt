@@ -10,10 +10,14 @@ import kotlinx.coroutines.launch
 class IngredientViewModel(private val ingredientRepository: IngredientRepository) : ViewModel() {
 
     val ingredients = MutableLiveData<List<Ingredient>>()
-    private val selectedIngredients = listOf<Ingredient>().toMutableList();
+    val selectedIngredients = listOf<Ingredient>().toMutableList()
+        get() = field
+
     val addedIngredient = MutableLiveData<Ingredient>()
+    val isSearching = MutableLiveData<Boolean>()
 
     fun getIngredientsByName(name : String){
+        isSearching.postValue(name.isNotEmpty())
         viewModelScope.launch {
             ingredients.postValue(ingredientRepository.getIngredientsByName(name))
         }
@@ -30,6 +34,10 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
 
     fun hasSelectedIngredients(): Boolean {
         return selectedIngredients.isNotEmpty()
+    }
+
+    fun getSelectedIngredientsIds(): IntArray {
+        return selectedIngredients.map { it.id }.toIntArray()
     }
 
 }

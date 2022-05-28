@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -58,12 +59,13 @@ class SearchFragment : Fragment() {
                 binding.searchRecipeInput.text?.clear()
                 binding.searchRecipeInput.clearFocus()
 
-               // binding.startCookingButton.visibility = if(tab.position == INGREDIENTS_TAB) View.VISIBLE else View.GONE
+               binding.startCookingButton.isVisible = tab.position == INGREDIENTS_TAB
             }
-
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
+
+        binding.
 
         viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -71,15 +73,18 @@ class SearchFragment : Fragment() {
             }
         })
 
-        viewPager.isUserInputEnabled = false;
+        binding.startCookingButton.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putIntArray("ids", ingredientViewModel.getSelectedIngredientsIds())
+            view.findNavController().navigate(R.id.action_searchFragment_to_recipesFragment, bundle)
+        }
+
+        viewPager.isUserInputEnabled = false
 
         binding.searchRecipeInput.doAfterTextChanged {
             when (viewPager.currentItem) {
                 RECIPES_TAB -> recipeViewModel.getRecipesByName(it.toString())
-                INGREDIENTS_TAB -> {
-                    ingredientViewModel.getIngredientsByName(it.toString())
-                    viewPagerAdapter.ingredientsFragment.showAddedIngredients(it.isNullOrEmpty())
-                }
+                INGREDIENTS_TAB -> ingredientViewModel.getIngredientsByName(it.toString())
                 else -> throw Exception("No deberías estara acá")
             }
         }
@@ -91,17 +96,12 @@ class SearchFragment : Fragment() {
     }
 
     class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-        lateinit var recipesFragment: RecipesFragment
-        lateinit var ingredientsFragment: IngredientsFragment
-
         override fun getItemCount(): Int = 2
 
         override fun createFragment(position: Int): Fragment {
-            recipesFragment = RecipesFragment()
-            ingredientsFragment = IngredientsFragment()
             return when (position) {
-                RECIPES_TAB -> recipesFragment
-                INGREDIENTS_TAB -> ingredientsFragment
+                RECIPES_TAB -> RecipesFragment()
+                INGREDIENTS_TAB -> IngredientsFragment()
                 else -> throw Exception("No deberías estar acá")
             }
         }

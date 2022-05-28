@@ -1,9 +1,12 @@
 package com.example.quecomohoy.ui.searchrecipes.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quecomohoy.R
 import com.example.quecomohoy.data.model.recipe.Recipe
@@ -27,6 +30,12 @@ class RecipesAdapter(recipes: List<Recipe>?) : RecyclerView.Adapter<RecipesAdapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipe = data[position]
+        holder.itemView.setOnClickListener {
+            val args = Bundle()
+            args.putString("nameRecipe", recipe.name)
+            args.putString("img", recipe.picture)
+            it.findNavController().navigate(R.id.action_recipesFragment_to_recipeViewFragment, args)
+        }
         holder.fill(recipe)
     }
 
@@ -47,11 +56,7 @@ class RecipesAdapter(recipes: List<Recipe>?) : RecyclerView.Adapter<RecipesAdapt
         val checkBox : CheckBox = view.findViewById(R.id.checkbox)
 
         init {
-            view.setOnClickListener {
-                Toast.makeText(view.context, titleTextView.text, Toast.LENGTH_SHORT).show()
-            }
-
-            checkBox.setOnCheckedChangeListener{ checkBox, isChecked ->
+            checkBox.setOnCheckedChangeListener{ _, isChecked ->
                 if(isChecked){
                     Toast.makeText(view.context, "Le diste like!", Toast.LENGTH_SHORT).show()
                 } else {

@@ -12,4 +12,7 @@ interface RecipesApiClient {
 
     @GET("/recipes/{id}")
     suspend fun getRecipeById(@Path("id")id: Int): Response<Recipe>
+
+    @GET("/recipes")
+    suspend fun getRecipesByIngredientIds(@Query("ingredients=[]")ingredientIds: List<Int>): Response<List<Recipe>>
 }

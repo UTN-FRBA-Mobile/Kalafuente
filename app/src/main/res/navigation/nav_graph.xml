@@ -30,12 +30,23 @@
         android:id="@+id/favouritesFragment"
         android:name="com.example.quecomohoy.ui.favorites.FavouritesFragment"
         android:label="Recetas favoritas"
-        tools:layout="@layout/fragment_favourites" />
+        tools:layout="@layout/fragment_favourites" >
+        <action
+            android:id="@+id/action_favouritesFragment_to_recipeViewFragment"
+            app:destination="@id/recipeViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.quecomohoy.ui.searchrecipes.SearchFragment"
         android:label="Buscar receta"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_recipeViewFragment"
+            app:destination="@id/recipeViewFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registrationFragment"
         android:name="com.example.quecomohoy.ui.registration.RegistrationFragment"
@@ -67,5 +78,14 @@
         <action
             android:id="@+id/action_recipeViewFragment_to_recomendationsFragment2"
             app:destination="@id/recomendationsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="com.example.quecomohoy.ui.searchrecipes.RecipesFragment"
+        android:label="@string/recipes"
+        tools:layout="@layout/fragment_recipes" >
+        <action
+            android:id="@+id/action_recipesFragment_to_recipeViewFragment"
+            app:destination="@id/recipeViewFragment" />
     </fragment>
 </navigation>
