@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.quecomohoy.R
@@ -20,6 +21,8 @@ import com.example.quecomohoy.ui.RecipeViewModelFactory
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
+const val RECIPES_TAB = 0
+const val INGREDIENTS_TAB = 1
 
 class SearchFragment : Fragment() {
 
@@ -48,12 +51,14 @@ class SearchFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 viewPager.currentItem = tab.position
                 binding.searchRecipeLayout.hint = when (tab.position) {
-                    0 -> getString(R.string.write_recipe_name)
-                    1 -> getString(R.string.write_an_ingredient)
+                    RECIPES_TAB -> getString(R.string.write_recipe_name)
+                    INGREDIENTS_TAB -> getString(R.string.write_an_ingredient)
                     else -> throw Exception("No deberías estara acá")
                 }
                 binding.searchRecipeInput.text?.clear()
                 binding.searchRecipeInput.clearFocus()
+
+               // binding.startCookingButton.visibility = if(tab.position == INGREDIENTS_TAB) View.VISIBLE else View.GONE
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {}
@@ -70,8 +75,8 @@ class SearchFragment : Fragment() {
 
         binding.searchRecipeInput.doAfterTextChanged {
             when (viewPager.currentItem) {
-                0 -> recipeViewModel.getRecipesByName(it.toString())
-                1 -> {
+                RECIPES_TAB -> recipeViewModel.getRecipesByName(it.toString())
+                INGREDIENTS_TAB -> {
                     ingredientViewModel.getIngredientsByName(it.toString())
                     viewPagerAdapter.ingredientsFragment.showAddedIngredients(it.isNullOrEmpty())
                 }
@@ -95,8 +100,8 @@ class SearchFragment : Fragment() {
             recipesFragment = RecipesFragment()
             ingredientsFragment = IngredientsFragment()
             return when (position) {
-                0 -> recipesFragment
-                1 -> ingredientsFragment
+                RECIPES_TAB -> recipesFragment
+                INGREDIENTS_TAB -> ingredientsFragment
                 else -> throw Exception("No deberías estar acá")
             }
         }

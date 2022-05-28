@@ -9,12 +9,14 @@ import com.example.quecomohoy.R
 import com.example.quecomohoy.data.model.recipe.Recipe
 import com.squareup.picasso.Picasso
 
-class RecipesAdapter(recipes : List<Recipe>) : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
+class RecipesAdapter(recipes: List<Recipe>?) : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
 
     val data: MutableList<Recipe> = listOf<Recipe>().toMutableList()
 
     init {
-        data.addAll(recipes)
+        if (recipes != null) {
+            data.addAll(recipes)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
