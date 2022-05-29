@@ -10,8 +10,14 @@ import com.example.quecomohoy.R
 import com.example.quecomohoy.data.model.Ingredient
 import com.squareup.picasso.Picasso
 
-class SelectedIngredientAdapter(val onRemove: (Int) -> Unit) : RecyclerView.Adapter<SelectedIngredientAdapter.ViewHolder>() {
+class SelectedIngredientAdapter(val ingredients : List<Ingredient>?,val onRemove: (Int) -> Unit) : RecyclerView.Adapter<SelectedIngredientAdapter.ViewHolder>() {
     val data: MutableList<Ingredient> = listOf<Ingredient>().toMutableList()
+
+    init {
+        if (ingredients != null) {
+            data.addAll(ingredients)
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
@@ -31,12 +37,6 @@ class SelectedIngredientAdapter(val onRemove: (Int) -> Unit) : RecyclerView.Adap
 
     override fun getItemCount(): Int {
         return data.size
-    }
-
-    fun updateData(newData: List<Ingredient>) {
-        data.clear()
-        data.addAll(newData)
-        notifyDataSetChanged()
     }
 
     fun addItem(ingredient: Ingredient){

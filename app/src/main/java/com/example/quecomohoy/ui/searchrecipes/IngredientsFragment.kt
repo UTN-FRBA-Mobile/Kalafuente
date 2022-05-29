@@ -1,6 +1,9 @@
 package com.example.quecomohoy.ui.searchrecipes
 
+import android.content.ContentValues.TAG
+import android.nfc.Tag
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +11,8 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import com.example.quecomohoy.data.model.Ingredient
 import com.example.quecomohoy.databinding.FragmentIngredientsBinding
 import com.example.quecomohoy.ui.IngredientViewModel
@@ -43,7 +48,7 @@ class IngredientsFragment : Fragment() {
             showAddedIngredients(true)
         }
 
-        val addedIngredientsAdapter = SelectedIngredientAdapter{ index: Int ->
+        val addedIngredientsAdapter = SelectedIngredientAdapter(ingredientViewModel.getSelectedIngredients()){ index: Int ->
             ingredientViewModel.removeIngredient(index)
             showAddedIngredients(ingredientViewModel.hasSelectedIngredients())
         }
@@ -56,7 +61,9 @@ class IngredientsFragment : Fragment() {
         }
 
         ingredientViewModel.addedIngredient.observe(viewLifecycleOwner){
-            addedIngredientsAdapter.addItem(it)
+            if(lifecycle.currentState != Lifecycle.State.STARTED){
+                addedIngredientsAdapter.addItem(it)
+            }
         }
 
         ingredientViewModel.isSearching.observe(viewLifecycleOwner){
