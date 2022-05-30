@@ -21,6 +21,8 @@ import com.example.quecomohoy.ui.RecipeViewModel
 import com.example.quecomohoy.ui.RecipeViewModelFactory
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.jakewharton.rxbinding.widget.RxTextView
+import java.util.concurrent.TimeUnit
 
 const val RECIPES_TAB = 0
 const val INGREDIENTS_TAB = 1

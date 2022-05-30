@@ -1,24 +1,21 @@
 package com.example.quecomohoy.ui.searchrecipes
 
-import android.content.ContentValues.TAG
-import android.nfc.Tag
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isGone
+import android.widget.ProgressBar
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
 import com.example.quecomohoy.data.model.Ingredient
 import com.example.quecomohoy.databinding.FragmentIngredientsBinding
 import com.example.quecomohoy.ui.IngredientViewModel
 import com.example.quecomohoy.ui.IngredientViewModelFactory
-import com.example.quecomohoy.ui.searchrecipes.adapters.SelectedIngredientAdapter
 import com.example.quecomohoy.ui.searchrecipes.adapters.IngredientsAdapter
+import com.example.quecomohoy.ui.searchrecipes.adapters.SelectedIngredientAdapter
 
 class IngredientsFragment : Fragment() {
 
@@ -44,6 +41,7 @@ class IngredientsFragment : Fragment() {
         showAddedIngredients(false)
 
         val adpater = IngredientsAdapter { ingredient: Ingredient ->
+            binding.verticalRecyclerView.isInvisible = true
             ingredientViewModel.addIngredient(ingredient)
             showAddedIngredients(true)
         }
@@ -57,6 +55,9 @@ class IngredientsFragment : Fragment() {
         binding.horizontalRecyclerView.adapter = addedIngredientsAdapter
 
         ingredientViewModel.ingredients.observe(viewLifecycleOwner){
+            binding.progress.isVisible = false
+            binding.notFound.isVisible = it.isNullOrEmpty()
+            binding.verticalRecyclerView.isVisible = it.isNotEmpty()
             adpater.updateData(it)
         }
 
@@ -67,6 +68,9 @@ class IngredientsFragment : Fragment() {
         }
 
         ingredientViewModel.isSearching.observe(viewLifecycleOwner){
+            binding.progress.isVisible = it
+            binding.notFound.isVisible = false
+            binding.verticalRecyclerView.isInvisible = it
             showAddedIngredients(!it)
         }
     }

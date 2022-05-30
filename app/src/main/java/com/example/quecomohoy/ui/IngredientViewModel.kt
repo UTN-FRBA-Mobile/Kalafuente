@@ -1,12 +1,11 @@
 package com.example.quecomohoy.ui
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.quecomohoy.data.model.Ingredient
 import com.example.quecomohoy.data.repositories.IngredientRepository
-import com.example.quecomohoy.ui.login.LoginFormState
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 class IngredientViewModel(private val ingredientRepository: IngredientRepository) : ViewModel() {
