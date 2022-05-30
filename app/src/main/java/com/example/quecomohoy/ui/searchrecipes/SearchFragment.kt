@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
-import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -33,8 +32,8 @@ class SearchFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val recipeViewModel: RecipeViewModel by viewModels(factoryProducer = {RecipeViewModelFactory()})
-    private val ingredientViewModel : IngredientViewModel by viewModels(factoryProducer = {IngredientViewModelFactory()})
+    private val recipeViewModel: RecipeViewModel by viewModels(factoryProducer = { RecipeViewModelFactory() })
+    private val ingredientViewModel: IngredientViewModel by viewModels(factoryProducer = { IngredientViewModelFactory() })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,12 +57,18 @@ class SearchFragment : Fragment() {
                     INGREDIENTS_TAB -> getString(R.string.write_an_ingredient)
                     else -> throw Exception("No deberías estara acá")
                 }
+                binding.startCookingButton.isVisible = tab.position == INGREDIENTS_TAB
                 binding.searchRecipeInput.text?.clear()
                 binding.searchRecipeInput.clearFocus()
-
-               binding.startCookingButton.isVisible = tab.position == INGREDIENTS_TAB
             }
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                when (tab.position) {
+                    RECIPES_TAB -> ingredientViewModel.ingredients.postValue(emptyList())
+                    INGREDIENTS_TAB -> recipeViewModel.recipes.postValue(emptyList())
+                    else -> throw Exception("No deberías estara acá")
+                }
+            }
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
@@ -73,7 +78,7 @@ class SearchFragment : Fragment() {
             }
         })
 
-        binding.startCookingButton.setOnClickListener{
+        binding.startCookingButton.setOnClickListener {
             val bundle = Bundle()
             bundle.putIntArray("ids", ingredientViewModel.getSelectedIngredientsIds())
             view.findNavController().navigate(R.id.action_searchFragment_to_recipesFragment, bundle)
@@ -81,17 +86,22 @@ class SearchFragment : Fragment() {
 
         viewPager.isUserInputEnabled = false
 
-        binding.searchRecipeInput.doAfterTextChanged {
-            when (viewPager.currentItem) {
-                RECIPES_TAB -> recipeViewModel.getRecipesByName(it.toString())
-                INGREDIENTS_TAB -> ingredientViewModel.getIngredientsByName(it.toString())
-                else -> throw Exception("No deberías estara acá")
+        RxTextView.afterTextChangeEvents(binding.searchRecipeInput)
+            .debounce(1, TimeUnit.SECONDS)
+            .subscribe {
+                val text = it.editable().toString()
+                when (viewPager.currentItem) {
+                    RECIPES_TAB -> recipeViewModel.getRecipesByName(text)
+                    INGREDIENTS_TAB -> ingredientViewModel.getIngredientsByName(text)
+                    else -> throw Exception("No deberías estara acá")
+                }
             }
-        }
 
-        ingredientViewModel.addedIngredient.observe(viewLifecycleOwner){
-            binding.searchRecipeInput.text = null
-            binding.searchRecipeInput.hideKeyboard()
+        ingredientViewModel.addedIngredient.observe(viewLifecycleOwner) {
+            if(viewPager.currentItem == INGREDIENTS_TAB){
+                binding.searchRecipeInput.text = null
+                binding.searchRecipeInput.hideKeyboard()
+            }
         }
     }
 
@@ -100,7 +110,7 @@ class SearchFragment : Fragment() {
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                RECIPES_TAB -> RecipesFragment()
+                RECIPES_TAB -> RecipesFragment.newInstance(R.id.action_searchFragment_to_recipeViewFragment)
                 INGREDIENTS_TAB -> IngredientsFragment()
                 else -> throw Exception("No deberías estar acá")
             }

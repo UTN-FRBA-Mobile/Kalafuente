@@ -23,9 +23,9 @@ class IngredientsFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val ingredientViewModel : IngredientViewModel by viewModels(
-        factoryProducer = {IngredientViewModelFactory()},
-        ownerProducer = {requireParentFragment()}
+    private val ingredientViewModel: IngredientViewModel by viewModels(
+        factoryProducer = { IngredientViewModelFactory() },
+        ownerProducer = { requireParentFragment() }
     )
 
     override fun onCreateView(
@@ -46,36 +46,35 @@ class IngredientsFragment : Fragment() {
             showAddedIngredients(true)
         }
 
-        val addedIngredientsAdapter = SelectedIngredientAdapter(ingredientViewModel.getSelectedIngredients()){ index: Int ->
-            ingredientViewModel.removeIngredient(index)
-            showAddedIngredients(ingredientViewModel.hasSelectedIngredients())
-        }
+        val addedIngredientsAdapter =
+            SelectedIngredientAdapter(ingredientViewModel.getSelectedIngredients()) { index: Int ->
+                ingredientViewModel.removeIngredient(index)
+                showAddedIngredients(ingredientViewModel.hasSelectedIngredients())
+            }
 
         binding.verticalRecyclerView.adapter = adpater
         binding.horizontalRecyclerView.adapter = addedIngredientsAdapter
 
-        ingredientViewModel.ingredients.observe(viewLifecycleOwner){
+        ingredientViewModel.ingredients.observe(viewLifecycleOwner) {
             binding.progress.isVisible = false
-            binding.notFound.isVisible = it.isNullOrEmpty()
             binding.verticalRecyclerView.isVisible = it.isNotEmpty()
             adpater.updateData(it)
         }
 
-        ingredientViewModel.addedIngredient.observe(viewLifecycleOwner){
-            if(lifecycle.currentState != Lifecycle.State.STARTED){
+        ingredientViewModel.addedIngredient.observe(viewLifecycleOwner) {
+            if (lifecycle.currentState != Lifecycle.State.STARTED) {
                 addedIngredientsAdapter.addItem(it)
             }
         }
 
-        ingredientViewModel.isSearching.observe(viewLifecycleOwner){
+        ingredientViewModel.isSearching.observe(viewLifecycleOwner) {
             binding.progress.isVisible = it
-            binding.notFound.isVisible = false
             binding.verticalRecyclerView.isInvisible = it
             showAddedIngredients(!it)
         }
     }
 
-    private fun showAddedIngredients(b : Boolean){
+    private fun showAddedIngredients(b: Boolean) {
         binding.selectedIngredients.isVisible = b
     }
 }
