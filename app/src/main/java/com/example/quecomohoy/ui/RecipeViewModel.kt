@@ -19,6 +19,7 @@ class RecipeViewModel(private val recipeRepository : RecipeRepository) :
         isSearching.postValue(name.isNotEmpty())
         viewModelScope.launch {
             recipes.postValue(recipeRepository.getRecipesByName(name))
+            isSearching.postValue(false)
         }
     }
 

@@ -1,15 +1,14 @@
 package com.example.quecomohoy.ui.searchrecipes
 
 import android.os.Bundle
-import android.support.annotation.IdRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.IdRes
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import com.example.quecomohoy.databinding.FragmentRecipesBinding
 import com.example.quecomohoy.ui.RecipeViewModel
 import com.example.quecomohoy.ui.RecipeViewModelFactory
@@ -53,8 +52,6 @@ class RecipesFragment : Fragment() {
         binding.recipesRecycler.adapter = adapter
 
         recipeViewModel.recipes.observe(viewLifecycleOwner) {
-            binding.progress.isVisible = false
-            binding.recipesRecycler.isVisible = true
             adapter.updateData(it);
         }
 

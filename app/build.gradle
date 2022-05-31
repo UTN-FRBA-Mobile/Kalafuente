@@ -34,6 +34,7 @@ android {
     }
 }
 
+
 dependencies {
     //PARA NAVIGATION COMPONENT
     implementation ('androidx.navigation:navigation-fragment-ktx:2.4.2')
@@ -41,7 +42,8 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    implementation 'com.jakewharton.rxbinding:rxbinding:1.0.1'
+
+    implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0"
 
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6'
 
