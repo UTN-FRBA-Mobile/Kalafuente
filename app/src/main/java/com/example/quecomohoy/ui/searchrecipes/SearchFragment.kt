@@ -99,8 +99,6 @@ class SearchFragment : Fragment() {
                 binding.searchRecipeInput.hideKeyboard()
             }
         }
-
-        Log.i(TAG, "onViewCreated")
     }
 
     class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
@@ -127,9 +125,7 @@ class SearchFragment : Fragment() {
 
     override fun onPause() {
         subscription?.dispose()
-        subscription = null
         super.onPause()
-        Log.i(TAG, "onPause")
     }
 
     override fun onResume() {
@@ -146,7 +142,6 @@ class SearchFragment : Fragment() {
                 }
             }
         super.onResume()
-        Log.i(TAG, "onResume")
     }
 
 }
