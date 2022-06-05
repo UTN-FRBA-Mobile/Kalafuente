@@ -18,8 +18,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import com.example.quecomohoy.databinding.FragmentScanIngredientsBinding
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.label.ImageLabeling
+import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
 import java.io.File
 import java.io.IOException
+import java.lang.StringBuilder
+import java.util.*
 
 
 class ScanIngredientsFragment: Fragment() {
@@ -87,14 +92,26 @@ class ScanIngredientsFragment: Fragment() {
         if (uri != null) {
             try {
                 val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getApplicationContext().getContentResolver(), uri)
-                // callCloudVision(bitmap)
+                callMLVision(bitmap)
                 binding.selectedImage.setImageBitmap(bitmap)
             } catch (e: IOException) {
                 Log.e(TAG, e.localizedMessage)
             }
         }
     }
-}
 
-private lateinit var filePhoto: File
-private const val FILE_NAME = "photo.jpg"
+    private fun callMLVision(bitmap: Bitmap) {
+        val image = InputImage.fromBitmap(bitmap, 0)
+        val labeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
+        labeler.process(image).addOnSuccessListener { labels ->
+            val message = StringBuilder("")
+            labels.forEach { label ->
+                message.append(String.format(
+                    Locale.getDefault(), "%.3f: %s",
+                    label.confidence, label.text));
+                message.append("\n");
+            }
+            binding.tvLabelResults.text = message.toString()
+        }
+    }
+}
