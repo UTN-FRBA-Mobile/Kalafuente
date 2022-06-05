@@ -48,7 +48,7 @@
             app:destination="@id/recipesFragment" />
         <action
             android:id="@+id/action_searchFragment_to_scanIngredientsFragment"
-            app:destination="@id/recipesFragment" />
+            app:destination="@id/scanIngredientsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -91,4 +91,9 @@
             android:id="@+id/action_recipesFragment_to_recipeViewFragment"
             app:destination="@id/recipeViewFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/scanIngredientsFragment"
+        android:name="com.example.quecomohoy.ui.scanIngredients.ScanIngredientsFragment"
+        android:label="fragment_scan_ingredients"
+        tools:layout="@layout/fragment_scan_ingredients" />
 </navigation>
