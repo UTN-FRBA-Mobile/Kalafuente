@@ -47,7 +47,7 @@
             android:id="@+id/action_searchFragment_to_recipesFragment"
             app:destination="@id/recipesFragment" />
         <action
-            android:id="@+id/action_searchFragment_to_scanFragment"
+            android:id="@+id/action_searchFragment_to_scanIngredientsFragment"
             app:destination="@id/recipesFragment" />
     </fragment>
     <fragment

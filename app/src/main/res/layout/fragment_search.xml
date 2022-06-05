@@ -44,7 +44,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageButton
-            android:id="@+id/scan_items_button"
+            android:id="@+id/scan_ingredients_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.05"
