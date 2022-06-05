@@ -15,10 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:textStyle="bold"
-        android:textSize="20sp"
         android:gravity="center"
-        android:text="Selected Image "/>
+        android:text="Imagen seleccionada:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/selected_image"
@@ -30,12 +30,12 @@
 
     <TextView
         android:id="@+id/labels"
-        android:text="Labels:"
-        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/selected_image"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:text="Resultados:"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_label_results"
@@ -51,5 +51,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Choose an Image"/>
+        android:text="Buscar en la galeria" />
 </RelativeLayout>
