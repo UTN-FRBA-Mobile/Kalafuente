@@ -91,6 +91,10 @@ class SearchFragment : Fragment() {
             view.findNavController().navigate(R.id.action_searchFragment_to_recipesFragment, bundle)
         }
 
+        binding.scanItemsButton.setOnClickListener {
+            view.findNavController().navigate(R.id.action_searchFragment_to_scanFragment, Bundle())
+        }
+
         viewPager.isUserInputEnabled = false
 
         ingredientViewModel.addedIngredient.observe(viewLifecycleOwner) {
