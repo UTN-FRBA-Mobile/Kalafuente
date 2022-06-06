@@ -12,27 +12,13 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.Manifest
 import android.content.pm.PackageManager
-import android.util.Log
+import android.net.Uri
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import java.util.concurrent.Executors
-import androidx.camera.core.*
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.video.*
-import androidx.camera.video.VideoCapture
-import androidx.core.content.PermissionChecker
-//import com.android.example.cameraxapp.databinding.ActivityMainBinding
-import java.nio.ByteBuffer
-import java.text.SimpleDateFormat
-import java.util.*
-import java.util.concurrent.ExecutorService
-import android.provider.MediaStore
-
-import android.content.ContentValues
 import android.os.Build
+import com.example.quecomohoy.ui.camera.CameraFragment
 
-typealias LumaListener = (luma: Double) -> Unit
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,13 +49,15 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    //estas funciones para pedir permisos parecen necesitar estar en el activity, intente ponerlas en el fragment pero rompia las bolas
+    //igual no intente mucho, seguro que se puede
     fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
             baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
-    lateinit var CameraFragmentCallback:CameraFragment;//sospechoso
-    fun requestCameraPermissions(callback:CameraFragment){
+    lateinit var CameraFragmentCallback: CameraFragment;//sospechoso
+    fun requestCameraPermissions(callback: CameraFragment){
         CameraFragmentCallback=callback
         ActivityCompat.requestPermissions(this, MainActivity.REQUIRED_PERMISSIONS, MainActivity.REQUEST_CODE_PERMISSIONS)
     }
@@ -77,27 +65,25 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
-                CameraFragmentCallback.startCamera();
+                CameraFragmentCallback.startCamera()
             } else {
-                Toast.makeText(this,
-                    "Permissions not granted by the user.",
-                    Toast.LENGTH_SHORT).show()
-                finish()
+                CameraFragmentCallback.onNoPermission()
             }
         }
     }
     companion object {
-        private const val TAG = "CameraXApp"
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS =
             mutableListOf (
-                Manifest.permission.CAMERA,
-                Manifest.permission.RECORD_AUDIO
+                Manifest.permission.CAMERA
             ).apply {
                 if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                     add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 }
             }.toTypedArray()
     }
+
+    //necesito una forma de comunicar fragments
+    //segun lei puedo hacer un viewmodel o un bundle pero agregaban bastante complejidad al pedo esto es mas simple y anda
+    public var imageTakenUri:Uri? = null;
 }
