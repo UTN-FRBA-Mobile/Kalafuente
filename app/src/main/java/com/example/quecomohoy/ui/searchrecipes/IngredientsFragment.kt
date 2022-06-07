@@ -4,37 +4,77 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.quecomohoy.R
-import com.example.quecomohoy.databinding.FragmentRecipesBinding
+import androidx.lifecycle.Lifecycle
+import com.example.quecomohoy.data.model.Ingredient
+import com.example.quecomohoy.databinding.FragmentIngredientsBinding
+import com.example.quecomohoy.ui.IngredientViewModel
+import com.example.quecomohoy.ui.IngredientViewModelFactory
 import com.example.quecomohoy.ui.searchrecipes.adapters.IngredientsAdapter
-import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
+import com.example.quecomohoy.ui.searchrecipes.adapters.SelectedIngredientAdapter
 
 class IngredientsFragment : Fragment() {
 
-    private var _binding: FragmentRecipesBinding? = null
+    private var _binding: FragmentIngredientsBinding? = null
 
     private val binding get() = _binding!!
 
-    private val viewModel: SearchViewModel by viewModels({requireParentFragment()}, {SearchViewModelFactory()})
+    private val ingredientViewModel: IngredientViewModel by viewModels(
+        factoryProducer = { IngredientViewModelFactory() },
+        ownerProducer = { requireParentFragment() }
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRecipesBinding.inflate(inflater, container, false)
+        _binding = FragmentIngredientsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adpater = IngredientsAdapter()
-        binding.recipesRecycler.adapter = adpater
+        showAddedIngredients(false)
 
-        viewModel.ingredients.observe(viewLifecycleOwner){
-            adpater.updateData(it);
+        val adpater = IngredientsAdapter { ingredient: Ingredient ->
+            binding.verticalRecyclerView.isInvisible = true
+            ingredientViewModel.addIngredient(ingredient)
+            showAddedIngredients(true)
+        }
+
+        val addedIngredientsAdapter =
+            SelectedIngredientAdapter(ingredientViewModel.getSelectedIngredients()) { index: Int ->
+                ingredientViewModel.removeIngredient(index)
+                showAddedIngredients(ingredientViewModel.hasSelectedIngredients())
+            }
+
+        binding.verticalRecyclerView.adapter = adpater
+        binding.horizontalRecyclerView.adapter = addedIngredientsAdapter
+
+        ingredientViewModel.ingredients.observe(viewLifecycleOwner) {
+            binding.progress.isVisible = false
+            binding.verticalRecyclerView.isVisible = it.isNotEmpty()
+            adpater.updateData(it)
+        }
+
+        ingredientViewModel.addedIngredient.observe(viewLifecycleOwner) {
+            if (lifecycle.currentState != Lifecycle.State.STARTED) {
+                addedIngredientsAdapter.addItem(it)
+            }
+        }
+
+        ingredientViewModel.isSearching.observe(viewLifecycleOwner) {
+            binding.progress.isVisible = it
+            binding.verticalRecyclerView.isInvisible = it
+            showAddedIngredients(!it)
         }
     }
 
+    private fun showAddedIngredients(b: Boolean) {
+        binding.selectedIngredients.isVisible = b
+    }
 }

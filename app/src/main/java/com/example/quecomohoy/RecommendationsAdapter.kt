@@ -1,7 +1,5 @@
 package com.example.quecomohoy
 
-import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +7,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quecomohoy.data.model.Recommendation
 import com.squareup.picasso.Picasso
