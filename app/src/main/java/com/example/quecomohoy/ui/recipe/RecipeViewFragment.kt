@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -24,6 +25,8 @@ import com.example.quecomohoy.IngredientAdapter
 import com.google.android.material.tabs.TabLayout
 import com.squareup.picasso.Picasso
 
+const val INGREDIENTS_TAB = 0
+const val STEPS_TAB = 1
 
 class RecipeViewFragment : Fragment() {
     private var _binding: RecipeViewFragmentBinding? = null
@@ -44,13 +47,27 @@ class RecipeViewFragment : Fragment() {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun initTabs(stepsDescriptionText : String, ingredients: List<Ingredient>){
+        val stepsDescription = binding.stepsDescription
+        stepsDescription.text = stepsDescriptionText
+        stepsDescription.isVisible = false
+        val ingredientsAdapter = IngredientAdapter(ingredients)
         val title: TextView = binding.recomendationTitle
 
+        binding.rvIngredientItem.adapter = ingredientsAdapter;
+        title.text = arguments?.getString("nameRecipe")
+        Picasso.get()
+            .load(arguments?.getString("img"))
+            .fit()
+            .into(binding.img);
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.rvIngredientItem.hasFixedSize()
         binding.rvIngredientItem.layoutManager = LinearLayoutManager(requireContext())
-
+        val tabLayout = binding.tabLayout
+        val stepsDescription = binding.stepsDescription
 
         val ingredients : List<Ingredient> = listOf(
             Ingredient(1, "Manzana", "https://www.cuerpomente.com/medio/2020/11/10/manzana_a1c5bdb0_1200x1200.jpg"),
@@ -60,14 +77,17 @@ class RecipeViewFragment : Fragment() {
             Ingredient(5, "Fideos", "https://jumboargentina.vtexassets.com/arquivos/ids/209822/Fideo-Molto-Guiseros-Fideos-Guisero-Molto-500-Gr-1-46224.jpg?v=636383732923400000")
         )
 
-        val ingredientsAdapter = IngredientAdapter(ingredients)
-        binding.rvIngredientItem.adapter = ingredientsAdapter;
-        title.text = arguments?.getString("nameRecipe")
-        Picasso.get()
-            .load(arguments?.getString("img"))
-            .fit()
-            .into(binding.img);
+        val stepsDescriptionText = "Batir los huevos, ponerlo en la sarten, colocar queso, esperar"
+        initTabs(stepsDescriptionText, ingredients)
 
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                binding.rvIngredientItem.isVisible = tab.position == INGREDIENTS_TAB
+                stepsDescription.isVisible = tab.position == STEPS_TAB
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
     }
 
 }
