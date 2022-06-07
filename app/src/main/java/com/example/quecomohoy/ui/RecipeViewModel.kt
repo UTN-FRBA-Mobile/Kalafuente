@@ -14,12 +14,19 @@ class RecipeViewModel(private val recipeRepository : RecipeRepository) :
 {
     val recipes = MutableLiveData<List<Recipe>>(emptyList())
     val isSearching = MutableLiveData<Boolean>()
+    val recipe = MutableLiveData<Recipe>()
 
     fun getRecipesByName(name : String){
         isSearching.postValue(name.isNotEmpty())
         viewModelScope.launch {
             recipes.postValue(recipeRepository.getRecipesByName(name))
             isSearching.postValue(false)
+        }
+    }
+
+    fun getRecipesById(id : Int){
+        viewModelScope.launch {
+            recipe.postValue(recipeRepository.getRecipeById(id))
         }
     }
 
