@@ -20,4 +20,7 @@ class RecipeRepository {
         return api.getRecipesByIngredients(ingredientIds)
     }
 
+    suspend fun getRecipeById(id : Int) : Recipe?{
+        return api.getRecipeById(id)
+    }
 }
