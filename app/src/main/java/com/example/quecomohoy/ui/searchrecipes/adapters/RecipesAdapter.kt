@@ -33,8 +33,7 @@ class RecipesAdapter(
         val recipe = data[position]
         holder.itemView.setOnClickListener {
             val args = Bundle()
-            args.putString("nameRecipe", recipe.name)
-            args.putString("img", recipe.picture)
+            args.putInt("id", recipe.id)
             it.findNavController().navigate(navigationActionId, args)
         }
         holder.fill(recipe)

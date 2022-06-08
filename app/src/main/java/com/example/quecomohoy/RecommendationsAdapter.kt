@@ -31,8 +31,7 @@ class RecommendationsAdapter(private val dataSet: List<Recommendation>,  val nav
 
         viewHolder.cardContainer.setOnClickListener {
                 val action = R.id.action_recomendationsFragment_to_recipeViewFragment
-                val bundle = bundleOf("nameRecipe" to dataSet[position].name,
-                "img" to dataSet[position].image)
+                val bundle = bundleOf("id" to dataSet[position].id)
                 navController.navigate(action, bundle)
         }
     }
