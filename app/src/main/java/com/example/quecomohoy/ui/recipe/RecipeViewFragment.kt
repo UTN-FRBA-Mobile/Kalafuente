@@ -66,7 +66,7 @@ class RecipeViewFragment : Fragment() {
         binding.rvStepItem.layoutManager = LinearLayoutManager(requireContext())
 
         val tabLayout = binding.tabLayout
-        recipeViewModel.getRecipesById(requireArguments().getInt("id"))
+        recipeViewModel.getRecipeById(requireArguments().getInt("id"))
         recipeViewModel.recipe.observe(viewLifecycleOwner){
             initTabs(it)
         }
