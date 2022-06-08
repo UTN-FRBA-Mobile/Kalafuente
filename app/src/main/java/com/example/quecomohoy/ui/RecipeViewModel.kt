@@ -24,7 +24,7 @@ class RecipeViewModel(private val recipeRepository : RecipeRepository) :
         }
     }
 
-    fun getRecipesById(id : Int){
+    fun getRecipeById(id : Int){
         viewModelScope.launch {
             recipe.postValue(recipeRepository.getRecipeById(id))
         }
