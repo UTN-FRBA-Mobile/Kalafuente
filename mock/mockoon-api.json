@@ -113,6 +113,54 @@
       "enabled": true,
       "randomResponse": false,
       "sequentialResponse": false
+    },
+    {
+      "uuid": "9faa4eb3-c3b0-45f7-88da-2ea428c20443",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "user/:id/favorites",
+      "responses": [
+        {
+          "uuid": "a1ab2279-a447-4e39-8a75-98b31f806d93",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "160a37a8-733d-4609-a4ee-c99093dec770",
+          "body": "[\n {\n   \"id\" : 1,\n   \"name\" : \"Pollo al limón\",\n   \"picture\" : \"https://www.paulinacocina.net/wp-content/uploads/2021/11/pollo-asado.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n {\n   \"id\" : 2,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/NCI_Visuals_Food_Hamburger.jpg/640px-NCI_Visuals_Food_Hamburger.jpg\",\n   \"authorName\" : \"Vladimir Putin\"\n },\n  {\n   \"id\" : 4,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n   \"authorName\" : \"Joe Biden\"\n }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
     }
   ],
   "proxyMode": false,
