@@ -1,0 +1,149 @@
+{
+  "uuid": "37ed6354-4983-43fc-8b74-849e79449e99",
+  "lastMigration": 20,
+  "name": "Mockoon api",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 8080,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "ee4b0e66-a1e7-4d2a-9674-3be9cd939e4c",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "recipes",
+      "responses": [
+        {
+          "uuid": "1cd48bb0-e8a6-4cfb-ae70-7f8c88205b0a",
+          "body": "[\n {\n   \"id\" : 1,\n   \"name\" : \"Pollo al limón\",\n   \"picture\" : \"https://www.paulinacocina.net/wp-content/uploads/2021/11/pollo-asado.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n {\n   \"id\" : 2,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/NCI_Visuals_Food_Hamburger.jpg/640px-NCI_Visuals_Food_Hamburger.jpg\",\n   \"authorName\" : \"Vladimir Putin\"\n },\n  {\n   \"id\" : 4,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n   \"authorName\" : \"Joe Biden\"\n },\n  {\n   \"id\" : 5,\n   \"name\" : \"Pancito con queso super crocante\",\n   \"picture\" : \"https://i0.wp.com/blog.marianlaquecocina.com/wp-content/uploads/2018/04/20180416_144118.jpg\",\n   \"authorName\" : \"La nona\"\n }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "7123cdbd-7bc7-4aa3-850f-08914076fe5c",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "ingredients",
+      "responses": [
+        {
+          "uuid": "02202095-cacc-4191-ac70-07dba989829e",
+          "body": "[\n  {\n    \"id\" : 1,\n    \"name\" : \"Manzana\",\n    \"picture\" : \"https://www.cuerpomente.com/medio/2020/11/10/manzana_a1c5bdb0_1200x1200.jpg\"\n  },\n  {\n    \"id\" : 2,\n    \"name\" : \"Pollo\",\n    \"picture\" : \"https://www.carnave.com.ar/wp-content/uploads/2020/05/Pollo-entero.jpg\"\n  },\n  {\n    \"id\" : 3,\n    \"name\" : \"Huevo\",\n    \"picture\" : \"https://www.collinsdictionary.com/images/full/eggs_110803370_1000.jpg\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "ca90420b-f9a6-48c1-9516-0333374c9ac9",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "recipes/:id/",
+      "responses": [
+        {
+          "uuid": "eac19c03-855d-4726-bb6c-fce10cbbf174",
+          "body": "{\n   \"name\": \"Omelette\",\n   \"id\": 1,\n   \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n   \"authorName\": \"Karen Lafuente\",\n   \"ingredients\": [\n     {\n       \"id\": 34,\n       \"name\": \"Huevo\",\n       \"picture\":\"https://www.collinsdictionary.com/images/full/eggs_110803370_1000.jpg\"\n     },\n     {\n       \"id\": 35,\n       \"name\": \"Queso\",\n       \"picture\":\"https://www.lanacion.com.py/resizer/XrkMfxRe9ZD6qrjb_t66lojqLWU=/1920x0/smart/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/lanacionpy/OCWNGLNYENAWLOBCAZWTNPWN6Q.jpeg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Lo primero que vamos a hacer es romper el huevo en un bol y batirlo con rapidez. Esto va a generar que el huevo agarre aire y quede como más esponjoso.\",\n          \"En una sarten al fuego (medio), vamos a derretir un pedacito de manteca (también pueden hacerlo con aceite) y vamos a volcar nuestro huevo en el centro. Es muy importante que no se distraigan buscando espátulas y tengan todo listo porque se les puede cuajar de más el huevo y no va a quedar TAN perfecto como queremos.\", \n          \"Entonces, la idea es que cuando veamos que ya esta un poco cocido por debajo, pero arriba aún está bastante líquido, ese es el momento de agregar lo que quieran de relleno, en este caso, un pedacito de queso fresco de un lado del círculo que está formando nuestro huevo.\",\n          \"Aquí viene la magia. Sin esperar mucho, vamos a agarrar una espátula y con rapidez vamos a juntar el extremo vacío del huevo con el otro extremo, tapando nuestro pedazo de queso. Lo que va a suceder, es que las puntas van a terminar de cocinarse juntas y así nuestro omelette va a quedar sellado perfectamente y nuestro relleno se va a terminar de cocinar dentro del huevo. Tengan en cuenta que es importante que el fuego sea medio. Si desean que por dentro quede un poco más crudo el huevo, lo pueden subir, para que se haga más de afuera. Pero sino, fuego medio para la cocción perfecta. \",\n          \"Lo que resta hacer es dar vuelta nuestro omelette una vez que ya esté bien cocido de un lado para que se cocine bien del otro y listo! Al terminar, lo retiramos con cuidado y lo servimos en un plato para degustarlo y ser felices.\"\n          ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "2d418217-a3a7-44d4-9ee9-8c4f71a4b057",
+          "body": "{\n   \"name\": \"Espinacas a la crema\",\n   \"id\": 2,\n   \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n   \"authorName\": \"Karen Lafuente\",\n   \"ingredients\": [\n     {\n       \"id\": 36,\n       \"name\": \"Espinaca fresca\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/espinaca1-0834e1be8c9ac732e715939074486136-640-0.png\"\n     },\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     },\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Las espinacas frescas no debemos cocinarlas demasiado, para aprovechar mejor todas sus cualidades. Una de las opciones sería el cocerlas 7-8 minutos, pero yo prefiero rehogarlas en la sartén. Con la cocción quedan menos tiernas y más acuosas, por mucho que las escurramos.\",\n          \"En una sartén grande, vertemos el aceite y lo calentamos a fuego medio. Echamos las espinacas frescas y rehogamos, mezclando bien las verduras con el aceite.\", \n          \"Entonces, la idea es que cuando veamos que ya esta un poco cocido por debajo, pero arriba aún está bastante líquido, ese es el momento de agregar lo que quieran de relleno, en este caso, un pedacito de queso fresco de un lado del círculo que está formando nuestro huevo.\",\n          \"En un primer momento solo veréis un gran montón de espinacas en la sartén, pero no os preocupéis, poco a poco irán disminuyendo su volumen. Es importante ir removiendo uniformemente, para que todas queden cocinadas por igual. Su tamaño disminuirá mucho pero mantienen su color verde oscuro intenso.\"\n          ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "2",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}
