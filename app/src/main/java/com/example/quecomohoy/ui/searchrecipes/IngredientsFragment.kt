@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -20,7 +21,7 @@ import com.example.quecomohoy.ui.searchrecipes.adapters.IngredientsAdapter
 import com.example.quecomohoy.ui.searchrecipes.adapters.SelectedIngredientAdapter
 import com.google.android.material.snackbar.Snackbar
 
-class IngredientsFragment : Fragment() {
+class IngredientsFragment : Fragment(){
 
     private var _binding: FragmentIngredientsBinding? = null
 
@@ -77,7 +78,7 @@ class IngredientsFragment : Fragment() {
                 Status.ERROR -> {
                     binding.progress.isVisible = false
                     binding.verticalRecyclerView.isVisible = false
-                    Snackbar.make(view, "Hubo un error", Snackbar.LENGTH_INDEFINITE)
+                    Snackbar.make(view, "Hubo un error", Snackbar.LENGTH_SHORT)
                         .setAction("Reintentar"){
                             searchTerm?.let { s -> ingredientViewModel.getIngredientsByName(s) }
                         }.show()

@@ -15,6 +15,7 @@ import com.example.quecomohoy.ui.RecipeViewModel
 import com.example.quecomohoy.ui.RecipeViewModelFactory
 import com.example.quecomohoy.ui.Status
 import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
+import com.google.android.material.snackbar.Snackbar
 
 class RecipesFragment : Fragment() {
 
@@ -54,6 +55,7 @@ class RecipesFragment : Fragment() {
         binding.recipesRecycler.adapter = adapter
 
         recipeViewModel.recipes.observe(viewLifecycleOwner) {
+            val searchTerm = it.additionalData?.get("searchTerm") as String?
             when(it.status){
                 Status.SUCCESS -> {
                     binding.recipesRecycler.isInvisible = it.data.isNullOrEmpty()
@@ -67,7 +69,10 @@ class RecipesFragment : Fragment() {
                 Status.ERROR -> {
                     binding.progress.isInvisible = true
                     binding.progress.isInvisible = true
-                    Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
+                    Snackbar.make(view, "Hubo un error", Snackbar.LENGTH_SHORT)
+                        .setAction("Reintentar"){
+                            searchTerm?.let { s -> recipeViewModel.getRecipesByName(s) }
+                        }.show()
                 }
             }
 
