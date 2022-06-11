@@ -25,7 +25,7 @@ class RecommendationsAdapter(private val dataSet: List<Recommendation>,  val nav
     override fun onBindViewHolder(viewHolder: RecommendationsViewHolder, position: Int) {
         viewHolder.titleTextView.text = dataSet[position].name
         Picasso.get()
-            .load(dataSet[position].image)
+            .load(dataSet[position].picture)
             .fit()
             .into(viewHolder.imageView);
 
