@@ -1,16 +1,16 @@
 package com.example.quecomohoy.ui.searchrecipes
 
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
@@ -23,16 +23,17 @@ import com.example.quecomohoy.ui.RecipeViewModel
 import com.example.quecomohoy.ui.RecipeViewModelFactory
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import com.jakewharton.rxbinding2.widget.RxTextView
-import io.reactivex.disposables.Disposable
-import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
 
 const val RECIPES_TAB = 0
 const val INGREDIENTS_TAB = 1
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
-    private var subscription: Disposable? = null
     private lateinit var viewPager: ViewPager2
     private var _binding: FragmentSearchBinding? = null
 
@@ -40,6 +41,8 @@ class SearchFragment : Fragment() {
 
     private val recipeViewModel: RecipeViewModel by viewModels(factoryProducer = { RecipeViewModelFactory() })
     private val ingredientViewModel: IngredientViewModel by viewModels(factoryProducer = { IngredientViewModelFactory() })
+
+    private var queryTextJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,23 +58,27 @@ class SearchFragment : Fragment() {
         viewPager.adapter = viewPagerAdapter
         val tabLayout = binding.tabLayout
 
+        binding.searchView.isIconifiedByDefault = false
+        binding.searchView.setOnQueryTextListener(this)
+
         tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 viewPager.currentItem = tab.position
-                binding.searchRecipeLayout.hint = when (tab.position) {
+                binding.searchView.queryHint = when (tab.position) {
                     RECIPES_TAB -> getString(R.string.write_recipe_name)
                     INGREDIENTS_TAB -> getString(R.string.write_an_ingredient)
                     else -> throw Exception("No deberías estara acá")
                 }
-                binding.startCookingButton.isVisible = tab.position == INGREDIENTS_TAB
-                binding.searchRecipeInput.text?.clear()
-                binding.searchRecipeInput.clearFocus()
+                binding.startCookingButton.isVisible =
+                    tab.position == INGREDIENTS_TAB && ingredientViewModel.hasSelectedIngredients()
+                binding.searchView.setQuery(null, false)
+                binding.searchView.clearFocus()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
                 when (tab.position) {
-                    RECIPES_TAB -> ingredientViewModel.ingredients.postValue(emptyList())
-                    INGREDIENTS_TAB -> recipeViewModel.recipes.postValue(emptyList())
+                    RECIPES_TAB -> ingredientViewModel.cleanIngredients()
+                    INGREDIENTS_TAB -> recipeViewModel.cleanRecipes()
                     else -> throw Exception("No deberías estara acá")
                 }
             }
@@ -92,16 +99,20 @@ class SearchFragment : Fragment() {
         }
 
         binding.scanIngredientsButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_searchFragment_to_scanIngredientsFragment, Bundle())
+            view.findNavController()
+                .navigate(R.id.action_searchFragment_to_scanIngredientsFragment, Bundle())
         }
 
         viewPager.isUserInputEnabled = false
 
         ingredientViewModel.addedIngredient.observe(viewLifecycleOwner) {
             if (viewPager.currentItem == INGREDIENTS_TAB) {
-                binding.searchRecipeInput.text = null
-                binding.searchRecipeInput.hideKeyboard()
+                binding.searchView.setQuery(null, false)
             }
+        }
+
+        ingredientViewModel.selectedIngredients.observe(viewLifecycleOwner) {
+            binding.startCookingButton.isVisible = !it.isNullOrEmpty()
         }
     }
 
@@ -117,35 +128,29 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun View.hideKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(windowToken, 0)
-    }
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("text", binding.searchRecipeInput.text.toString())
+        outState.putString("text", binding.searchView.query.toString())
     }
 
-    override fun onPause() {
-        subscription?.dispose()
-        super.onPause()
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        binding.searchView.clearFocus()
+        return true
     }
 
-    override fun onResume() {
-        subscription = RxTextView.afterTextChangeEvents(binding.searchRecipeInput)
-            .debounce(1, TimeUnit.SECONDS)
-            .subscribe {
-                val text = it.editable().toString()
-                if (it.view().isFocused) {
-                    when (viewPager.currentItem) {
-                        RECIPES_TAB -> recipeViewModel.getRecipesByName(text)
-                        INGREDIENTS_TAB -> ingredientViewModel.getIngredientsByName(text)
-                        else -> throw Exception("No deberías estara acá")
-                    }
-                }
+    override fun onQueryTextChange(newText: String?): Boolean {
+        queryTextJob?.cancel()
+        queryTextJob = lifecycleScope.launch {
+            if (!newText.isNullOrEmpty()) {
+                delay(1000)
             }
-        super.onResume()
+            when (viewPager.currentItem) {
+                RECIPES_TAB -> recipeViewModel.getRecipesByName(newText.orEmpty())
+                INGREDIENTS_TAB -> ingredientViewModel.getIngredientsByName(newText.orEmpty())
+                else -> throw Exception("No deberías estara acá")
+            }
+        }
+        return true
     }
 
 }

@@ -12,29 +12,40 @@ import kotlinx.coroutines.launch
 class RecipeViewModel(private val recipeRepository : RecipeRepository) :
     ViewModel()
 {
-    val recipes = MutableLiveData<List<Recipe>>(emptyList())
-    val isSearching = MutableLiveData<Boolean>()
-    val recipe = MutableLiveData<Recipe>()
+    val recipes = MutableLiveData<Resource<List<Recipe>>>()
+    val recipe = MutableLiveData<Resource<Recipe>>()
 
     fun getRecipesByName(name : String){
-        isSearching.postValue(name.isNotEmpty())
+        recipes.postValue(Resource.loading(mapOf("searchTerm" to name)))
         viewModelScope.launch {
-            recipes.postValue(recipeRepository.getRecipesByName(name))
-            isSearching.postValue(false)
+            try {
+                val recipesByName = recipeRepository.getRecipesByName(name)
+                recipes.postValue(Resource.success(recipesByName, mapOf("searchTerm" to name)))
+            } catch (e : Exception){
+                recipes.postValue(Resource.error("", null, null))
+            }
         }
     }
 
     fun getRecipeById(id : Int){
         viewModelScope.launch {
-            recipe.postValue(recipeRepository.getRecipeById(id))
+            try {
+                recipe.postValue(Resource.success(recipeRepository.getRecipeById(id), null))
+            } catch (e : Exception){
+                recipe.postValue(Resource.error("", null, null))
+            }
         }
     }
 
     fun getRecipesByIngredients(ingredientIds: List<Int>) {
-        isSearching.postValue(true)
         viewModelScope.launch {
-            recipes.postValue(recipeRepository.getRecipesByIngredients(ingredientIds))
+            val recipesByIngredients = recipeRepository.getRecipesByIngredients(ingredientIds)
+            recipes.postValue(Resource.success(recipesByIngredients, null))
         }
+    }
+
+    fun cleanRecipes() {
+        recipes.postValue(Resource.success(emptyList(), null))
     }
 
 }

@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
+   <!--   <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/searchRecipeLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="0dp"
@@ -41,7 +41,16 @@
                 android:textColorHint="#616161">
 
             </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout> -->
+
+        <SearchView
+            android:id="@+id/search_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:queryHint="@string/write_recipe_name">
+
+        </SearchView>
 
         <ImageButton
             android:id="@+id/scan_ingredients_button"
@@ -97,6 +106,6 @@
         app:layout_constraintTop_toBottomOf="@+id/viewPager"
         app:layout_constraintVertical_bias="0.7"
         app:layout_constraintWidth_percent="0.8"
-        tools:visibility="visible" />
+        tools:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
