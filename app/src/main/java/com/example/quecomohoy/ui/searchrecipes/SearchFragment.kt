@@ -1,9 +1,7 @@
 package com.example.quecomohoy.ui.searchrecipes
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,17 +13,14 @@ import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import com.example.quecomohoy.R
 import com.example.quecomohoy.databinding.FragmentSearchBinding
-import com.example.quecomohoy.ui.IngredientViewModel
-import com.example.quecomohoy.ui.IngredientViewModelFactory
-import com.example.quecomohoy.ui.RecipeViewModel
-import com.example.quecomohoy.ui.RecipeViewModelFactory
+import com.example.quecomohoy.ui.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
+
 
 const val RECIPES_TAB = 0
 const val INGREDIENTS_TAB = 1
@@ -70,8 +65,8 @@ class SearchFragment : Fragment() {
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
                 when (tab.position) {
-                    RECIPES_TAB -> ingredientViewModel.ingredients.postValue(emptyList())
-                    INGREDIENTS_TAB -> recipeViewModel.recipes.postValue(emptyList())
+                    RECIPES_TAB -> ingredientViewModel.cleanIngredients()
+                    INGREDIENTS_TAB -> recipeViewModel.cleanRecipes()
                     else -> throw Exception("No deberías estara acá")
                 }
             }
@@ -102,6 +97,14 @@ class SearchFragment : Fragment() {
                 binding.searchRecipeInput.text = null
                 binding.searchRecipeInput.hideKeyboard()
             }
+        }
+
+        ingredientViewModel.selectedIngredients.observe(viewLifecycleOwner){
+            binding.startCookingButton.isVisible = !it.isNullOrEmpty()
+        }
+
+        binding.searchRecipeInput.setOnFocusChangeListener { view, b ->
+            binding.startCookingButton.isVisible = !b
         }
     }
 

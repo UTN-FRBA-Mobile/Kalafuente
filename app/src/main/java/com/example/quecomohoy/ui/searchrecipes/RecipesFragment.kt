@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -12,6 +13,7 @@ import androidx.fragment.app.viewModels
 import com.example.quecomohoy.databinding.FragmentRecipesBinding
 import com.example.quecomohoy.ui.RecipeViewModel
 import com.example.quecomohoy.ui.RecipeViewModelFactory
+import com.example.quecomohoy.ui.Status
 import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
 
 class RecipesFragment : Fragment() {
@@ -52,12 +54,23 @@ class RecipesFragment : Fragment() {
         binding.recipesRecycler.adapter = adapter
 
         recipeViewModel.recipes.observe(viewLifecycleOwner) {
-            adapter.updateData(it);
-        }
+            when(it.status){
+                Status.SUCCESS -> {
+                    binding.recipesRecycler.isInvisible = it.data.isNullOrEmpty()
+                    binding.progress.isVisible = false
+                    adapter.updateData(it.data.orEmpty())
+                }
+                Status.LOADING ->{
+                    binding.recipesRecycler.isInvisible = true
+                    binding.progress.isVisible = true
+                }
+                Status.ERROR -> {
+                    binding.progress.isInvisible = true
+                    binding.progress.isInvisible = true
+                    Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
+                }
+            }
 
-        recipeViewModel.isSearching.observe(viewLifecycleOwner) {
-            binding.recipesRecycler.isInvisible = it
-            binding.progress.isVisible = it
         }
 
         val ingredientIds = arguments?.getIntArray("ids")?.toList()

@@ -1,27 +1,34 @@
 package com.example.quecomohoy.ui
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.quecomohoy.data.model.Ingredient
 import com.example.quecomohoy.data.repositories.IngredientRepository
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 class IngredientViewModel(private val ingredientRepository: IngredientRepository) : ViewModel() {
 
-    val ingredients = MutableLiveData<List<Ingredient>>()
+    val ingredients = MutableLiveData<Resource<List<Ingredient>>>()
     private val _selectedIngredients = listOf<Ingredient>().toMutableList()
 
     private val _selectedIngredientsData = MutableLiveData<List<Ingredient>>()
+    val selectedIngredients: LiveData<List<Ingredient>> = _selectedIngredientsData
 
     val addedIngredient = MutableLiveData<Ingredient>()
-    val isSearching = MutableLiveData<Boolean>()
+
 
     fun getIngredientsByName(name : String){
-        isSearching.postValue(name.isNotEmpty())
+        val additionalData = mapOf("searchTerm" to name)
+        ingredients.postValue(Resource.loading(additionalData))
         viewModelScope.launch {
-            ingredients.postValue(ingredientRepository.getIngredientsByName(name))
+            try {
+                val ingredientsByName = ingredientRepository.getIngredientsByName(name)
+                ingredients.postValue(Resource.success(ingredientsByName, additionalData))
+            }catch (e : Exception){
+                ingredients.postValue(Resource.error("", null, additionalData))
+            }
         }
     }
 
@@ -47,6 +54,10 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
 
     fun getSelectedIngredients(): List<Ingredient> {
         return _selectedIngredientsData.value?: emptyList()
+    }
+
+    fun cleanIngredients(){
+        ingredients.postValue(Resource.success(emptyList(), null))
     }
 
 }

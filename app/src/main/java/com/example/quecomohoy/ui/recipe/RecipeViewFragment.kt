@@ -67,8 +67,9 @@ class RecipeViewFragment : Fragment() {
 
         val tabLayout = binding.tabLayout
         recipeViewModel.getRecipeById(requireArguments().getInt("id"))
+
         recipeViewModel.recipe.observe(viewLifecycleOwner){
-            initTabs(it)
+            it.data?.let { it1 -> initTabs(it1) }
         }
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
