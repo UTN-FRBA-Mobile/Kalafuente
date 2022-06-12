@@ -12,7 +12,7 @@
     <item
         android:id="@+id/favouritesFragment"
         android:title=""
-        android:icon="@drawable/ic_like"/>
+        android:icon="@drawable/ic_fav_border"/>
     <item
         android:id="@+id/profileFragment"
         android:title=""

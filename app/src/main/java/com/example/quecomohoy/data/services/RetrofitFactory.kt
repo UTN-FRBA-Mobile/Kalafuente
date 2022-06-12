@@ -1,5 +1,6 @@
 package com.example.quecomohoy.data.services
 
+import com.example.quecomohoy.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,7 +17,7 @@ object RetrofitFactory {
         httpClient.addInterceptor(logging)
 
         return Retrofit.Builder()
-            .baseUrl("http://192.168.0.17:3000")
+            .baseUrl(BuildConfig.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient.build())
             .build()
