@@ -35,15 +35,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun notShowBottomNavBarAndActionBarInFragments(navController:NavController, bottomNavigationView:BottomNavigationView){
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if( destination.id == R.id.loginFragment ||
-                destination.id == R.id.registrationFragment ||
-                destination.id == R.id.cameraFragment ||
-                destination.id == R.id.recipeViewFragment) {
-                bottomNavigationView.visibility=View.GONE
+            bottomNavigationView.visibility =
+                if(destination.id == R.id.loginFragment || destination.id == R.id.registrationFragment
+                    || destination.id == R.id.cameraFragment) {
+                View.GONE
+            } else {
+                View.VISIBLE
+            }
+        }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.loginFragment || destination.id == R.id.recomendationsFragment
+                || destination.id == R.id.recipeViewFragment || destination.id == R.id.cameraFragment || destination.id == R.id.scanIngredientsFragment) {
                 supportActionBar!!.hide()
             } else {
-                bottomNavigationView.visibility=View.VISIBLE
                 supportActionBar!!.show()
             }
         }
