@@ -6,13 +6,14 @@ import com.example.quecomohoy.data.requests.UserSignupRequest
 import com.example.quecomohoy.data.services.RetrofitFactory
 import com.google.gson.Gson
 
+
 class RegistrationService {
     private val retrofit = RetrofitFactory.getRetrofit()
 
     suspend fun signup(user: UserSignupRequest): User? {
         val response = retrofit.create(RegistrationApi::class.java).signup(user)
         if(!response.isSuccessful){
-            throw SignupException("Mal Ahí")
+            throw Gson().fromJson(response.errorBody()?.charStream(), SignupException::class.java)
         }
         return response.body()
     }

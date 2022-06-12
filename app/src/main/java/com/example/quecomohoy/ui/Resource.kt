@@ -11,7 +11,7 @@ data class Resource<out T>(
             return Resource(Status.SUCCESS, null, data, additionalData)
         }
 
-        fun <T> error(msg: String, data: T?, additionalData: Map<String, Any>?): Resource<T> {
+        fun <T> error(msg: String?, data: T?, additionalData: Map<String, Any>?): Resource<T> {
             return Resource(Status.ERROR, msg, data, additionalData)
         }
 

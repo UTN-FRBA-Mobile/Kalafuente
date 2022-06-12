@@ -170,7 +170,7 @@
       "responses": [
         {
           "uuid": "f2c326d6-2ca6-4db2-9c84-6aa043ed3007",
-          "body": "{\n  \"error\" : \"NO\"\n}",
+          "body": "{\n  \"message\" : \"El email ya se encuentra registrado\"\n}",
           "latency": 0,
           "statusCode": 400,
           "label": "",
@@ -207,7 +207,7 @@
         },
         {
           "uuid": "80914e2c-7fdc-4f8f-94e8-520440392fe1",
-          "body": "{\n  \"error\" : \"Usuario ya creado\"\n}",
+          "body": "{\n  \"message\" : \"Usuario ya creado\"\n}",
           "latency": 0,
           "statusCode": 400,
           "label": "",
