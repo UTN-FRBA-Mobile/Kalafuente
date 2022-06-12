@@ -29,4 +29,5 @@
     <string name="selected_ingredients">Ingredientes seleccionados</string>
     <string name="recipes">Recetas</string>
     <string name="example_step">Lo que resta hacer es dar vuelta nuestro omelette una vez que ya esté bien cocido de un lado para que se cocine bien del otro y listo! Al terminar, lo retiramos con cuidado y lo servimos en un plato para degustarlo y ser felices.</string>
+    <string name="username">Nombre de Usuario</string>
 </resources>

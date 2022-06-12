@@ -161,6 +161,76 @@
       "enabled": true,
       "randomResponse": false,
       "sequentialResponse": false
+    },
+    {
+      "uuid": "07b6df66-e9c2-4e32-85c8-4db2fbc2653f",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "signup",
+      "responses": [
+        {
+          "uuid": "f2c326d6-2ca6-4db2-9c84-6aa043ed3007",
+          "body": "{\n  \"error\" : \"NO\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "d579c186-df60-485a-af50-c8ecb41f5c7d",
+          "body": "{\n  \"id\" : 1,\n  \"username\" : \"karen\",\n  \"name\" : \"https://pbs.twimg.com/profile_images/1447703122927923206/2SNjVwEe_400x400.jpg\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "karen",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "80914e2c-7fdc-4f8f-94e8-520440392fe1",
+          "body": "{\n  \"error\" : \"Usuario ya creado\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "Bruno",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
     }
   ],
   "proxyMode": false,
