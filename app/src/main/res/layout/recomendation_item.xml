@@ -15,6 +15,7 @@
         card_view:cardCornerRadius="10dp">
 
         <RelativeLayout
+            android:id="@+id/cardContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -30,16 +31,25 @@
 
             <TextView
                 android:id="@+id/recomendationTitle"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/img"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="sans-serif-light"
                 android:text="Nombre receta"
 
+                />
+
+            <CheckBox
+                android:button="@drawable/selector_like_item"
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/recomendationTitle"
+                android:layout_toRightOf="@+id/recomendationTitle"
                 />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

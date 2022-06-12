@@ -22,12 +22,19 @@
         <action
             android:id="@+id/action_recomendationsFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_recomendationsFragment_to_recipeViewFragment"
+            app:destination="@id/recipeViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
         android:name="com.example.quecomohoy.ui.favorites.FavouritesFragment"
         android:label="Recetas favoritas"
-        tools:layout="@layout/fragment_favourites" />
+        tools:layout="@layout/fragment_favourites" >
+        <action
+            android:id="@+id/action_favouritesFragment_to_recipeViewFragment"
+            app:destination="@id/recipeViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.quecomohoy.ui.searchrecipes.SearchFragment"
@@ -36,6 +43,15 @@
         <action
             android:id="@+id/action_searchFragment_to_cameraFragment"
             app:destination="@id/cameraFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_recipeViewFragment"
+            app:destination="@id/recipeViewFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_scanIngredientsFragment"
+            app:destination="@id/scanIngredientsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -89,4 +105,27 @@
             android:id="@+id/action_askPermissionFragment_to_cameraFragment"
             app:destination="@id/cameraFragment" />
     </fragment>
+<fragment
+        android:id="@+id/recipeViewFragment"
+        android:name="com.example.quecomohoy.ui.recipe.RecipeViewFragment"
+        android:label="recipe_view_fragment"
+        tools:layout="@layout/recipe_view_fragment" >
+        <action
+            android:id="@+id/action_recipeViewFragment_to_recomendationsFragment2"
+            app:destination="@id/recomendationsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="com.example.quecomohoy.ui.searchrecipes.RecipesFragment"
+        android:label="@string/recipes"
+        tools:layout="@layout/fragment_recipes" >
+        <action
+            android:id="@+id/action_recipesFragment_to_recipeViewFragment"
+            app:destination="@id/recipeViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scanIngredientsFragment"
+        android:name="com.example.quecomohoy.ui.scanIngredients.ScanIngredientsFragment"
+        android:label="fragment_scan_ingredients"
+        tools:layout="@layout/fragment_scan_ingredients" />
 </navigation>

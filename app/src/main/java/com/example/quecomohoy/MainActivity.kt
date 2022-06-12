@@ -38,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if( destination.id == R.id.loginFragment ||
                 destination.id == R.id.registrationFragment ||
-                destination.id == R.id.cameraFragment) {
+                destination.id == R.id.cameraFragment ||
+                destination.id == R.id.recipeViewFragment) {
                 bottomNavigationView.visibility=View.GONE
                 supportActionBar!!.hide()
             } else {

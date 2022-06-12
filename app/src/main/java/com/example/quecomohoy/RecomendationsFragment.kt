@@ -11,23 +11,24 @@ import androidx.navigation.fragment.findNavController
 import com.example.quecomohoy.databinding.FragmentRecomendationsBinding
 import android.util.Log
 import android.widget.LinearLayout
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quecomohoy.data.model.Recommendation
+import com.example.quecomohoy.ui.*
 import com.example.quecomohoy.ui.login.LoginViewModel
 import com.example.quecomohoy.ui.login.LoginViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 
 
 class RecomendationsFragment : Fragment() {
     private var _binding: FragmentRecomendationsBinding? = null
     private val binding get() = _binding!!
     private lateinit var loginViewModel: LoginViewModel
-
-    val recommendationsList : List<Recommendation> = listOf(
-        Recommendation("Omelette", "https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg"),
-        Recommendation("Espinacas a la crema", "https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png"),
-        Recommendation("Pancito", "https://i0.wp.com/blog.marianlaquecocina.com/wp-content/uploads/2018/04/20180416_144118.jpg")
+    private val recommendationsViewModel: RecommendationViewModel by viewModels(
+        factoryProducer = { RecommendationViewModelFactory() },
+        ownerProducer = { requireParentFragment() }
     )
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,20 +48,29 @@ class RecomendationsFragment : Fragment() {
 
         loginViewModel.userInformation.observe(viewLifecycleOwner,
             Observer {userInformation ->
-                Log.d("Recommendations Fragment userInformation ------", userInformation.toString())
                      if(userInformation.displayName == ""){
-                    Log.d("Recommendations Fragment", "NO HAY USER INFORMATION------------")
                     val action = R.id.action_recomendationsFragment_to_loginFragment
                     findNavController().navigate(action)
                 } else{
                   //  binding.userName.setText("Recomendaciones para " + userInformation.displayName)
                 }
             })
-
-        binding.rvRecommendation.hasFixedSize()
-        binding.rvRecommendation.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvRecommendation.adapter = RecommendationsAdapter(recommendationsList)
+        recommendationsViewModel.getRecommendationsByUser(2)
+        recommendationsViewModel.recommendations.observe(viewLifecycleOwner) {
+            when(it.status){
+                Status.SUCCESS -> {
+                    val recommendations = it.data.orEmpty()
+                    binding.rvRecommendation.hasFixedSize()
+                    binding.rvRecommendation.layoutManager = LinearLayoutManager(requireContext())
+                    binding.rvRecommendation.adapter = RecommendationsAdapter(recommendations, findNavController())
+                }
+                Status.LOADING -> {
+                    //TODO
+                }
+                Status.ERROR -> {
+                  //TODO
+                }
+            }
+        }
     }
-
-
 }
