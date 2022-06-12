@@ -19,10 +19,10 @@ import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.quecomohoy.databinding.FragmentScanIngredientsBinding
+import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabeling
-import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
-import java.io.File
+import com.google.mlkit.vision.label.custom.CustomImageLabelerOptions
 import java.io.IOException
 import java.lang.StringBuilder
 import java.util.*
@@ -106,8 +106,18 @@ class ScanIngredientsFragment: Fragment() {
     }
 
     private fun callMLVision(bitmap: Bitmap) {
+        val localModel = LocalModel.Builder()
+            .setAssetFilePath("lite-model_aiy_vision_classifier_food_V1_1.tflite")
+            // or .setAbsoluteFilePath(absolute file path to model file)
+            // or .setUri(URI to model file)
+            .build()
+
+        val customImageLabelerOptions = CustomImageLabelerOptions.Builder(localModel)
+            .setMaxResultCount(15)
+            .build()
+        val labeler = ImageLabeling.getClient(customImageLabelerOptions)
         val image = InputImage.fromBitmap(bitmap, 0)
-        val labeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
+
         labeler.process(image).addOnSuccessListener { labels ->
             val message = StringBuilder("")
             labels.forEach { label ->
