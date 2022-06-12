@@ -41,6 +41,9 @@
         android:label="Buscar receta"
         tools:layout="@layout/fragment_search" >
         <action
+            android:id="@+id/action_searchFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+        <action
             android:id="@+id/action_searchFragment_to_recipeViewFragment"
             app:destination="@id/recipeViewFragment" />
         <action
@@ -74,6 +77,35 @@
             app:argType="string"/>
     </fragment>
     <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.example.quecomohoy.ui.camera.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" >
+        <action
+            android:id="@+id/action_cameraFragment_to_imageFragment"
+            app:destination="@id/imageFragment" />
+        <action
+            android:id="@+id/action_cameraFragment_to_askPermissionFragment"
+            app:destination="@id/askPermissionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageFragment"
+        android:name="com.example.quecomohoy.ui.camera.ImageFragment"
+        android:label="ImageFragment" >
+        <action
+            android:id="@+id/action_imageFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/askPermissionFragment"
+        android:name="com.example.quecomohoy.ui.camera.AskPermissionFragment"
+        android:label="fragment_ask_permission"
+        tools:layout="@layout/fragment_ask_permission" >
+        <action
+            android:id="@+id/action_askPermissionFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+    </fragment>
+<fragment
         android:id="@+id/recipeViewFragment"
         android:name="com.example.quecomohoy.ui.recipe.RecipeViewFragment"
         android:label="recipe_view_fragment"
@@ -95,5 +127,9 @@
         android:id="@+id/scanIngredientsFragment"
         android:name="com.example.quecomohoy.ui.scanIngredients.ScanIngredientsFragment"
         android:label="fragment_scan_ingredients"
-        tools:layout="@layout/fragment_scan_ingredients" />
+        tools:layout="@layout/fragment_scan_ingredients" >
+        <action
+            android:id="@+id/action_scanIngredientsFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+    </fragment>
 </navigation>

@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.quecomohoy.databinding.FragmentScanIngredientsBinding
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabeling
@@ -25,6 +26,7 @@ import java.io.File
 import java.io.IOException
 import java.lang.StringBuilder
 import java.util.*
+import com.example.quecomohoy.R
 
 
 class ScanIngredientsFragment: Fragment() {
@@ -53,6 +55,9 @@ class ScanIngredientsFragment: Fragment() {
                 } else{
                     chooseImageGallery();
                 }
+            }
+            binding.openCamera.setOnClickListener{
+                findNavController().navigate(R.id.action_scanIngredientsFragment_to_cameraFragment);
             }
     }
 
