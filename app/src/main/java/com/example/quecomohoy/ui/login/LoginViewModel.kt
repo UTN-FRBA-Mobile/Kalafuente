@@ -5,10 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
+import androidx.lifecycle.viewModelScope
 import com.example.quecomohoy.data.LoginRepository
 import com.example.quecomohoy.data.Result
 
 import com.example.quecomohoy.R
+import com.example.quecomohoy.ui.Resource
+import kotlinx.coroutines.launch
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -19,24 +22,31 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     val loginResult: LiveData<LoginResult> = _loginResult
 
     private val _userInformation = MutableLiveData<LoggedInUserView>(
-        LoggedInUserView(displayName = "")
+        LoggedInUserView(displayName = "", image = "")
     );
     val userInformation: LiveData<LoggedInUserView> = _userInformation
 
     fun login(username: String, password: String) {
-        // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password)
-        Log.d("Loggin view------", "entre---------------")
-        if (result is Result.Success) {
-            val loggedUserView = LoggedInUserView(displayName = result.data.displayName)
-            _loginResult.value =
-                LoginResult(success = loggedUserView)
-            //Por ahora solo el nombre
-           _userInformation.value = loggedUserView
-            Log.d("Loggin view------ userInformation()",userInformation.value.toString())
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
+
+        viewModelScope.launch {
+            try {
+                val result = loginRepository.login(username, password)
+                Log.d("Loggin view------", "entre---------------")
+                if (result is Result.Success) {
+                    val loggedUserView = LoggedInUserView(displayName = result.data.displayName, image = result.data.image)
+                    _loginResult.value =
+                        LoginResult(success = loggedUserView)
+                    //Por ahora solo el nombre
+                    _userInformation.value = loggedUserView
+                    Log.d("Loggin view------ userInformation()",userInformation.value.toString())
+                } else {
+                    _loginResult.value = LoginResult(error = R.string.login_failed)
+                }
+            }catch (e : Exception){
+                Log.d("Login View Model Error",username)
+            }
         }
+
     }
 
     fun loginDataChanged(username: String, password: String) {

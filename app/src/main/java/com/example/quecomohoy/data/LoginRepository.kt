@@ -1,6 +1,7 @@
 package com.example.quecomohoy.data
 
 import com.example.quecomohoy.data.model.LoggedInUser
+import com.example.quecomohoy.data.services.user.UserService
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -8,6 +9,7 @@ import com.example.quecomohoy.data.model.LoggedInUser
  */
 
 class LoginRepository(val dataSource: LoginDataSource) {
+    private val api = UserService()
 
     // in-memory cache of the loggedInUser object
     var user: LoggedInUser? = null
@@ -27,14 +29,13 @@ class LoginRepository(val dataSource: LoginDataSource) {
         dataSource.logout()
     }
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
-        // handle login
-        val result = dataSource.login(username, password)
+    suspend fun login(username: String, password: String): Result<LoggedInUser> {
+        val resultApi = api.loginUser(username, password)
+        val result = dataSource.login(resultApi!!)
 
         if (result is Result.Success) {
             setLoggedInUser(result.data)
         }
-
         return result
     }
 

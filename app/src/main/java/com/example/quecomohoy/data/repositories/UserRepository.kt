@@ -6,7 +6,4 @@ import com.example.quecomohoy.ui.login.LoginResult
 
 class UserRepository {
     private val api = UserService()
-    suspend fun login(username: String, password: String): LoginResult {
-        return api.getRecommendationsByUserId(id)
-    }
 }

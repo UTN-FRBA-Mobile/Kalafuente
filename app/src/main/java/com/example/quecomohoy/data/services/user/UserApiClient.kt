@@ -12,7 +12,7 @@ interface UserApiClient {
     @POST("/login")
     @FormUrlEncoded
     suspend fun login(
-        @Field("username") username: String,
+        @Field("userName") username: String,
         @Field("password") password: String,
     ): Response<User>
 }
