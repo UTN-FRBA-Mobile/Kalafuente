@@ -8,20 +8,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.searchrecipes.SearchFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searchRecipeLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-        android:layout_width="379dp"
-        android:layout_height="118dp"
-        android:layout_marginTop="@dimen/fragment_vertical_margin"
-        android:hint="@string/write_recipe_name"
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.8"
-        app:startIconDrawable="@drawable/ic_search">
     <LinearLayout
         android:id="@+id/searchBarContainer"
         android:layout_width="match_parent"
@@ -35,35 +21,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-   <!--   <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/searchRecipeLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.8"
-            android:hint="@string/write_recipe_name"
-            app:endIconMode="clear_text"
-            app:startIconDrawable="@drawable/ic_search">
-
-        <Button
-            android:id="@+id/cameraButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="cam" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchRecipeInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textFilter"
-                android:minHeight="48dp"
-                android:textColorHint="#616161">
-
-            </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout> -->
-
         <SearchView
             android:id="@+id/search_view"
             android:layout_width="0dp"

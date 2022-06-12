@@ -99,7 +99,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
             view.findNavController().navigate(R.id.action_searchFragment_to_recipesFragment, bundle)
         }
 
-        binding.scanIngredientsButton.setOnClickListener {
+       binding.scanIngredientsButton.setOnClickListener {
             view.findNavController()
                 .navigate(R.id.action_searchFragment_to_scanIngredientsFragment, Bundle())
         }
@@ -112,9 +112,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
             }
         }
 
-        binding.cameraButton.setOnClickListener{
-            findNavController().navigate(R.id.action_searchFragment_to_cameraFragment);
-        }
         ingredientViewModel.selectedIngredients.observe(viewLifecycleOwner) {
             binding.startCookingButton.isVisible = !it.isNullOrEmpty()
         }

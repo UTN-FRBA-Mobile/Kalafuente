@@ -127,5 +127,9 @@
         android:id="@+id/scanIngredientsFragment"
         android:name="com.example.quecomohoy.ui.scanIngredients.ScanIngredientsFragment"
         android:label="fragment_scan_ingredients"
-        tools:layout="@layout/fragment_scan_ingredients" />
+        tools:layout="@layout/fragment_scan_ingredients" >
+        <action
+            android:id="@+id/action_scanIngredientsFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+    </fragment>
 </navigation>
