@@ -78,6 +78,7 @@ class LoginFragment : Fragment() {
                 }
                 loginResult.success?.let {
                     updateUiWithUser(it)
+                    NavHostFragment.findNavController(this).popBackStack()
                 }
             })
 
@@ -115,10 +116,6 @@ class LoginFragment : Fragment() {
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
-            Log.d("Login fragment set on click listener-------------","")
-            Log.d("Info del login view model-------------",loginViewModel.userInformation.value.toString())
-            // YA QUE SE LOGGEO VUELVO A RECOMENDACIONES
-          NavHostFragment.findNavController(this).popBackStack()
         }
 
         val registerButton = binding.register

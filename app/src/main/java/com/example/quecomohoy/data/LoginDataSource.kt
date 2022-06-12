@@ -11,7 +11,7 @@ class LoginDataSource {
 
     fun login(user: User): Result<LoggedInUser> {
         try {
-            val userLogged = LoggedInUser(user.name, user.username, user.image)
+            val userLogged = LoggedInUser(user.name, user.username, user.image, user.id)
             return Result.Success(userLogged)
         } catch (e: Throwable) {
             return Result.Error(IOException("Error logging in", e))

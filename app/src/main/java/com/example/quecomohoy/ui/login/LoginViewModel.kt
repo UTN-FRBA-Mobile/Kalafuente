@@ -22,7 +22,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     val loginResult: LiveData<LoginResult> = _loginResult
 
     private val _userInformation = MutableLiveData<LoggedInUserView>(
-        LoggedInUserView(displayName = "", image = "")
+        LoggedInUserView(displayName = "", image = "", id=0)
     );
     val userInformation: LiveData<LoggedInUserView> = _userInformation
 
@@ -33,7 +33,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
                 val result = loginRepository.login(username, password)
                 Log.d("Loggin view------", "entre---------------")
                 if (result is Result.Success) {
-                    val loggedUserView = LoggedInUserView(displayName = result.data.displayName, image = result.data.image)
+                    val loggedUserView = LoggedInUserView(displayName = result.data.displayName, image = result.data.image, id = result.data.id)
                     _loginResult.value =
                         LoginResult(success = loggedUserView)
                     //Por ahora solo el nombre
