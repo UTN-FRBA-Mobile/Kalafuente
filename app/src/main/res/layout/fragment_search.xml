@@ -21,28 +21,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-   <!--   <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/searchRecipeLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.8"
-            android:hint="@string/write_recipe_name"
-            app:endIconMode="clear_text"
-            app:startIconDrawable="@drawable/ic_search">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchRecipeInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textFilter"
-                android:minHeight="48dp"
-                android:textColorHint="#616161">
-
-            </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout> -->
-
         <SearchView
             android:id="@+id/search_view"
             android:layout_width="0dp"
