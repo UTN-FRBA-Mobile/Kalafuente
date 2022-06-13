@@ -98,11 +98,16 @@ class ScanIngredientsFragment: Fragment() {
             try {
                 val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getApplicationContext().getContentResolver(), uri)
                 callMLVision(bitmap)
-                binding.selectedImage.setImageBitmap(bitmap)
+                setImageView(bitmap)
             } catch (e: IOException) {
                 Log.e(TAG, e.localizedMessage)
             }
         }
+    }
+
+    private fun setImageView(bitmap: Bitmap) {
+        binding.selectedImage.setImageBitmap(bitmap)
+        binding.selectedImageTxt.text = "Imagen seleccionada:"
     }
 
     private fun callMLVision(bitmap: Bitmap) {
