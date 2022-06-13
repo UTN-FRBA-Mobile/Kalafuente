@@ -57,7 +57,11 @@
         android:id="@+id/registrationFragment"
         android:name="com.example.quecomohoy.ui.registration.RegistrationFragment"
         android:label="Registrate"
-        tools:layout="@layout/fragment_registration" />
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_recomendationsFragment"
+            app:destination="@id/recomendationsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.quecomohoy.ui.profile.ProfileFragment"
