@@ -45,11 +45,20 @@
         android:layout_below="@+id/labels"
         android:layout_marginTop="10dp"/>
 
-    <Button
-        android:id="@+id/select_image_button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Buscar en la galeria" />
+        android:layout_centerHorizontal="true">
+        <ImageButton
+            android:id="@+id/open_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_camera" />
+        <Button
+            android:id="@+id/select_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar en la galeria" />
+    </LinearLayout>
 </RelativeLayout>

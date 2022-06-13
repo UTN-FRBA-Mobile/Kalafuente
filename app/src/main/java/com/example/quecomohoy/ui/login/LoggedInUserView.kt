@@ -5,5 +5,7 @@ package com.example.quecomohoy.ui.login
  */
 data class LoggedInUserView(
     val displayName: String,
-    val image: String
+    val userName: String,
+    val image: String,
+    val id: Int
 )

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -98,7 +99,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
             view.findNavController().navigate(R.id.action_searchFragment_to_recipesFragment, bundle)
         }
 
-        binding.scanIngredientsButton.setOnClickListener {
+       binding.scanIngredientsButton.setOnClickListener {
             view.findNavController()
                 .navigate(R.id.action_searchFragment_to_scanIngredientsFragment, Bundle())
         }

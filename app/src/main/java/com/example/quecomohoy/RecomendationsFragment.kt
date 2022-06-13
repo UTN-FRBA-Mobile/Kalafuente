@@ -41,7 +41,6 @@ class RecomendationsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("Volvi a entrar a on View Created Recomendations Fragment","")
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(requireActivity(), LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -52,10 +51,10 @@ class RecomendationsFragment : Fragment() {
                     val action = R.id.action_recomendationsFragment_to_loginFragment
                     findNavController().navigate(action)
                 } else{
-                  //  binding.userName.setText("Recomendaciones para " + userInformation.displayName)
+                    recommendationsViewModel.getRecommendationsByUser(userInformation.id)
                 }
             })
-        recommendationsViewModel.getRecommendationsByUser(2)
+
         recommendationsViewModel.recommendations.observe(viewLifecycleOwner) {
             when(it.status){
                 Status.SUCCESS -> {

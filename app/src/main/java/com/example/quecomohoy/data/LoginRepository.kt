@@ -32,7 +32,6 @@ class LoginRepository(val dataSource: LoginDataSource) {
     suspend fun login(username: String, password: String): Result<LoggedInUser> {
         val resultApi = api.loginUser(username, password)
         val result = dataSource.login(resultApi!!)
-
         if (result is Result.Success) {
             setLoggedInUser(result.data)
         }

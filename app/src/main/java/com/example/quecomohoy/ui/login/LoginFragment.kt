@@ -78,6 +78,7 @@ class LoginFragment : Fragment() {
                 }
                 loginResult.success?.let {
                     updateUiWithUser(it)
+                    NavHostFragment.findNavController(this).popBackStack()
                 }
             })
 
@@ -115,10 +116,6 @@ class LoginFragment : Fragment() {
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
-            Log.d("Login fragment set on click listener-------------","")
-            Log.d("Info del login view model-------------",loginViewModel.userInformation.value.toString())
-            // YA QUE SE LOGGEO VUELVO A RECOMENDACIONES
-          NavHostFragment.findNavController(this).popBackStack()
         }
 
         val registerButton = binding.register
@@ -130,15 +127,15 @@ class LoginFragment : Fragment() {
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome) + model.displayName
-        // TODO : initiate successful logged in experience
+       // val welcome = getString(R.string.welcome) + model.displayName
         val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
+      //  Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
+        //Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
+        binding.loginError.visibility = View.VISIBLE
     }
 
 }
