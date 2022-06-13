@@ -1,10 +1,10 @@
 {
   "uuid": "d69cd199-8ee3-4176-b0f9-2683f71b58ac",
-  "lastMigration": 20,
-  "name": "Mockoon api",
+  "lastMigration": 19,
+  "name": "Que como",
   "endpointPrefix": "",
   "latency": 0,
-  "port": 8080,
+  "port": 3000,
   "hostname": "0.0.0.0",
   "routes": [
     {
@@ -32,8 +32,7 @@
           ],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true
+          "fallbackTo404": false
         },
         {
           "uuid": "32f2d21d-639f-4c91-9467-157f967638be",
@@ -54,8 +53,7 @@
           ],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
+          "fallbackTo404": false
         }
       ],
       "enabled": true,
@@ -87,8 +85,7 @@
           ],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true
+          "fallbackTo404": false
         },
         {
           "uuid": "3b5ad9bc-60bf-4248-bb2e-867cdd627290",
@@ -109,8 +106,7 @@
           ],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
+          "fallbackTo404": false
         }
       ],
       "enabled": true,
@@ -140,8 +136,7 @@
           "rules": [],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true
+          "fallbackTo404": false
         }
       ],
       "enabled": true,
@@ -171,8 +166,7 @@
           "rules": [],
           "rulesOperator": "AND",
           "disableTemplating": false,
-          "fallbackTo404": true,
-          "default": true
+          "fallbackTo404": true
         },
         {
           "uuid": "427ef7a0-339e-4bc7-ab98-4622e64ff68a",
@@ -204,8 +198,7 @@
           ],
           "rulesOperator": "AND",
           "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
+          "fallbackTo404": false
         },
         {
           "uuid": "97e1236d-b870-48e4-9aec-692d81478242",
@@ -237,78 +230,7 @@
           ],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
-        }
-      ],
-      "enabled": true,
-      "randomResponse": false,
-      "sequentialResponse": false
-    },
-    {
-      "uuid": "145f8773-008c-4068-95c4-a0fae8d79b94",
-      "documentation": "",
-      "method": "post",
-      "endpoint": "signup",
-      "responses": [
-        {
-          "uuid": "ce56302a-e356-4528-854c-b3121125e200",
-          "body": "{\n  \"message\" : \"El email ya se encuentra registrado\"\n}",
-          "latency": 0,
-          "statusCode": 400,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true
-        },
-        {
-          "uuid": "dd78089e-7884-4632-9226-802444d536e7",
-          "body": "{\n  \"id\" : 1,\n  \"username\" : \"karen\",\n  \"name\" : \"https://pbs.twimg.com/profile_images/1447703122927923206/2SNjVwEe_400x400.jpg\"\n}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "body",
-              "modifier": "userName",
-              "value": "karen",
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
-        },
-        {
-          "uuid": "300b8d1c-ef03-4380-b1a5-d2b0bb8e5361",
-          "body": "{\n  \"message\" : \"Usuario ya creado\"\n}",
-          "latency": 0,
-          "statusCode": 400,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "body",
-              "modifier": "userName",
-              "value": "Bruno",
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
+          "fallbackTo404": false
         }
       ],
       "enabled": true,
