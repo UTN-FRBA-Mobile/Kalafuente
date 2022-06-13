@@ -1,39 +1,34 @@
 package com.example.quecomohoy.ui.favorites
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quecomohoy.R
+import com.example.quecomohoy.RecommendationsAdapter
 import com.example.quecomohoy.data.model.recipe.Recipe
 import com.example.quecomohoy.databinding.FragmentFavouritesBinding
+import com.example.quecomohoy.ui.RecommendationViewModelFactory
+import com.example.quecomohoy.ui.Status
+import com.example.quecomohoy.ui.login.LoginViewModel
+import com.example.quecomohoy.ui.login.LoginViewModelFactory
 import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
+import com.google.android.material.snackbar.Snackbar
 
 class FavouritesFragment : Fragment() {
     private var _binding: FragmentFavouritesBinding? = null
     private val binding get() = _binding!!
-
-    val favouritesList: List<Recipe> = listOf(
-        Recipe(
-            1,
-            "Omelette con ensalada de cherrys y hongos",
-            "https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg",
-            "pipo89"
-        ),
-        Recipe(
-            2,
-            "Espinacas a la crema",
-            "https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png",
-            "maria_abc"
-        ),
-        Recipe(
-            3,
-            "Pancito con queso super crocante",
-            "https://i0.wp.com/blog.marianlaquecocina.com/wp-content/uploads/2018/04/20180416_144118.jpg",
-            "deLaNonna"
-        )
+    private lateinit var loginViewModel: LoginViewModel
+    private val favouritesViewModel: FavouritesViewModel by viewModels(
+    factoryProducer = { FavouritesViewModelFactory() },
+    ownerProducer = { requireParentFragment() }
     )
 
     override fun onCreateView(
@@ -47,16 +42,49 @@ class FavouritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loginViewModel = ViewModelProvider(requireActivity(), LoginViewModelFactory())
+            .get(LoginViewModel::class.java)
+
+        loginViewModel.userInformation.observe(viewLifecycleOwner,
+            Observer {userInformation ->
+                if(userInformation.displayName == ""){
+                    val action = R.id.action_recomendationsFragment_to_loginFragment
+                    findNavController().navigate(action)
+                } else{
+                    favouritesViewModel.getFavouritesByUser(userInformation.id)
+                }
+            })
+
 
         val viewManager = LinearLayoutManager(this.context)
-        val viewAdapter = RecipesAdapter(
-            navigationActionId = R.id.action_favouritesFragment_to_recipeViewFragment,
-            recipes = favouritesList
-        )
 
-        binding.favoritesRV.apply {
-            layoutManager = viewManager
-            adapter = viewAdapter
+        favouritesViewModel.favourites.observe(viewLifecycleOwner) {
+            when(it.status){
+                Status.SUCCESS -> {
+                    val recipes = it.data.orEmpty()
+                    if (recipes.isEmpty()) {
+                        binding.emptyResultsLabel.visibility = View.VISIBLE
+                    } else {
+                        binding.emptyResultsLabel.visibility = View.GONE
+                    }
+
+                    val viewAdapter = RecipesAdapter(
+                        navigationActionId = R.id.action_favouritesFragment_to_recipeViewFragment,
+                        recipes = recipes
+                    )
+
+                    binding.favoritesRV.apply {
+                        layoutManager = viewManager
+                        adapter = viewAdapter
+                    }
+                }
+                Status.LOADING -> {
+                    //TODO
+                }
+                Status.ERROR -> {
+                    Snackbar.make(view, "Hubo un error", Snackbar.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }

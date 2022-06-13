@@ -15,4 +15,7 @@ class FavouriteRepository {
         api.deleteFavourite(recipe.id, userId)
     }
 
+    suspend fun getFavouritesByUserId(userId: Int): List<Recipe>{
+        return api.getFavourites(userId)
+    }
 }
