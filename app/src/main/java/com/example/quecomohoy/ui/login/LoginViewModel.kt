@@ -29,7 +29,6 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     val userInformation: LiveData<LoggedInUserView> = _userInformation
 
     fun login(username: String, password: String) {
-
         viewModelScope.launch {
             try {
                 val result = loginRepository.login(username, password)
