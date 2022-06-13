@@ -42,8 +42,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/fragment_vertical_margin</item>
         <item name="layout_constraintWidth_percent">0.8</item>
-
-
+    </style>
     <style name="ThemeOverlay.QueComoHoy.FullscreenContainer" parent="">
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
         <item name="fullscreenTextColor">@color/light_blue_A200</item>
