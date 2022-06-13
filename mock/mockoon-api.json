@@ -377,7 +377,7 @@
         },
         {
           "uuid": "9537fef8-4a68-4391-9ae9-ab33ed1b7ab1",
-          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Lomito al champignon\",\n    \"picture\": \"https://www.johaprato.com/files/styles/flexslider_full/public/lomo_al_champignon.jpeg?itok=68SLM8Rx\",\n    \"authorName\": \"PaulinaCocina\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
