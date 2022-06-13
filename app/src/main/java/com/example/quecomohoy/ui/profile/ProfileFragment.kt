@@ -7,12 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quecomohoy.R
 import com.example.quecomohoy.data.model.perfil.UserPreference
 import com.example.quecomohoy.databinding.FragmentProfileBinding
+import com.example.quecomohoy.ui.RecommendationViewModel
+import com.example.quecomohoy.ui.RecommendationViewModelFactory
+import com.example.quecomohoy.ui.login.LoginViewModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.quecomohoy.ui.login.LoginViewModelFactory
 
 
 class ProfileFragment : Fragment() {
@@ -27,6 +36,11 @@ class ProfileFragment : Fragment() {
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<UserProfilePreferencesAdapater.ViewHolder>? = null
 
+    private lateinit var loginViewModel: LoginViewModel
+    private val recommendationsViewModel: RecommendationViewModel by viewModels(
+        factoryProducer = { RecommendationViewModelFactory() },
+        ownerProducer = { requireParentFragment() }
+    )
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,21 +54,30 @@ class ProfileFragment : Fragment() {
         val profilePic = _binding?.profilePic
         val settings = _binding?.preferences
 
+        loginViewModel = ViewModelProvider(requireActivity(), LoginViewModelFactory())
+            .get(LoginViewModel::class.java)
+
         layoutManager = LinearLayoutManager(context?.applicationContext)
         settings?.layoutManager = layoutManager
         val listOfSettings = getListOfUserPreferences();
         adapter = UserProfilePreferencesAdapater(listOfSettings);
         settings?.adapter = adapter
 
-        Picasso.get()
-            .load("https://pbs.twimg.com/profile_images/1447703122927923206/2SNjVwEe_400x400.jpg")
-            .into(profilePic, object : Callback {
-                override fun onSuccess() {
-                    Log.d(TAG, "success")
-                }
-
-                override fun onError(e: Exception?) {
-                    Log.e(TAG, "error", e)
+        loginViewModel.userInformation.observe(viewLifecycleOwner,
+            Observer {userInformation ->
+                if(userInformation.displayName != ""){
+                    binding.name.text = userInformation.displayName
+                    binding.username.text = userInformation.userName
+                    Picasso.get()
+                        .load(userInformation.image)
+                        .into(profilePic, object : Callback {
+                            override fun onSuccess() {
+                                Log.d(TAG, "success")
+                            }
+                            override fun onError(e: Exception?) {
+                                Log.e(TAG, "error", e)
+                            }
+                        })
                 }
             })
         super.onViewCreated(view, savedInstanceState)

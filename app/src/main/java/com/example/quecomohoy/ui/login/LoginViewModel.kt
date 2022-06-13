@@ -10,6 +10,8 @@ import com.example.quecomohoy.data.LoginRepository
 import com.example.quecomohoy.data.Result
 
 import com.example.quecomohoy.R
+import com.example.quecomohoy.data.model.Recommendation
+import com.example.quecomohoy.data.model.recipe.Recipe
 import com.example.quecomohoy.ui.Resource
 import kotlinx.coroutines.launch
 
@@ -22,7 +24,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     val loginResult: LiveData<LoginResult> = _loginResult
 
     private val _userInformation = MutableLiveData<LoggedInUserView>(
-        LoggedInUserView(displayName = "", image = "", id=0)
+        LoggedInUserView(displayName = "", image = "", id=0, userName = "")
     );
     val userInformation: LiveData<LoggedInUserView> = _userInformation
 
@@ -33,7 +35,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
                 val result = loginRepository.login(username, password)
                 Log.d("Loggin view------", "entre---------------")
                 if (result is Result.Success) {
-                    val loggedUserView = LoggedInUserView(displayName = result.data.displayName, image = result.data.image, id = result.data.id)
+                    val loggedUserView = LoggedInUserView(displayName = result.data.displayName, image = result.data.image, id = result.data.id, userName = result.data.username)
                     _loginResult.value =
                         LoginResult(success = loggedUserView)
                     //Por ahora solo el nombre
@@ -43,10 +45,10 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
                     _loginResult.value = LoginResult(error = R.string.login_failed)
                 }
             }catch (e : Exception){
-                Log.d("Login View Model Error",username)
+                _loginResult.value = LoginResult(error = R.string.login_failed)
+                Log.d("Login View Model Error",e.toString())
             }
         }
-
     }
 
     fun loginDataChanged(username: String, password: String) {

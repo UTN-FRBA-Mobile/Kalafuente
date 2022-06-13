@@ -1,11 +1,8 @@
 package com.example.quecomohoy.data.services.user
 
 import com.example.quecomohoy.data.model.Recommendation
-import com.example.quecomohoy.data.model.recipe.Recipe
 import com.example.quecomohoy.data.model.user.User
 import com.example.quecomohoy.data.services.RetrofitFactory
-import com.example.quecomohoy.data.services.recipes.RecipesApiClient
-import com.example.quecomohoy.ui.login.LoggedInUserView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
