@@ -1,529 +1,584 @@
 {
-    "uuid": "eeb28de8-f827-4364-b774-d96dd6fa19ce",
-    "lastMigration": 20,
-    "name": "Que como",
-    "endpointPrefix": "",
-    "latency": 0,
-    "port": 3000,
-    "hostname": "0.0.0.0",
-    "routes": [
+  "uuid": "eeb28de8-f827-4364-b774-d96dd6fa19ce",
+  "lastMigration": 20,
+  "name": "Que como",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "b73308bb-f337-453d-a65f-1a5fab10abc4",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "recipes/:id",
+      "responses": [
         {
-            "uuid": "b73308bb-f337-453d-a65f-1a5fab10abc4",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "recipes/:id",
-            "responses": [
-                {
-                    "uuid": "7b05d0b1-d8fb-49a6-82c9-011a686eaa2e",
-                    "body": "{\n   \"name\": \"Espinacas a la crema\",\n   \"id\": 2,\n   \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n   \"authorName\": \"Karen Lafuente\",\n   \"ingredients\": [\n     {\n       \"id\": 36,\n       \"name\": \"Espinaca fresca\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/espinaca1-0834e1be8c9ac732e715939074486136-640-0.png\"\n     },\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     },\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Las espinacas frescas no debemos cocinarlas demasiado, para aprovechar mejor todas sus cualidades. Una de las opciones sería el cocerlas 7-8 minutos, pero yo prefiero rehogarlas en la sartén. Con la cocción quedan menos tiernas y más acuosas, por mucho que las escurramos.\",\n          \"En una sartén grande, vertemos el aceite y lo calentamos a fuego medio. Echamos las espinacas frescas y rehogamos, mezclando bien las verduras con el aceite.\", \n          \"Entonces, la idea es que cuando veamos que ya esta un poco cocido por debajo, pero arriba aún está bastante líquido, ese es el momento de agregar lo que quieran de relleno, en este caso, un pedacito de queso fresco de un lado del círculo que está formando nuestro huevo.\",\n          \"En un primer momento solo veréis un gran montón de espinacas en la sartén, pero no os preocupéis, poco a poco irán disminuyendo su volumen. Es importante ir removiendo uniformemente, para que todas queden cocinadas por igual. Su tamaño disminuirá mucho pero mantienen su color verde oscuro intenso.\"\n          ]\n}\n",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "params",
-                            "modifier": "id",
-                            "value": "2",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": true
-                },
-                {
-                    "uuid": "5b72b7aa-0b8b-462c-8a08-938bfdea6a73",
-                    "body": "{\n   \"name\": \"Omelette\",\n   \"id\": 1,\n   \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n   \"authorName\": \"Karen Lafuente\",\n   \"ingredients\": [\n     {\n       \"id\": 34,\n       \"name\": \"Huevo\",\n       \"picture\":\"https://www.collinsdictionary.com/images/full/eggs_110803370_1000.jpg\"\n     },\n     {\n       \"id\": 35,\n       \"name\": \"Queso\",\n       \"picture\":\"https://www.lanacion.com.py/resizer/XrkMfxRe9ZD6qrjb_t66lojqLWU=/1920x0/smart/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/lanacionpy/OCWNGLNYENAWLOBCAZWTNPWN6Q.jpeg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Lo primero que vamos a hacer es romper el huevo en un bol y batirlo con rapidez. Esto va a generar que el huevo agarre aire y quede como más esponjoso.\",\n          \"En una sarten al fuego (medio), vamos a derretir un pedacito de manteca (también pueden hacerlo con aceite) y vamos a volcar nuestro huevo en el centro. Es muy importante que no se distraigan buscando espátulas y tengan todo listo porque se les puede cuajar de más el huevo y no va a quedar TAN perfecto como queremos.\", \n          \"Entonces, la idea es que cuando veamos que ya esta un poco cocido por debajo, pero arriba aún está bastante líquido, ese es el momento de agregar lo que quieran de relleno, en este caso, un pedacito de queso fresco de un lado del círculo que está formando nuestro huevo.\",\n          \"Aquí viene la magia. Sin esperar mucho, vamos a agarrar una espátula y con rapidez vamos a juntar el extremo vacío del huevo con el otro extremo, tapando nuestro pedazo de queso. Lo que va a suceder, es que las puntas van a terminar de cocinarse juntas y así nuestro omelette va a quedar sellado perfectamente y nuestro relleno se va a terminar de cocinar dentro del huevo. Tengan en cuenta que es importante que el fuego sea medio. Si desean que por dentro quede un poco más crudo el huevo, lo pueden subir, para que se haga más de afuera. Pero sino, fuego medio para la cocción perfecta. \",\n          \"Lo que resta hacer es dar vuelta nuestro omelette una vez que ya esté bien cocido de un lado para que se cocine bien del otro y listo! Al terminar, lo retiramos con cuidado y lo servimos en un plato para degustarlo y ser felices.\"\n          ]\n}\n",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "params",
-                            "modifier": "id",
-                            "value": "1",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                }
-            ],
-            "enabled": true,
-            "randomResponse": false,
-            "sequentialResponse": false
+          "uuid": "7b05d0b1-d8fb-49a6-82c9-011a686eaa2e",
+          "body": "{\n   \"name\": \"Espinacas a la crema\",\n   \"id\": 2,\n   \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n   \"authorName\": \"Karen Lafuente\",\n   \"ingredients\": [\n     {\n       \"id\": 36,\n       \"name\": \"Espinaca fresca\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/espinaca1-0834e1be8c9ac732e715939074486136-640-0.png\"\n     },\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     },\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Las espinacas frescas no debemos cocinarlas demasiado, para aprovechar mejor todas sus cualidades. Una de las opciones sería el cocerlas 7-8 minutos, pero yo prefiero rehogarlas en la sartén. Con la cocción quedan menos tiernas y más acuosas, por mucho que las escurramos.\",\n          \"En una sartén grande, vertemos el aceite y lo calentamos a fuego medio. Echamos las espinacas frescas y rehogamos, mezclando bien las verduras con el aceite.\", \n          \"Entonces, la idea es que cuando veamos que ya esta un poco cocido por debajo, pero arriba aún está bastante líquido, ese es el momento de agregar lo que quieran de relleno, en este caso, un pedacito de queso fresco de un lado del círculo que está formando nuestro huevo.\",\n          \"En un primer momento solo veréis un gran montón de espinacas en la sartén, pero no os preocupéis, poco a poco irán disminuyendo su volumen. Es importante ir removiendo uniformemente, para que todas queden cocinadas por igual. Su tamaño disminuirá mucho pero mantienen su color verde oscuro intenso.\"\n          ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "2",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
         },
         {
-            "uuid": "e821f59f-7ca9-4ca8-b99f-1e4f8bccf0e1",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "user/:id/recommendations",
-            "responses": [
-                {
-                    "uuid": "b0962714-5cf3-436b-bc5a-977f65cd0cd5",
-                    "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"isFavourite\": false\n  },\n    {\n    \"id\": 2,\n    \"name\": \"Espinacas a la crema\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n    \"isFavourite\": false\n  }\n]",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "query",
-                            "modifier": "id",
-                            "value": "1",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": true
-                },
-                {
-                    "uuid": "92db3606-7494-4cb5-92ef-109356c99392",
-                    "body": "[\n  {\n    \"id\": 3,\n    \"name\" : \"Pollo al limón\",\n    \"picture\" : \"https://www.paulinacocina.net/wp-content/uploads/2021/11/pollo-asado.jpg\",\n    \"isFavourite\": false\n  },\n    {\n    \"id\": 2,\n    \"name\": \"Espinacas a la crema\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n    \"isFavourite\": false\n  }\n]",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "params",
-                            "modifier": "id",
-                            "value": "2",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                },
-                {
-                    "uuid": "5b575893-689a-4ea1-a607-cc918f3f918e",
-                    "body": "[\n  {\n    \"id\": 5,\n    \"name\": \"Wrap de vegetales\",\n    \"picture\": \"https://i1.wp.com/cocinavegano.com/wp-content/uploads/2017/01/wrap-de-vegetales-y-chipotle-2.jpg\",\n    \"isFavourite\": false\n  }\n]",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "params",
-                            "modifier": "id",
-                            "value": "3",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                }
-            ],
-            "enabled": true,
-            "randomResponse": false,
-            "sequentialResponse": false
-        },
-        {
-            "uuid": "acb2cfd1-5b0c-43b8-abd0-55cbcd1e899a",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "recipes",
-            "responses": [
-                {
-                    "uuid": "1f59071d-b6db-48bb-8388-746bcca7d730",
-                    "body": "{}",
-                    "latency": 0,
-                    "statusCode": 404,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": true
-                },
-                {
-                    "uuid": "3f701067-96d5-46b3-b76d-c23053a441f2",
-                    "body": "[\n {\n   \"id\" : 6,\n   \"name\" : \"Milanesa con puré\",\n   \"picture\" : \"https://www.unileverfoodsolutions.com.ar/dam/global-ufs/mcos/sla/argentina/calcmenu/recipes/AR-recipes/In-Development/milanesa-a-la-napolitana-con-pur%C3%A9/main-header.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n }\n ]",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "query",
-                            "modifier": "name",
-                            "value": "milanesa",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                },
-                {
-                    "uuid": "fb1064c7-c799-4813-aa91-cdbacdebc390",
-                    "body": "[\n {\n   \"id\" : 3,\n   \"name\" : \"Pollo al limón\",\n   \"picture\" : \"https://www.paulinacocina.net/wp-content/uploads/2021/11/pollo-asado.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n {\n   \"id\" : 4,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/NCI_Visuals_Food_Hamburger.jpg/640px-NCI_Visuals_Food_Hamburger.jpg\",\n   \"authorName\" : \"Vladimir Putin\"\n },\n  {\n   \"id\" : 5,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n   \"authorName\" : \"Joe Biden\"\n },\n  {\n   \"id\" : 6,\n   \"name\" : \"Pancito con queso super crocante\",\n   \"picture\" : \"https://i0.wp.com/blog.marianlaquecocina.com/wp-content/uploads/2018/04/20180416_144118.jpg\",\n   \"authorName\" : \"La nona\"\n }\n]",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [
-                        {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                        }
-                    ],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                }
-            ],
-            "enabled": true,
-            "randomResponse": false,
-            "sequentialResponse": false
-        },
-        {
-            "uuid": "6e8359df-df15-4c24-ac96-873b9efb571b",
-            "documentation": "",
-            "method": "post",
-            "endpoint": "login",
-            "responses": [
-                {
-                    "uuid": "bed532c1-b56b-4b38-ad8f-f612a72aed7f",
-                    "body": "{\n  \"error\":\"Contraseña incorrecta\"\n}",
-                    "latency": 0,
-                    "statusCode": 401,
-                    "label": "",
-                    "headers": [
-                        {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                        }
-                    ],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [],
-                    "rulesOperator": "AND",
-                    "disableTemplating": false,
-                    "fallbackTo404": true,
-                    "default": true
-                },
-                {
-                    "uuid": "d871a110-5272-4e36-94c1-c66ce194303b",
-                    "body": "{\n  \"id\":1,\n  \"username\": \"kalafuente\",\n  \"name\": \"Karen Lafuente\",\n  \"image\": \"https://media-exp1.licdn.com/dms/image/C4E03AQERbzsgM_VN2g/profile-displayphoto-shrink_200_200/0/1634589918073?e=1658361600&v=beta&t=dLmF-Cb-8mCKcEvA-POw95IbBZRd32vTot5AEppMsIU\"\n}",
-                    "latency": 0,
-                    "statusCode": 202,
-                    "label": "",
-                    "headers": [
-                        {
-                            "key": "Content-Type",
-                            "value": "application/x-www-form-urlencoded"
-                        }
-                    ],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "body",
-                            "modifier": "userName",
-                            "value": "kalafuente",
-                            "operator": "equals"
-                        },
-                        {
-                            "target": "body",
-                            "modifier": "password",
-                            "value": "123456",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "AND",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                },
-                {
-                    "uuid": "4bc77ca9-7930-4458-9583-fa25dd0527a8",
-                    "body": "{\n  \"id\":2,\n  \"username\": \"brunocobos\",\n  \"name\": \"Bruce Cobos\",\n  \"image\": \"https://media-exp2.licdn.com/dms/image/C4D03AQGp-NAccSDFmQ/profile-displayphoto-shrink_200_200/0/1600123231953?e=1660780800&v=beta&t=WFx3pwQ8sFD4WDaTm5FErgcfBhTdGfDCNvoCuvVPA-o\"\n}",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [
-                        {
-                            "key": "Content-Type",
-                            "value": "application/x-www-form-urlencoded"
-                        }
-                    ],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "body",
-                            "modifier": "userName",
-                            "value": "brunocobos",
-                            "operator": "equals"
-                        },
-                        {
-                            "target": "body",
-                            "modifier": "password",
-                            "value": "holiscomoestas",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                },
-                {
-                    "uuid": "2479539f-f7a9-4f34-abc5-03631abccff9",
-                    "body": "{\n  \"id\":3,\n  \"username\": \"inayabar\",\n  \"name\": \"Inaki Yabar\",\n  \"image\": \"https://media-exp2.licdn.com/dms/image/C4D03AQGp-NAccSDFmQ/profile-displayphoto-shrink_200_200/0/1600123231953?e=1660780800&v=beta&t=WFx3pwQ8sFD4WDaTm5FErgcfBhTdGfDCNvoCuvVPA-o\"\n}",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "body",
-                            "modifier": "userName",
-                            "value": "inayabar",
-                            "operator": "equals"
-                        },
-                        {
-                            "target": "body",
-                            "modifier": "password",
-                            "value": "123456",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "AND",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                }
-            ],
-            "enabled": true,
-            "randomResponse": false,
-            "sequentialResponse": false
-        },
-        {
-            "uuid": "34e7465b-c564-4677-9820-8258e4f32a01",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "user/:id/favorites",
-            "responses": [
-                {
-                    "uuid": "7e0e5bdb-995a-4853-8b77-b76af20cd9d6",
-                    "body": "[]",
-                    "latency": 0,
-                    "statusCode": 404,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": true
-                },
-                {
-                    "uuid": "56eb2f9a-78f3-4c0a-b645-1b625e87ad11",
-                    "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "params",
-                            "modifier": "id",
-                            "value": "1",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                },
-                {
-                    "uuid": "9537fef8-4a68-4391-9ae9-ab33ed1b7ab1",
-                    "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "params",
-                            "modifier": "id",
-                            "value": "2",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                },
-                {
-                    "uuid": "26d65735-54b6-4bd6-9238-2151080f2ce7",
-                    "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "params",
-                            "modifier": "id",
-                            "value": "3",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                }
-            ],
-            "enabled": true,
-            "randomResponse": false,
-            "sequentialResponse": false
-        },
-        {
-            "uuid": "7919f64b-ff5e-4cd5-b1fa-4befab6bc1cf",
-            "documentation": "",
-            "method": "post",
-            "endpoint": "signup",
-            "responses": [
-                {
-                    "uuid": "4fc21e84-ad28-411c-ba18-dc96d6a3e48e",
-                    "body": "{\n  \"message\" : \"El email ya se encuentra registrado\"\n}",
-                    "latency": 0,
-                    "statusCode": 400,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": true
-                },
-                {
-                    "uuid": "e5250534-71dc-40f3-8bb9-3ddf77f7d48c",
-                    "body": "{\n  \"id\" : 1,\n  \"username\" : \"karen\",\n  \"name\" : \"https://pbs.twimg.com/profile_images/1447703122927923206/2SNjVwEe_400x400.jpg\"\n}",
-                    "latency": 0,
-                    "statusCode": 200,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "body",
-                            "modifier": "userName",
-                            "value": "karen",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                },
-                {
-                    "uuid": "a4e10f97-6528-4010-8216-22b0bcc56cbd",
-                    "body": "{\n  \"message\" : \"Usuario ya creado\"\n}",
-                    "latency": 0,
-                    "statusCode": 400,
-                    "label": "",
-                    "headers": [],
-                    "filePath": "",
-                    "sendFileAsBody": false,
-                    "rules": [
-                        {
-                            "target": "body",
-                            "modifier": "userName",
-                            "value": "Bruno",
-                            "operator": "equals"
-                        }
-                    ],
-                    "rulesOperator": "OR",
-                    "disableTemplating": false,
-                    "fallbackTo404": false,
-                    "default": false
-                }
-            ],
-            "enabled": true,
-            "randomResponse": false,
-            "sequentialResponse": false
+          "uuid": "5b72b7aa-0b8b-462c-8a08-938bfdea6a73",
+          "body": "{\n   \"name\": \"Omelette\",\n   \"id\": 1,\n   \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n   \"authorName\": \"Karen Lafuente\",\n   \"ingredients\": [\n     {\n       \"id\": 34,\n       \"name\": \"Huevo\",\n       \"picture\":\"https://www.collinsdictionary.com/images/full/eggs_110803370_1000.jpg\"\n     },\n     {\n       \"id\": 35,\n       \"name\": \"Queso\",\n       \"picture\":\"https://www.lanacion.com.py/resizer/XrkMfxRe9ZD6qrjb_t66lojqLWU=/1920x0/smart/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/lanacionpy/OCWNGLNYENAWLOBCAZWTNPWN6Q.jpeg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Lo primero que vamos a hacer es romper el huevo en un bol y batirlo con rapidez. Esto va a generar que el huevo agarre aire y quede como más esponjoso.\",\n          \"En una sarten al fuego (medio), vamos a derretir un pedacito de manteca (también pueden hacerlo con aceite) y vamos a volcar nuestro huevo en el centro. Es muy importante que no se distraigan buscando espátulas y tengan todo listo porque se les puede cuajar de más el huevo y no va a quedar TAN perfecto como queremos.\", \n          \"Entonces, la idea es que cuando veamos que ya esta un poco cocido por debajo, pero arriba aún está bastante líquido, ese es el momento de agregar lo que quieran de relleno, en este caso, un pedacito de queso fresco de un lado del círculo que está formando nuestro huevo.\",\n          \"Aquí viene la magia. Sin esperar mucho, vamos a agarrar una espátula y con rapidez vamos a juntar el extremo vacío del huevo con el otro extremo, tapando nuestro pedazo de queso. Lo que va a suceder, es que las puntas van a terminar de cocinarse juntas y así nuestro omelette va a quedar sellado perfectamente y nuestro relleno se va a terminar de cocinar dentro del huevo. Tengan en cuenta que es importante que el fuego sea medio. Si desean que por dentro quede un poco más crudo el huevo, lo pueden subir, para que se haga más de afuera. Pero sino, fuego medio para la cocción perfecta. \",\n          \"Lo que resta hacer es dar vuelta nuestro omelette una vez que ya esté bien cocido de un lado para que se cocine bien del otro y listo! Al terminar, lo retiramos con cuidado y lo servimos en un plato para degustarlo y ser felices.\"\n          ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         }
-    ],
-    "proxyMode": false,
-    "proxyHost": "",
-    "proxyRemovePrefix": false,
-    "tlsOptions": {
-        "enabled": false,
-        "type": "CERT",
-        "pfxPath": "",
-        "certPath": "",
-        "keyPath": "",
-        "caPath": "",
-        "passphrase": ""
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
     },
-    "cors": true,
-    "headers": [
+    {
+      "uuid": "e821f59f-7ca9-4ca8-b99f-1e4f8bccf0e1",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "user/:id/recommendations",
+      "responses": [
         {
-            "key": "Content-Type",
-            "value": "application/json"
-        }
-    ],
-    "proxyReqHeaders": [
+          "uuid": "b0962714-5cf3-436b-bc5a-977f65cd0cd5",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"isFavourite\": false\n  },\n    {\n    \"id\": 2,\n    \"name\": \"Espinacas a la crema\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n    \"isFavourite\": false\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
         {
-            "key": "",
-            "value": ""
-        }
-    ],
-    "proxyResHeaders": [
+          "uuid": "8db065d6-f21c-43bc-aeca-13cf7bcb0243",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"isFavourite\": false\n  },\n    {\n    \"id\": 2,\n    \"name\": \"Espinacas a la crema\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n    \"isFavourite\": false\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": " (copy)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "id",
+              "value": "10",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
         {
-            "key": "",
-            "value": ""
+          "uuid": "92db3606-7494-4cb5-92ef-109356c99392",
+          "body": "[\n  {\n    \"id\": 3,\n    \"name\" : \"Pollo al limón\",\n    \"picture\" : \"https://www.paulinacocina.net/wp-content/uploads/2021/11/pollo-asado.jpg\",\n    \"isFavourite\": false\n  },\n    {\n    \"id\": 2,\n    \"name\": \"Espinacas a la crema\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n    \"isFavourite\": false\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "2",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "5b575893-689a-4ea1-a607-cc918f3f918e",
+          "body": "[\n  {\n    \"id\": 5,\n    \"name\": \"Wrap de vegetales\",\n    \"picture\": \"https://i1.wp.com/cocinavegano.com/wp-content/uploads/2017/01/wrap-de-vegetales-y-chipotle-2.jpg\",\n    \"isFavourite\": false\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "3",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         }
-    ]
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "acb2cfd1-5b0c-43b8-abd0-55cbcd1e899a",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "recipes",
+      "responses": [
+        {
+          "uuid": "1f59071d-b6db-48bb-8388-746bcca7d730",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "3f701067-96d5-46b3-b76d-c23053a441f2",
+          "body": "[\n {\n   \"id\" : 6,\n   \"name\" : \"Milanesa con puré\",\n   \"picture\" : \"https://www.unileverfoodsolutions.com.ar/dam/global-ufs/mcos/sla/argentina/calcmenu/recipes/AR-recipes/In-Development/milanesa-a-la-napolitana-con-pur%C3%A9/main-header.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n }\n ]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "milanesa",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "fb1064c7-c799-4813-aa91-cdbacdebc390",
+          "body": "[\n {\n   \"id\" : 3,\n   \"name\" : \"Pollo al limón\",\n   \"picture\" : \"https://www.paulinacocina.net/wp-content/uploads/2021/11/pollo-asado.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n {\n   \"id\" : 4,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/NCI_Visuals_Food_Hamburger.jpg/640px-NCI_Visuals_Food_Hamburger.jpg\",\n   \"authorName\" : \"Vladimir Putin\"\n },\n  {\n   \"id\" : 5,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n   \"authorName\" : \"Joe Biden\"\n },\n  {\n   \"id\" : 6,\n   \"name\" : \"Pancito con queso super crocante\",\n   \"picture\" : \"https://i0.wp.com/blog.marianlaquecocina.com/wp-content/uploads/2018/04/20180416_144118.jpg\",\n   \"authorName\" : \"La nona\"\n }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "6e8359df-df15-4c24-ac96-873b9efb571b",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "login",
+      "responses": [
+        {
+          "uuid": "bed532c1-b56b-4b38-ad8f-f612a72aed7f",
+          "body": "{\n  \"error\":\"Contraseña incorrecta\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": true,
+          "default": true
+        },
+        {
+          "uuid": "d871a110-5272-4e36-94c1-c66ce194303b",
+          "body": "{\n  \"id\":1,\n  \"username\": \"kalafuente\",\n  \"name\": \"Karen Lafuente\",\n  \"image\": \"https://media-exp1.licdn.com/dms/image/C4E03AQERbzsgM_VN2g/profile-displayphoto-shrink_200_200/0/1634589918073?e=1658361600&v=beta&t=dLmF-Cb-8mCKcEvA-POw95IbBZRd32vTot5AEppMsIU\"\n}",
+          "latency": 0,
+          "statusCode": 202,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "kalafuente",
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "123456",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "694ad721-bd3d-40dd-8832-e3c953b5ccb7",
+          "body": "{\n  \"id\":10,\n  \"username\": \"karen\",\n  \"name\": \"Karen Lafuente\",\n  \"image\": \"https://media-exp1.licdn.com/dms/image/C4E03AQERbzsgM_VN2g/profile-displayphoto-shrink_200_200/0/1634589918073?e=1658361600&v=beta&t=dLmF-Cb-8mCKcEvA-POw95IbBZRd32vTot5AEppMsIU\"\n}",
+          "latency": 0,
+          "statusCode": 202,
+          "label": " (copy)",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "karen",
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "123456",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "4bc77ca9-7930-4458-9583-fa25dd0527a8",
+          "body": "{\n  \"id\":2,\n  \"username\": \"brunocobos\",\n  \"name\": \"Bruce Cobos\",\n  \"image\": \"https://media-exp2.licdn.com/dms/image/C4D03AQGp-NAccSDFmQ/profile-displayphoto-shrink_200_200/0/1600123231953?e=1660780800&v=beta&t=WFx3pwQ8sFD4WDaTm5FErgcfBhTdGfDCNvoCuvVPA-o\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "brunocobos",
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "holiscomoestas",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "2479539f-f7a9-4f34-abc5-03631abccff9",
+          "body": "{\n  \"id\":3,\n  \"username\": \"inayabar\",\n  \"name\": \"Inaki Yabar\",\n  \"image\": \"https://media-exp2.licdn.com/dms/image/C4D03AQGp-NAccSDFmQ/profile-displayphoto-shrink_200_200/0/1600123231953?e=1660780800&v=beta&t=WFx3pwQ8sFD4WDaTm5FErgcfBhTdGfDCNvoCuvVPA-o\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "inayabar",
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "123456",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "34e7465b-c564-4677-9820-8258e4f32a01",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "user/:id/favorites",
+      "responses": [
+        {
+          "uuid": "7e0e5bdb-995a-4853-8b77-b76af20cd9d6",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "56eb2f9a-78f3-4c0a-b645-1b625e87ad11",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "9537fef8-4a68-4391-9ae9-ab33ed1b7ab1",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "2",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "26d65735-54b6-4bd6-9238-2151080f2ce7",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "3",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "7919f64b-ff5e-4cd5-b1fa-4befab6bc1cf",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "signup",
+      "responses": [
+        {
+          "uuid": "4fc21e84-ad28-411c-ba18-dc96d6a3e48e",
+          "body": "{\n  \"message\" : \"El email ya se encuentra registrado\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "e5250534-71dc-40f3-8bb9-3ddf77f7d48c",
+          "body": "{\n  \"id\" : 1,\n  \"username\" : \"karen\",\n  \"name\" : \"https://pbs.twimg.com/profile_images/1447703122927923206/2SNjVwEe_400x400.jpg\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "karen",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "a4e10f97-6528-4010-8216-22b0bcc56cbd",
+          "body": "{\n  \"message\" : \"Usuario ya creado\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "Bruno",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
 }

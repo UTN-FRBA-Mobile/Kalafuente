@@ -10,10 +10,17 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.example.quecomohoy.R
 import com.example.quecomohoy.data.requests.UserSignupRequest
 import com.example.quecomohoy.data.utils.AESEncyption
 import com.example.quecomohoy.databinding.FragmentRegistrationBinding
+import com.example.quecomohoy.ui.RecommendationViewModel
+import com.example.quecomohoy.ui.RecommendationViewModelFactory
 import com.example.quecomohoy.ui.Status
+import com.example.quecomohoy.ui.login.LoginViewModel
+import com.example.quecomohoy.ui.login.LoginViewModelFactory
 import com.google.android.material.textfield.TextInputEditText
 import java.lang.Exception
 
@@ -32,6 +39,12 @@ class RegistrationFragment : Fragment() {
     private var _binding: FragmentRegistrationBinding? = null
 
     private val registrationViewModel: RegistrationViewModel by viewModels(factoryProducer = { RegistrationViewModelFactory() })
+
+    private lateinit var loginViewModel: LoginViewModel
+    private val recommendationsViewModel: RecommendationViewModel by viewModels(
+        factoryProducer = { RecommendationViewModelFactory() },
+        ownerProducer = { requireParentFragment() }
+    )
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -52,6 +65,8 @@ class RegistrationFragment : Fragment() {
             "LOGINFRAGMENT----------------------------------------------------------------",
             "---------------------"
         )
+        loginViewModel = ViewModelProvider(requireActivity(), LoginViewModelFactory())
+            .get(LoginViewModel::class.java)
 
         super.onViewCreated(view, savedInstanceState)
 
@@ -73,6 +88,8 @@ class RegistrationFragment : Fragment() {
                 Status.SUCCESS -> {
                     Toast.makeText(context, "Bienvenido ${it.data?.username}", Toast.LENGTH_LONG)
                         .show()
+                    loginViewModel.login(binding.userName.text.toString(), binding.password.text.toString())
+                    view.findNavController().navigate(R.id.action_registrationFragment_to_recomendationsFragment)
                 }
                 Status.ERROR -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
