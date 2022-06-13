@@ -30,6 +30,19 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    
+    <style name="InputText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <style name="InputLayout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/fragment_vertical_margin</item>
+        <item name="layout_constraintWidth_percent">0.8</item>
+    </style>
     <style name="ThemeOverlay.QueComoHoy.FullscreenContainer" parent="">
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
         <item name="fullscreenTextColor">@color/light_blue_A200</item>

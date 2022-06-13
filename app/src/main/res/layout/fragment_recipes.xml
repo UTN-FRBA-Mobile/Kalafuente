@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/recipes_item"></androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/recipes_item" />
 
     <ProgressBar
         android:id="@+id/progress"

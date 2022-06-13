@@ -2,13 +2,20 @@ package com.example.quecomohoy.ui.registration
 
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import com.example.quecomohoy.data.requests.UserSignupRequest
+import com.example.quecomohoy.data.utils.AESEncyption
 import com.example.quecomohoy.databinding.FragmentRegistrationBinding
+import com.example.quecomohoy.ui.Status
+import com.google.android.material.textfield.TextInputEditText
+import java.lang.Exception
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,8 +29,9 @@ private const val ARG_PARAM2 = "param2"
  */
 class RegistrationFragment : Fragment() {
 
-    private lateinit var registrationViewModel: RegistrationViewModel
     private var _binding: FragmentRegistrationBinding? = null
+
+    private val registrationViewModel: RegistrationViewModel by viewModels(factoryProducer = { RegistrationViewModelFactory() })
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -40,27 +48,74 @@ class RegistrationFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("LOGINFRAGMENT----------------------------------------------------------------","---------------------")
+        Log.d(
+            "LOGINFRAGMENT----------------------------------------------------------------",
+            "---------------------"
+        )
 
         super.onViewCreated(view, savedInstanceState)
-        registrationViewModel = ViewModelProvider(this, RegistrationViewModelFactory())
-            .get(RegistrationViewModel::class.java)
 
-        val nameEditText = binding.name
-        val lastnameEditText = binding.lastnames
-        val mailEditText = binding.email
-        val passwordEditText = binding.password
+        val createAccountButton = binding.createAccountButton
 
-        val loginButton = binding.createAccountButton
-
-        loginButton.setOnClickListener {
-            val text = "Welcome " + nameEditText.text.toString() + " " + lastnameEditText.text.toString() + "!"
-            val duration = Toast.LENGTH_SHORT
-            val appContext = context?.applicationContext
-
-            val toast = Toast.makeText(appContext, text, duration)
-            toast.show()
+        createAccountButton.setOnClickListener {
+            val haveErrors = validateInputs()
+            if (!haveErrors) {
+                try {
+                    registrationViewModel.signup(createUserRequest())
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
+
+        registrationViewModel.user.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    Toast.makeText(context, "Bienvenido ${it.data?.username}", Toast.LENGTH_LONG)
+                        .show()
+                }
+                Status.ERROR -> {
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                }
+                Status.LOADING -> {
+                }
+            }
+        }
+    }
+
+    private fun validateInputs() : Boolean{
+        inputs().forEach {
+            if(it.text.isNullOrEmpty()){
+                it.error = "Completar"
+            } else{
+                it.error = null
+            }
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.text.toString()).matches()){
+            binding.email.error = "Mail invalido"
+        }
+
+        return inputs().any { !it.error.isNullOrEmpty() }
+    }
+
+    private fun inputs(): List<TextInputEditText> {
+        return listOf(
+            binding.name,
+            binding.lastnames,
+            binding.email,
+            binding.password,
+            binding.userName
+        )
+    }
+
+    private fun createUserRequest(): UserSignupRequest {
+        return UserSignupRequest(
+            name = binding.name.text.toString(),
+            lastName = binding.lastnames.text.toString(),
+            email = binding.email.text.toString(),
+            password = AESEncyption.encrypt(binding.password.text.toString()),
+            userName = binding.userName.text.toString()
+        )
     }
 
 }
