@@ -331,6 +331,32 @@
       "enabled": true,
       "randomResponse": false,
       "sequentialResponse": false
+    },
+    {
+      "uuid": "34e7465b-c564-4677-9820-8258e4f32a01",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "user/:id/favorites",
+      "responses": [
+        {
+          "uuid": "7e0e5bdb-995a-4853-8b77-b76af20cd9d6",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
     }
   ],
   "proxyMode": false,
