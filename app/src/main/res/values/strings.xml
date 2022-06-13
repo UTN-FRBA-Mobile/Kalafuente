@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">QueComoHoy</string>
     <!-- Strings related to login -->
@@ -10,6 +11,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Usuario o contraseña incorrecta"</string>
     <string name="recipe_search_failed">"No se encontraron recetas"</string>
+    <string name="no_favourites_yet">"Todavia no tenés favoritos.\nEncontrá las mejores recetas en el buscador o escaneá los ingredientes en tu cocina!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="signup_title">Registrate</string>

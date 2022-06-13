@@ -413,7 +413,7 @@
       "uuid": "34e7465b-c564-4677-9820-8258e4f32a01",
       "documentation": "",
       "method": "get",
-      "endpoint": "user/:id/favorites",
+      "endpoint": "user/:id/favourites",
       "responses": [
         {
           "uuid": "7e0e5bdb-995a-4853-8b77-b76af20cd9d6",
@@ -454,7 +454,7 @@
         },
         {
           "uuid": "9537fef8-4a68-4391-9ae9-ab33ed1b7ab1",
-          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Lomito al champignon\",\n    \"picture\": \"https://www.johaprato.com/files/styles/flexslider_full/public/lomo_al_champignon.jpeg?itok=68SLM8Rx\",\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 8,\n    \"name\": \"Nuggets caseros\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/08/nuggets-sw-pollo.jpg,\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Salmon al horno\",\n    \"picture\": \"https://wl-genial.cf.tsp.li/resize/728x/jpg/030/e5a/b7febd56d7a087336e3bc41b7e.jpg\",\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 7,\n    \"name\": \"Fideos con camarones\",\n    \"picture\": \"https://wl-genial.cf.tsp.li/resize/728x/jpg/c28/d91/db186353b18aa639dcee805b12.jpg\",\n    \"authorName\": \"Cocina facilita\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -466,28 +466,6 @@
               "target": "params",
               "modifier": "id",
               "value": "2",
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
-        },
-        {
-          "uuid": "26d65735-54b6-4bd6-9238-2151080f2ce7",
-          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "params",
-              "modifier": "id",
-              "value": "3",
               "operator": "equals"
             }
           ],

@@ -7,11 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".ui.favorites.FavouritesFragment">
 
+    <TextView
+        android:id="@+id/empty_results_label"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/no_favourites_yet"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/favoritesRV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
