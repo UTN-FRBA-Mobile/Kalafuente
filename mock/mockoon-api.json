@@ -1,6 +1,6 @@
 {
   "uuid": "d69cd199-8ee3-4176-b0f9-2683f71b58ac",
-  "lastMigration": 19,
+  "lastMigration": 20,
   "name": "Que como",
   "endpointPrefix": "",
   "latency": 0,
@@ -32,7 +32,8 @@
           ],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false
+          "fallbackTo404": false,
+          "default": true
         },
         {
           "uuid": "32f2d21d-639f-4c91-9467-157f967638be",
@@ -53,7 +54,8 @@
           ],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false
+          "fallbackTo404": false,
+          "default": false
         }
       ],
       "enabled": true,
@@ -85,7 +87,8 @@
           ],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false
+          "fallbackTo404": false,
+          "default": true
         },
         {
           "uuid": "3b5ad9bc-60bf-4248-bb2e-867cdd627290",
@@ -106,7 +109,30 @@
           ],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "5b575893-689a-4ea1-a607-cc918f3f918e",
+          "body": "[\n  {\n    \"id\": 5,\n    \"name\": \"Wrap de vegetales\",\n    \"picture\": \"https://i1.wp.com/cocinavegano.com/wp-content/uploads/2017/01/wrap-de-vegetales-y-chipotle-2.jpg\",\n    \"isFavourite\": false\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "3",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         }
       ],
       "enabled": true,
@@ -119,6 +145,43 @@
       "method": "get",
       "endpoint": "recipes",
       "responses": [
+        {
+          "uuid": "1f59071d-b6db-48bb-8388-746bcca7d730",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "3f701067-96d5-46b3-b76d-c23053a441f2",
+          "body": "[\n {\n   \"id\" : 6,\n   \"name\" : \"Milanesa con puré\",\n   \"picture\" : \"https://www.unileverfoodsolutions.com.ar/dam/global-ufs/mcos/sla/argentina/calcmenu/recipes/AR-recipes/In-Development/milanesa-a-la-napolitana-con-pur%C3%A9/main-header.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n }\n ]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "milanesa",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
         {
           "uuid": "9cd2dff4-13f7-44fd-9aae-ac99d37d0a5b",
           "body": "[\n {\n   \"id\" : 3,\n   \"name\" : \"Pollo al limón\",\n   \"picture\" : \"https://www.paulinacocina.net/wp-content/uploads/2021/11/pollo-asado.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n {\n   \"id\" : 4,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/NCI_Visuals_Food_Hamburger.jpg/640px-NCI_Visuals_Food_Hamburger.jpg\",\n   \"authorName\" : \"Vladimir Putin\"\n },\n  {\n   \"id\" : 5,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n   \"authorName\" : \"Joe Biden\"\n },\n  {\n   \"id\" : 6,\n   \"name\" : \"Pancito con queso super crocante\",\n   \"picture\" : \"https://i0.wp.com/blog.marianlaquecocina.com/wp-content/uploads/2018/04/20180416_144118.jpg\",\n   \"authorName\" : \"La nona\"\n }\n]",
@@ -136,7 +199,8 @@
           "rules": [],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false
+          "fallbackTo404": false,
+          "default": false
         }
       ],
       "enabled": true,
@@ -166,7 +230,8 @@
           "rules": [],
           "rulesOperator": "AND",
           "disableTemplating": false,
-          "fallbackTo404": true
+          "fallbackTo404": true,
+          "default": true
         },
         {
           "uuid": "427ef7a0-339e-4bc7-ab98-4622e64ff68a",
@@ -198,7 +263,8 @@
           ],
           "rulesOperator": "AND",
           "disableTemplating": false,
-          "fallbackTo404": false
+          "fallbackTo404": false,
+          "default": false
         },
         {
           "uuid": "97e1236d-b870-48e4-9aec-692d81478242",
@@ -230,7 +296,128 @@
           ],
           "rulesOperator": "OR",
           "disableTemplating": false,
-          "fallbackTo404": false
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "2479539f-f7a9-4f34-abc5-03631abccff9",
+          "body": "{\n  \"id\":3,\n  \"username\": \"inayabar\",\n  \"name\": \"Inaki Yabar\",\n  \"image\": \"https://media-exp2.licdn.com/dms/image/C4D03AQGp-NAccSDFmQ/profile-displayphoto-shrink_200_200/0/1600123231953?e=1660780800&v=beta&t=WFx3pwQ8sFD4WDaTm5FErgcfBhTdGfDCNvoCuvVPA-o\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "inayabar",
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "123456",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "34e7465b-c564-4677-9820-8258e4f32a01",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "user/:id/favorites",
+      "responses": [
+        {
+          "uuid": "7e0e5bdb-995a-4853-8b77-b76af20cd9d6",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "56eb2f9a-78f3-4c0a-b645-1b625e87ad11",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "9537fef8-4a68-4391-9ae9-ab33ed1b7ab1",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "2",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "26d65735-54b6-4bd6-9238-2151080f2ce7",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "3",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         }
       ],
       "enabled": true,

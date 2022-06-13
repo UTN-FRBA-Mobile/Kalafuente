@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:gravity="center"
-        android:text="Imagen seleccionada:"
+        android:text="Selecciona o escanea un ingrediente:"
         android:textSize="20sp"
         android:textStyle="bold" />
 
