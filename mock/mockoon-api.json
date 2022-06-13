@@ -377,7 +377,7 @@
         },
         {
           "uuid": "9537fef8-4a68-4391-9ae9-ab33ed1b7ab1",
-          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Lomito al champignon\",\n    \"picture\": \"https://www.johaprato.com/files/styles/flexslider_full/public/lomo_al_champignon.jpeg?itok=68SLM8Rx\",\n    \"authorName\": \"PaulinaCocina\"\n  }\n]",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Lomito al champignon\",\n    \"picture\": \"https://www.johaprato.com/files/styles/flexslider_full/public/lomo_al_champignon.jpeg?itok=68SLM8Rx\",\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 8,\n    \"name\": \"Nuggets caseros\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/08/nuggets-sw-pollo.jpg,\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Salmon al horno\",\n    \"picture\": \"https://wl-genial.cf.tsp.li/resize/728x/jpg/030/e5a/b7febd56d7a087336e3bc41b7e.jpg\",\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 7,\n    \"name\": \"Fideos con camarones\",\n    \"picture\": \"https://wl-genial.cf.tsp.li/resize/728x/jpg/c28/d91/db186353b18aa639dcee805b12.jpg\",\n    \"authorName\": \"Cocina facilita\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
