@@ -60,6 +60,7 @@ class RecipesFragment : Fragment() {
                 Status.SUCCESS -> {
                     binding.recipesRecycler.isInvisible = it.data.isNullOrEmpty()
                     binding.progress.isVisible = false
+                    binding.notFound.isVisible = it.data.isNullOrEmpty() && !searchTerm.isNullOrEmpty()
                     adapter.updateData(it.data.orEmpty())
                 }
                 Status.LOADING ->{
