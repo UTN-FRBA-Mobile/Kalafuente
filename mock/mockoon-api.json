@@ -206,7 +206,7 @@
         },
         {
           "uuid": "3f701067-96d5-46b3-b76d-c23053a441f2",
-          "body": "[\n {\n   \"id\" : 6,\n   \"name\" : \"Milanesa con puré\",\n   \"picture\" : \"https://www.unileverfoodsolutions.com.ar/dam/global-ufs/mcos/sla/argentina/calcmenu/recipes/AR-recipes/In-Development/milanesa-a-la-napolitana-con-pur%C3%A9/main-header.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n }\n ]",
+          "body": "[\n {\n   \"id\" : 6,\n   \"name\" : \"Milanesa con puré\",\n   \"picture\" : \"https://www.unileverfoodsolutions.com.ar/dam/global-ufs/mcos/sla/argentina/calcmenu/recipes/AR-recipes/In-Development/milanesa-a-la-napolitana-con-pur%C3%A9/main-header.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -241,6 +241,28 @@
           "filePath": "",
           "sendFileAsBody": false,
           "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "dbde9c17-9c09-49cf-bc90-d1ebe4e46a9f",
+          "body": "[\n  {\n   \"name\": \"Espinacas a la crema\",\n   \"id\": 2,\n   \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n   \"authorName\": \"Karen Lafuente\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "espinacas by ingredients",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "ingredients",
+              "value": "36|37|38",
+              "operator": "regex"
+            }
+          ],
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
@@ -536,6 +558,127 @@
               "target": "body",
               "modifier": "userName",
               "value": "Bruno",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "833390ae-92ba-4a36-b553-8adf95d38c40",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "ingredients",
+      "responses": [
+        {
+          "uuid": "b786ce9d-9f4f-40a3-85a0-bce9d1b6e415",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "name",
+              "value": "espinaca",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "9e14d4cb-bc00-4d89-b32a-631da08e8f6a",
+          "body": "[\n     {\n       \"id\": 36,\n       \"name\": \"Espinaca fresca\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/espinaca1-0834e1be8c9ac732e715939074486136-640-0.png\"\n     }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "espinaca",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "1ccf84bc-6eb1-49d4-9fa8-56bab2701ef4",
+          "body": "[\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "harina",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "2a368565-30d8-404c-a93b-997f8812e33f",
+          "body": "[\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "aceite",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "798ea722-5acd-4410-8a2f-1b587cc8e6d1",
+          "body": "[\n     {\n       \"id\": 36,\n       \"name\": \"Espinaca fresca\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/espinaca1-0834e1be8c9ac732e715939074486136-640-0.png\"\n     },\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     },\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "a",
               "operator": "equals"
             }
           ],
