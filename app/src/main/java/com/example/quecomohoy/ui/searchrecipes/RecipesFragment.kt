@@ -50,20 +50,23 @@ class RecipesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val navActionId = arguments?.getInt(NAV_ACTION_ID)
-        val adapter = if(navActionId != 0 && navActionId != null) RecipesAdapter(navigationActionId = navActionId) else RecipesAdapter()
+        val adapter = if (navActionId != 0 && navActionId != null)
+            RecipesAdapter(navigationActionId = navActionId)
+        else RecipesAdapter()
 
         binding.recipesRecycler.adapter = adapter
 
         recipeViewModel.recipes.observe(viewLifecycleOwner) {
             val searchTerm = it.additionalData?.get("searchTerm") as String?
-            when(it.status){
+            when (it.status) {
                 Status.SUCCESS -> {
                     binding.recipesRecycler.isInvisible = it.data.isNullOrEmpty()
                     binding.progress.isVisible = false
-                    binding.notFound.isVisible = it.data.isNullOrEmpty() && !searchTerm.isNullOrEmpty()
+                    binding.notFound.isVisible =
+                        it.data.isNullOrEmpty() && !searchTerm.isNullOrEmpty()
                     adapter.updateData(it.data.orEmpty())
                 }
-                Status.LOADING ->{
+                Status.LOADING -> {
                     binding.recipesRecycler.isInvisible = true
                     binding.progress.isVisible = true
                 }
@@ -71,7 +74,7 @@ class RecipesFragment : Fragment() {
                     binding.progress.isInvisible = true
                     binding.progress.isInvisible = true
                     Snackbar.make(view, "Hubo un error", Snackbar.LENGTH_SHORT)
-                        .setAction("Reintentar"){
+                        .setAction("Reintentar") {
                             searchTerm?.let { s -> recipeViewModel.getRecipesByName(s) }
                         }.show()
                 }
