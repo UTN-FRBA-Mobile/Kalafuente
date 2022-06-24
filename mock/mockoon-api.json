@@ -36,6 +36,28 @@
           "default": true
         },
         {
+          "uuid": "c93cbb48-0a3a-48cd-a6a3-c0afb56dc841",
+          "body": "{\n   \"name\" : \"Milanesa con puré\",\n   \"id\": 6,\n   \"picture\": \"https://www.unileverfoodsolutions.com.ar/dam/global-ufs/mcos/sla/argentina/calcmenu/recipes/AR-recipes/In-Development/milanesa-a-la-napolitana-con-pur%C3%A9/main-header.jpg\",\n   \"authorName\": \"Bruno Cobos\",\n   \"ingredients\": [\n     {\n       \"id\": 360,\n       \"name\": \"Pan rallado\",\n       \"picture\":\"https://ardiaprod.vteximg.com.br/arquivos/ids/188735-1000-1000/Pan-Rallado-Pureza-Integral-350-Gr-_1.jpg?v=637427631170600000\"\n     },\n     {\n       \"id\": 34,\n       \"name\": \"Huevo\",\n       \"picture\":\"https://www.collinsdictionary.com/images/full/eggs_110803370_1000.jpg\"\n     },\n    {\n       \"id\": 380,\n       \"name\": \"Nalga\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/144/602/products/nalga-frigorifico-90-jpg1-b9689ea0e7f5a7e0cb15864446640651-640-0.png\"\n     },\n     {\n       \"id\": 381,\n       \"name\": \"Papas\",\n       \"picture\":\"https://www.cocinayvino.com/wp-content/uploads/2015/02/tipos-papa-1-1200x720.jpg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Tiernizar las milanesas\",\n          \"En un bowl incorporar los huevos, bastante queso rallado, nuez moscada, orégano y mostaza. Pasar todas las milanesas por pan rallado y una vez listas, pasamos las milanesas por la preparación de huevos al queso y pasamos nuevamente por pan rallado\", \n          \"Freír en abundante aceite. 👉 No tires la mezcla de huevo y queso!\",\n          \" Para el puré de papa, lavar muy bien las papas y hervir con cáscara.\",\n          \"Revolver y servir junto con las milanesas. Que lo disfrutes 😉.\"\n          ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": " (copy)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "6",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
           "uuid": "5b72b7aa-0b8b-462c-8a08-938bfdea6a73",
           "body": "{\n   \"name\": \"Omelette\",\n   \"id\": 1,\n   \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n   \"authorName\": \"Karen Lafuente\",\n   \"ingredients\": [\n     {\n       \"id\": 34,\n       \"name\": \"Huevo\",\n       \"picture\":\"https://www.collinsdictionary.com/images/full/eggs_110803370_1000.jpg\"\n     },\n     {\n       \"id\": 35,\n       \"name\": \"Queso\",\n       \"picture\":\"https://www.lanacion.com.py/resizer/XrkMfxRe9ZD6qrjb_t66lojqLWU=/1920x0/smart/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/lanacionpy/OCWNGLNYENAWLOBCAZWTNPWN6Q.jpeg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Lo primero que vamos a hacer es romper el huevo en un bol y batirlo con rapidez. Esto va a generar que el huevo agarre aire y quede como más esponjoso.\",\n          \"En una sarten al fuego (medio), vamos a derretir un pedacito de manteca (también pueden hacerlo con aceite) y vamos a volcar nuestro huevo en el centro. Es muy importante que no se distraigan buscando espátulas y tengan todo listo porque se les puede cuajar de más el huevo y no va a quedar TAN perfecto como queremos.\", \n          \"Entonces, la idea es que cuando veamos que ya esta un poco cocido por debajo, pero arriba aún está bastante líquido, ese es el momento de agregar lo que quieran de relleno, en este caso, un pedacito de queso fresco de un lado del círculo que está formando nuestro huevo.\",\n          \"Aquí viene la magia. Sin esperar mucho, vamos a agarrar una espátula y con rapidez vamos a juntar el extremo vacío del huevo con el otro extremo, tapando nuestro pedazo de queso. Lo que va a suceder, es que las puntas van a terminar de cocinarse juntas y así nuestro omelette va a quedar sellado perfectamente y nuestro relleno se va a terminar de cocinar dentro del huevo. Tengan en cuenta que es importante que el fuego sea medio. Si desean que por dentro quede un poco más crudo el huevo, lo pueden subir, para que se haga más de afuera. Pero sino, fuego medio para la cocción perfecta. \",\n          \"Lo que resta hacer es dar vuelta nuestro omelette una vez que ya esté bien cocido de un lado para que se cocine bien del otro y listo! Al terminar, lo retiramos con cuidado y lo servimos en un plato para degustarlo y ser felices.\"\n          ]\n}\n",
           "latency": 0,
@@ -89,6 +111,28 @@
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true
+        },
+        {
+          "uuid": "8db065d6-f21c-43bc-aeca-13cf7bcb0243",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"isFavourite\": false\n  },\n    {\n    \"id\": 2,\n    \"name\": \"Espinacas a la crema\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n    \"isFavourite\": false\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": " (copy)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "id",
+              "value": "10",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         },
         {
           "uuid": "92db3606-7494-4cb5-92ef-109356c99392",
@@ -201,50 +245,6 @@
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": false
-        },
-        {
-          "uuid": "205cefdf-8e73-4944-804b-1b4c3ad89749",
-          "body": "[\n {\n    \"id\": 2,\n    \"name\": \"Espinacas a la crema\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n    \"isFavourite\": false\n  }\n ]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "ingredients",
-              "value": "36",
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
-        },
-        {
-          "uuid": "58abe92c-e19a-4534-bcc2-840e44ef4545",
-          "body": "[\n {\n    \"id\": 2,\n    \"name\": \"Espinacas a la crema\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n    \"isFavourite\": false\n  }\n ]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "ingredients",
-              "value": "36|37",
-              "operator": "regex"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
         }
       ],
       "enabled": true,
@@ -296,6 +296,39 @@
               "target": "body",
               "modifier": "userName",
               "value": "kalafuente",
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "123456",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "694ad721-bd3d-40dd-8832-e3c953b5ccb7",
+          "body": "{\n  \"id\":10,\n  \"username\": \"karen\",\n  \"name\": \"Karen Lafuente\",\n  \"image\": \"https://media-exp1.licdn.com/dms/image/C4E03AQERbzsgM_VN2g/profile-displayphoto-shrink_200_200/0/1634589918073?e=1658361600&v=beta&t=dLmF-Cb-8mCKcEvA-POw95IbBZRd32vTot5AEppMsIU\"\n}",
+          "latency": 0,
+          "statusCode": 202,
+          "label": " (copy)",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "karen",
               "operator": "equals"
             },
             {
@@ -380,7 +413,7 @@
       "uuid": "34e7465b-c564-4677-9820-8258e4f32a01",
       "documentation": "",
       "method": "get",
-      "endpoint": "user/:id/favorites",
+      "endpoint": "user/:id/favourites",
       "responses": [
         {
           "uuid": "7e0e5bdb-995a-4853-8b77-b76af20cd9d6",
@@ -421,7 +454,7 @@
         },
         {
           "uuid": "9537fef8-4a68-4391-9ae9-ab33ed1b7ab1",
-          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Lomito al champignon\",\n    \"picture\": \"https://www.johaprato.com/files/styles/flexslider_full/public/lomo_al_champignon.jpeg?itok=68SLM8Rx\",\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 8,\n    \"name\": \"Nuggets caseros\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/08/nuggets-sw-pollo.jpg,\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Salmon al horno\",\n    \"picture\": \"https://wl-genial.cf.tsp.li/resize/728x/jpg/030/e5a/b7febd56d7a087336e3bc41b7e.jpg\",\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 7,\n    \"name\": \"Fideos con camarones\",\n    \"picture\": \"https://wl-genial.cf.tsp.li/resize/728x/jpg/c28/d91/db186353b18aa639dcee805b12.jpg\",\n    \"authorName\": \"Cocina facilita\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -433,28 +466,6 @@
               "target": "params",
               "modifier": "id",
               "value": "2",
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
-        },
-        {
-          "uuid": "26d65735-54b6-4bd6-9238-2151080f2ce7",
-          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "params",
-              "modifier": "id",
-              "value": "3",
               "operator": "equals"
             }
           ],
@@ -525,98 +536,6 @@
               "target": "body",
               "modifier": "userName",
               "value": "Bruno",
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
-        }
-      ],
-      "enabled": true,
-      "randomResponse": false,
-      "sequentialResponse": false
-    },
-    {
-      "uuid": "39234a5e-143a-46ce-8ea9-0360a78bb3d7",
-      "documentation": "",
-      "method": "get",
-      "endpoint": "ingredients",
-      "responses": [
-        {
-          "uuid": "3af2fc96-f863-46e5-99a3-6a35b5d10eec",
-          "body": " [\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true
-        },
-        {
-          "uuid": "e13343bd-a6fd-4536-b10d-4130ceb412f1",
-          "body": " [\n     {\n       \"id\": 36,\n       \"name\": \"Espinaca fresca\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/espinaca1-0834e1be8c9ac732e715939074486136-640-0.png\"\n     },\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     },\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "name=a",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "name",
-              "value": "a",
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
-        },
-        {
-          "uuid": "8c69b367-4eeb-41f1-8e66-337cf6e9f8c7",
-          "body": " [\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "name=aceite",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "name",
-              "value": "aceite",
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
-        },
-        {
-          "uuid": "69bfcdc7-61ec-4d49-b0d2-b0aabadb2fcf",
-          "body": " [\n\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "name=harina",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "name",
-              "value": "harina",
               "operator": "equals"
             }
           ],
