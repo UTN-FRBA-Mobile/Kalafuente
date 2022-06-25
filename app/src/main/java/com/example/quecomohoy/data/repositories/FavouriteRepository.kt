@@ -7,12 +7,12 @@ class FavouriteRepository {
 
     private val api = FavouriteService()
 
-    suspend fun saveFavourite(recipe: Recipe, userId : Int) {
-         api.postFavourite(recipe.id, userId)
+    suspend fun markAsFavourite(recipeId: Int, userId: Int) {
+         api.postFavourite(recipeId, userId)
     }
 
-    suspend fun deleteFavourite(recipe: Recipe, userId: Int){
-        api.deleteFavourite(recipe.id, userId)
+    suspend fun deleteFavourite(recipe: Int, userId: Int){
+        api.deleteFavourite(recipe, userId)
     }
 
     suspend fun getFavouritesByUserId(userId: Int): List<Recipe>{

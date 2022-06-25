@@ -1,5 +1,7 @@
 package com.example.quecomohoy.ui.favorites
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,6 +20,20 @@ class FavouritesViewModel (private val favouriteRepository: FavouriteRepository)
                 favourites.postValue(Resource.success(results, null))
             }catch (e : Exception){
                 favourites.postValue(Resource.error("", null, null))
+            }
+        }
+    }
+
+    fun markAsFavourite(recipeId : Int, userId : Int, mark: Boolean){
+        viewModelScope.launch {
+            try {
+                if(mark){
+                    favouriteRepository.markAsFavourite(recipeId, userId)
+                } else{
+                    favouriteRepository.deleteFavourite(recipeId, userId)
+                }
+            } catch (e : Exception){
+                Log.e(TAG, "Error", e)
             }
         }
     }
