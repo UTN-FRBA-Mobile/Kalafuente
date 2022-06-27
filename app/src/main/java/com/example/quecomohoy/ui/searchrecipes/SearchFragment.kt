@@ -1,16 +1,13 @@
 package com.example.quecomohoy.ui.searchrecipes
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -24,7 +21,6 @@ import com.example.quecomohoy.ui.RecipeViewModel
 import com.example.quecomohoy.ui.RecipeViewModelFactory
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -139,8 +135,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         return true
     }
 
-    override fun onQueryTextChange(newText: String?): Boolean {
-        queryTextJob?.cancel()
+    override fun onQueryTextChange(newText: String?): Boolean { queryTextJob?.cancel()
         queryTextJob = lifecycleScope.launch {
             if (!newText.isNullOrEmpty()) {
                 delay(1000)

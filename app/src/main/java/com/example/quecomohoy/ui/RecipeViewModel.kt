@@ -44,6 +44,7 @@ class RecipeViewModel(private val recipeRepository : RecipeRepository) :
         }
     }
 
+
     fun cleanRecipes() {
         recipes.postValue(Resource.success(emptyList(), null))
     }

@@ -1,28 +1,28 @@
 package com.example.quecomohoy.ui.favorites
 
-import android.opengl.Visibility
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quecomohoy.R
-import com.example.quecomohoy.RecommendationsAdapter
-import com.example.quecomohoy.data.model.recipe.Recipe
 import com.example.quecomohoy.databinding.FragmentFavouritesBinding
-import com.example.quecomohoy.ui.RecommendationViewModelFactory
 import com.example.quecomohoy.ui.Status
+import com.example.quecomohoy.ui.listeners.RecipeListener
 import com.example.quecomohoy.ui.login.LoginViewModel
 import com.example.quecomohoy.ui.login.LoginViewModelFactory
 import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
 import com.google.android.material.snackbar.Snackbar
 
-class FavouritesFragment : Fragment() {
+class FavouritesFragment : Fragment(), RecipeListener {
     private var _binding: FragmentFavouritesBinding? = null
     private val binding get() = _binding!!
     private lateinit var loginViewModel: LoginViewModel
@@ -68,8 +68,7 @@ class FavouritesFragment : Fragment() {
                         binding.emptyResultsLabel.visibility = View.GONE
                     }
 
-                    val viewAdapter = RecipesAdapter(
-                        navigationActionId = R.id.action_favouritesFragment_to_recipeViewFragment,
+                    val viewAdapter = RecipesAdapter(this,
                         recipes = recipes
                     )
 
@@ -86,5 +85,17 @@ class FavouritesFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onMarkAsFavourite(recipeId: Int, marked: Boolean) {
+        val sp = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val userId = sp.getInt("userId", -1)
+        favouritesViewModel.markAsFavourite(recipeId, userId, marked)
+    }
+
+    override fun onClickRecipe(recipeId: Int) {
+        val args = Bundle()
+        args.putInt("id", recipeId)
+        findNavController().navigate(R.id.action_favouritesFragment_to_recipeViewFragment, args)
     }
 }
