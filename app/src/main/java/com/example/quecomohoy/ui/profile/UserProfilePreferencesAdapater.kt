@@ -1,20 +1,18 @@
 package com.example.quecomohoy.ui.profile
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quecomohoy.R
 import com.example.quecomohoy.data.model.perfil.UserPreference
 import com.example.quecomohoy.data.model.perfil.UserPreferenceTypes
+import com.example.quecomohoy.ui.listeners.PreferenceListener
 
-class UserProfilePreferencesAdapater(val preferences: List<UserPreference>) :
+class UserProfilePreferencesAdapater(val preferenceListner: PreferenceListener, val preferences: List<UserPreference>) :
     RecyclerView.Adapter<UserProfilePreferencesAdapater.ViewHolder>() {
 
     private var context: Context? = null
@@ -53,30 +51,11 @@ class UserProfilePreferencesAdapater(val preferences: List<UserPreference>) :
         holder.itemImage.setImageResource(R.drawable.ic_pencil)
 
         holder.itemImage.setOnClickListener {
-            if(doesNavigateToRecyclerView(userPreference.code)){
-                navigateToRecyclerView(userPreference, it);
-            } else {
-                val text = userPreference.name
-                val duration = Toast.LENGTH_SHORT
-                val toast = Toast.makeText(context, text, duration)
-                toast.show()
-            }
+            preferenceListner.onPreferenceClick(userPreference)
         }
     }
 
     override fun getItemCount(): Int {
         return preferences.size
     }
-
-    private fun navigateToRecyclerView(userPreference: UserPreference, view: View) {
-        val args = Bundle()
-        args.putString("label", userPreference.name);
-        view.findNavController().navigate(R.id.action_profileFragment_to_preferencesFragment, args)
-    }
-
-    private fun doesNavigateToRecyclerView(code : Int): Boolean{
-        val list = listOf(UserPreferenceTypes.DIET);
-        return list.contains(code);
-    }
-
 }

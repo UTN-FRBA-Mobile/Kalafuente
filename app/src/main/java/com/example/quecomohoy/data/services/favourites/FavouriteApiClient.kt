@@ -11,8 +11,8 @@ interface FavouriteApiClient {
 
     @PUT("/user/{id}/favourites")
     @FormUrlEncoded
-    suspend fun postFavourite(@Field("recipeId") recipeId: Int, @Path("id") userId: Int)
+    suspend fun postFavourite(@Field("recipeId") recipeId: Int, @Path("id") userId: Int) : Response<Unit>
 
     @DELETE("/user/{userId}/favourites/{recipeId}")
-    suspend fun deleteFavourite(@Path("recipeId") recipeId: Int, @Path("userId") userId: Int)
+    suspend fun deleteFavourite(@Path("recipeId") recipeId: Int, @Path("userId") userId: Int) : Response<Unit>
 }
