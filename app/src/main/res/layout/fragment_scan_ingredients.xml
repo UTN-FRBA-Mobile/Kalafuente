@@ -64,4 +64,14 @@
         android:layout_above="@id/buttonsLinearLayout"
         android:layout_below="@+id/resultsTitleLabel"
         android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/emptyResultsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="@string/no_scan_results"
+        android:visibility="visible"
+        tools:layout_centerHorizontal="true"
+        tools:visibility="visible" />
 </RelativeLayout>

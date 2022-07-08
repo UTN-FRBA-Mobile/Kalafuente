@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -52,6 +53,7 @@ class ScanIngredientsFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.emptyResultsLabel.visibility = View.GONE
         binding.selectImageButton.setOnClickListener {
             if (checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
                 val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -138,13 +140,18 @@ class ScanIngredientsFragment: Fragment() {
         val image = InputImage.fromBitmap(bitmap, 0)
 
         labeler.process(image).addOnSuccessListener { labels ->
-            val viewAdapter = ScanResultsAdapter(
-                results = labels
-            )
+            if (labels.none { it.confidence > 0.8 }) {
+                binding.emptyResultsLabel.visibility = View.VISIBLE
+            } else {
+                binding.emptyResultsLabel.visibility = View.GONE
+                val viewAdapter = ScanResultsAdapter(
+                    results = labels
+                )
 
-            binding.scanResultsRV.apply {
-                layoutManager =  LinearLayoutManager(this.context)
-                adapter = viewAdapter
+                binding.scanResultsRV.apply {
+                    layoutManager =  LinearLayoutManager(this.context)
+                    adapter = viewAdapter
+                }
             }
         }
     }
