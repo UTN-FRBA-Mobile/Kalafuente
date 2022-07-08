@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.quecomohoy.MainActivity
 import com.example.quecomohoy.databinding.FragmentScanIngredientsBinding
 import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
@@ -48,17 +49,27 @@ class ScanIngredientsFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            binding.selectImageButton.setOnClickListener {
-                if (checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
-                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    requestPermissions(permissions, PICK_FROM_GALLERY)
-                } else{
-                    chooseImageGallery();
-                }
+        binding.selectImageButton.setOnClickListener {
+            if (checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
+                val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                requestPermissions(permissions, PICK_FROM_GALLERY)
+            } else{
+                chooseImageGallery();
             }
-            binding.openCamera.setOnClickListener{
-                findNavController().navigate(R.id.action_scanIngredientsFragment_to_cameraFragment);
-            }
+        }
+        binding.openCamera.setOnClickListener{
+            findNavController().navigate(R.id.action_scanIngredientsFragment_to_cameraFragment);
+        }
+
+        // If image has been loaded from camera, use it to display and send to ML vision
+        (activity as MainActivity).imageTakenUri?.also {
+            performCloudVisionRequest(it)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MainActivity).imageTakenUri = null
     }
 
     override fun onRequestPermissionsResult(
