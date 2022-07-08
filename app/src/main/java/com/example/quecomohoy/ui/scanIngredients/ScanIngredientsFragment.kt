@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quecomohoy.MainActivity
 import com.example.quecomohoy.databinding.FragmentScanIngredientsBinding
 import com.google.mlkit.common.model.LocalModel
@@ -28,6 +29,8 @@ import java.io.IOException
 import java.lang.StringBuilder
 import java.util.*
 import com.example.quecomohoy.R
+import com.example.quecomohoy.ui.scanIngredients.adapters.ScanResultsAdapter
+import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
 
 
 class ScanIngredientsFragment: Fragment() {
@@ -135,14 +138,14 @@ class ScanIngredientsFragment: Fragment() {
         val image = InputImage.fromBitmap(bitmap, 0)
 
         labeler.process(image).addOnSuccessListener { labels ->
-            val message = StringBuilder("")
-            labels.forEach { label ->
-                message.append(String.format(
-                    Locale.getDefault(), "%.3f: %s",
-                    label.confidence, label.text));
-                message.append("\n");
+            val viewAdapter = ScanResultsAdapter(
+                results = labels
+            )
+
+            binding.scanResultsRV.apply {
+                layoutManager =  LinearLayoutManager(this.context)
+                adapter = viewAdapter
             }
-            binding.tvLabelResults.text = message.toString()
         }
     }
 }
