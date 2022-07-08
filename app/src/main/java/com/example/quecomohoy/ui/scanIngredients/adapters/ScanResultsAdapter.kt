@@ -3,16 +3,14 @@ package com.example.quecomohoy.ui.scanIngredients.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quecomohoy.R
+import com.example.quecomohoy.ui.listeners.ScanListener
 import com.google.mlkit.vision.label.ImageLabel
-import com.squareup.picasso.Picasso
 
-class ScanResultsAdapter(results: List<ImageLabel>) : RecyclerView.Adapter<ScanResultsAdapter.ViewHolder>() {
+class ScanResultsAdapter(private val scanListener: ScanListener, results: List<ImageLabel>) : RecyclerView.Adapter<ScanResultsAdapter.ViewHolder>() {
 
     val data: MutableList<ImageLabel> = listOf<ImageLabel>().toMutableList()
 
@@ -30,9 +28,9 @@ class ScanResultsAdapter(results: List<ImageLabel>) : RecyclerView.Adapter<ScanR
         val scan = data[position]
 
         with(holder){
-            /*itemView.setOnClickListener {
-                recipeListener.onClickRecipe(recipe.id)
-            }*/
+            itemView.setOnClickListener {
+                scanListener.onClickScanResult(scan.text)
+            }
             titleTextView.text = scan.text
             val confidence = scan.confidence * 100
             accuracyTextView.text = String.format("%.1f", confidence) + "%"

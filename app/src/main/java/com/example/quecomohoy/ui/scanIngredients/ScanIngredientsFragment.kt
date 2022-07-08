@@ -3,6 +3,7 @@ package com.example.quecomohoy.ui.scanIngredients
 import android.Manifest
 import android.app.Activity
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -30,11 +31,13 @@ import java.io.IOException
 import java.lang.StringBuilder
 import java.util.*
 import com.example.quecomohoy.R
+import com.example.quecomohoy.ui.listeners.RecipeListener
+import com.example.quecomohoy.ui.listeners.ScanListener
 import com.example.quecomohoy.ui.scanIngredients.adapters.ScanResultsAdapter
 import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
 
 
-class ScanIngredientsFragment: Fragment() {
+class ScanIngredientsFragment: Fragment(), ScanListener {
     private var _binding: FragmentScanIngredientsBinding? = null
     private val binding get() = _binding!!
 
@@ -140,11 +143,12 @@ class ScanIngredientsFragment: Fragment() {
         val image = InputImage.fromBitmap(bitmap, 0)
 
         labeler.process(image).addOnSuccessListener { labels ->
-            if (labels.none { it.confidence > 0.8 }) {
+            if (labels.none { it.confidence > 0.3 }) {
                 binding.emptyResultsLabel.visibility = View.VISIBLE
             } else {
                 binding.emptyResultsLabel.visibility = View.GONE
                 val viewAdapter = ScanResultsAdapter(
+                    scanListener = this,
                     results = labels
                 )
 
@@ -154,5 +158,11 @@ class ScanIngredientsFragment: Fragment() {
                 }
             }
         }
+    }
+
+    override fun onClickScanResult(title: String) {
+        val args = Bundle()
+        args.putString("searchTerm", title)
+        findNavController().navigate(R.id.action_scanIngredientsFragment_to_recipesFragment, args)
     }
 }

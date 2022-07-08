@@ -82,5 +82,4 @@ class RecipeViewFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
     }
-
 }
