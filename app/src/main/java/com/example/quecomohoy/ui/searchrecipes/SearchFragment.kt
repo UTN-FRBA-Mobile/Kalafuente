@@ -79,7 +79,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                     else -> throw Exception("No deberías estara acá")
                 }
             }
-
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 

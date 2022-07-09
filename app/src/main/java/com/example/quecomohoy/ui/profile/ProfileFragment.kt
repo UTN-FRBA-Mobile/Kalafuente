@@ -19,12 +19,12 @@ import com.example.quecomohoy.ui.RecommendationViewModelFactory
 import com.example.quecomohoy.ui.login.LoginViewModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.quecomohoy.ui.listeners.PreferenceListener
 import com.example.quecomohoy.ui.login.LoginViewModelFactory
 
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), PreferenceListener {
 
     //private lateinit var registrationViewModel: RegistrationViewModel
     private var _binding: FragmentProfileBinding? = null
@@ -41,6 +41,7 @@ class ProfileFragment : Fragment() {
         factoryProducer = { RecommendationViewModelFactory() },
         ownerProducer = { requireParentFragment() }
     )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,26 +61,28 @@ class ProfileFragment : Fragment() {
         layoutManager = LinearLayoutManager(context?.applicationContext)
         settings?.layoutManager = layoutManager
         val listOfSettings = getListOfUserPreferences();
-        adapter = UserProfilePreferencesAdapater(listOfSettings);
+        adapter = UserProfilePreferencesAdapater(this,listOfSettings);
         settings?.adapter = adapter
 
-        loginViewModel.userInformation.observe(viewLifecycleOwner,
-            Observer {userInformation ->
-                if(userInformation.displayName != ""){
-                    binding.name.text = userInformation.displayName
-                    binding.username.text = userInformation.userName
-                    Picasso.get()
-                        .load(userInformation.image)
-                        .into(profilePic, object : Callback {
-                            override fun onSuccess() {
-                                Log.d(TAG, "success")
-                            }
-                            override fun onError(e: Exception?) {
-                                Log.e(TAG, "error", e)
-                            }
-                        })
-                }
-            })
+        loginViewModel.userInformation.observe(
+            viewLifecycleOwner
+        ) { userInformation ->
+            if (userInformation.displayName != "") {
+                binding.name.text = userInformation.displayName
+                binding.username.text = userInformation.userName
+                Picasso.get()
+                    .load(userInformation.image)
+                    .into(profilePic, object : Callback {
+                        override fun onSuccess() {
+                            Log.d(TAG, "success")
+                        }
+
+                        override fun onError(e: Exception?) {
+                            Log.e(TAG, "error", e)
+                        }
+                    })
+            }
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -94,5 +97,11 @@ class ProfileFragment : Fragment() {
                 "Salmón, Huevos, Tomate, Lechuga, Carnes rojas, Pollos"
             )
         )
+    }
+
+    override fun onPreferenceClick(userPreference: UserPreference) {
+        val args = Bundle()
+        args.putString("label", userPreference.name)
+        findNavController().navigate(R.id.action_profileFragment_to_preferencesFragment, args)
     }
 }
