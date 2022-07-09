@@ -1,5 +1,6 @@
 package com.example.quecomohoy.ui.login
 
+import android.content.Context
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.annotation.StringRes
@@ -77,6 +78,7 @@ class LoginFragment : Fragment() {
                     showLoginFailed(it)
                 }
                 loginResult.success?.let {
+                    saveUser(it)
                     updateUiWithUser(it)
                     NavHostFragment.findNavController(this).popBackStack()
                 }
@@ -123,6 +125,14 @@ class LoginFragment : Fragment() {
 
             val action = R.id.action_loginFragment_to_registrationFragment
             findNavController().navigate(action);
+        }
+    }
+
+    private fun saveUser(it: LoggedInUserView) {
+        val sp = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        with(sp.edit()){
+            putInt("userId", it.id)
+            apply()
         }
     }
 

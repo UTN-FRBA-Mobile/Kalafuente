@@ -10,6 +10,7 @@ interface FavouriteApiClient {
     suspend fun getFavourites(@Path("id")id: Int) : Response<List<Recipe>>
 
     @PUT("/user/{id}/favourites")
+    @FormUrlEncoded
     suspend fun postFavourite(@Field("recipeId") recipeId: Int, @Path("id") userId: Int)
 
     @DELETE("/user/{userId}/favourites/{recipeId}")

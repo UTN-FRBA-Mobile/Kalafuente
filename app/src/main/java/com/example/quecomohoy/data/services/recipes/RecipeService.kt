@@ -12,19 +12,21 @@ class RecipeService {
     suspend fun getRecipesByName(name: String): List<Recipe> {
         return withContext(Dispatchers.IO) {
             val response = retrofit.create(RecipesApiClient::class.java).getRecipesByName(name)
-            response.body()?: emptyList()
+            response.body() ?: emptyList()
         }
     }
 
-    suspend fun getRecipesByIngredients(ingredientIds : List<Int>) : List<Recipe>{
-        return withContext(Dispatchers.IO){
-            val response = retrofit.create(RecipesApiClient::class.java).getRecipesByIngredientIds(ingredientIds)
-            response.body()?: emptyList()
+    suspend fun getRecipesByIngredients(ingredientIds: List<Int>): List<Recipe> {
+        return withContext(Dispatchers.IO) {
+            ingredientIds.joinToString(",") { it.toString() }.let {
+                val response = retrofit.create(RecipesApiClient::class.java).getRecipesByIngredientIds(it)
+                response.body() ?: emptyList()
+            }
         }
     }
 
-    suspend fun getRecipeById(id : Int): Recipe?{
-        return withContext(Dispatchers.IO){
+    suspend fun getRecipeById(id: Int): Recipe? {
+        return withContext(Dispatchers.IO) {
             val respose = retrofit.create(RecipesApiClient::class.java).getRecipeById(id)
             respose.body()
         }
