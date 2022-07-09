@@ -57,11 +57,12 @@ class RecipesAdapter(
 
         init {
             checkBox.setOnCheckedChangeListener { _, isChecked ->
+                /*
                 if (isChecked) {
                     Toast.makeText(view.context, "Le diste like!", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(view.context, "Le sacaste el like :c", Toast.LENGTH_SHORT).show()
-                }
+                }*/
             }
         }
 
@@ -71,6 +72,7 @@ class RecipesAdapter(
             if (recipe.picture.isNotEmpty()) {
                 Picasso.get().load(recipe.picture).fit().into(imageView)
             }
+            checkBox.isChecked = recipe.isFavourite
         }
 
     }

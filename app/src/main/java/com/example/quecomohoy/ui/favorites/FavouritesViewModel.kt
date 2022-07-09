@@ -15,6 +15,9 @@ class FavouritesViewModel (private val favouriteRepository: FavouriteRepository)
         viewModelScope.launch {
             try {
                 val results = favouriteRepository.getFavouritesByUserId(id)
+                results.forEach{
+                    it.isFavourite = true
+                }
                 favourites.postValue(Resource.success(results, null))
             }catch (e : Exception){
                 favourites.postValue(Resource.error("", null, null))
