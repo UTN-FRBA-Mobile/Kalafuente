@@ -62,7 +62,7 @@ class RecipesFragment : Fragment(), RecipeListener {
         binding.recipesRecycler.adapter = adapter
 
         recipeViewModel.recipes.observe(viewLifecycleOwner) {
-            val searchTerm = it.additionalData?.get("searchTerm") as String?
+            val searchTerm = (it.additionalData?.get("searchTerm") as String?) ?: arguments?.getString("searchTerm")
             when(it.status){
                 Status.SUCCESS -> {
                     binding.recipesRecycler.isInvisible = it.data.isNullOrEmpty()
@@ -86,6 +86,12 @@ class RecipesFragment : Fragment(), RecipeListener {
 
         }
 
+        val searchTerm = arguments?.getString("searchTerm")
+
+        searchTerm?.also {
+            recipeViewModel.getRecipesByName(it)
+        }
+
         val ingredientIds = arguments?.getIntArray("ids")?.toList()
 
         ingredientIds?.also {
@@ -107,5 +113,4 @@ class RecipesFragment : Fragment(), RecipeListener {
             findNavController().navigate(navActionId, args)
         }
     }
-
 }

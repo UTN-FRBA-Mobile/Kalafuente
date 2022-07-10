@@ -99,6 +99,9 @@
         <action
             android:id="@+id/action_imageFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_imageFragment_to_scanIngredientsFragment"
+            app:destination="@id/scanIngredientsFragment" />
     </fragment>
     <fragment
         android:id="@+id/askPermissionFragment"
@@ -135,5 +138,8 @@
         <action
             android:id="@+id/action_scanIngredientsFragment_to_cameraFragment"
             app:destination="@id/cameraFragment" />
+        <action
+            android:id="@+id/action_scanIngredientsFragment_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
     </fragment>
 </navigation>

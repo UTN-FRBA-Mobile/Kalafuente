@@ -37,4 +37,11 @@
     <string name="lunch_channel_desc">Recomendaciones a la hora del almuerzo</string>
     <string name="dinner_channel">Cena</string>
     <string name="dinner_channel_desc">Recomendaciones a la hora de la cena</string>
+    <string name="no_scan_results">No se encontraron recetas o ingredientes en esta imagen. Intenta de nuevo con otra!</string>
+    <string name="scan_to_start">Escanea lo que tengas en tu cocina o busca una foto en tu galeria para buscar recetas</string>
+    <string name="omnivore">Como de todo</string>
+    <string name="vegetarian">Vegetariano</string>
+    <string name="vegan">Vegano</string>
+    <string name="pescetarian">Pescetariano</string>
+    <string name="other">Otra</string>
 </resources>

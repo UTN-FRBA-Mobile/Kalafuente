@@ -32,7 +32,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val navController = findNavController(R.id.fragment)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.recomendationsFragment, R.id.searchFragment, R.id.favouritesFragment, R.id.profileFragment))
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.recomendationsFragment,
+                R.id.searchFragment,
+                R.id.favouritesFragment,
+                R.id.profileFragment
+            )
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.white)))
@@ -40,20 +47,30 @@ class MainActivity : AppCompatActivity() {
         createNotificationChannel()
     }
 
-    private fun notShowBottomNavBarAndActionBarInFragments(navController:NavController, bottomNavigationView:BottomNavigationView){
+    private fun notShowBottomNavBarAndActionBarInFragments(
+        navController: NavController,
+        bottomNavigationView: BottomNavigationView
+    ) {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNavigationView.visibility =
-                if(destination.id == R.id.loginFragment || destination.id == R.id.registrationFragment
-                    || destination.id == R.id.cameraFragment) {
-                View.GONE
-            } else {
-                View.VISIBLE
-            }
+                if (showBottomNavBar(destination.id)) {
+                    View.GONE
+                } else {
+                    View.VISIBLE
+                }
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
             supportActionBar!!.hide()
         }
+    }
+
+    private fun showBottomNavBar(destinationId: Int): Boolean {
+        return listOf(
+            R.id.loginFragment,
+            R.id.registrationFragment,
+            R.id.cameraFragment
+        ).contains(destinationId)
     }
 
 
@@ -61,15 +78,25 @@ class MainActivity : AppCompatActivity() {
     //igual no intente mucho, seguro que se puede
     fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
-            baseContext, it) == PackageManager.PERMISSION_GRANTED
+            baseContext, it
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     lateinit var CameraFragmentCallback: CameraFragment;//sospechoso
-    fun requestCameraPermissions(callback: CameraFragment){
-        CameraFragmentCallback=callback
-        ActivityCompat.requestPermissions(this, MainActivity.REQUIRED_PERMISSIONS, MainActivity.REQUEST_CODE_PERMISSIONS)
+    fun requestCameraPermissions(callback: CameraFragment) {
+        CameraFragmentCallback = callback
+        ActivityCompat.requestPermissions(
+            this,
+            MainActivity.REQUIRED_PERMISSIONS,
+            MainActivity.REQUEST_CODE_PERMISSIONS
+        )
     }
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
@@ -79,10 +106,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     companion object {
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS =
-            mutableListOf (
+            mutableListOf(
                 Manifest.permission.CAMERA
             ).apply {
                 if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
@@ -128,5 +156,5 @@ class MainActivity : AppCompatActivity() {
 
     //necesito una forma de comunicar fragments
     //segun lei puedo hacer un viewmodel o un bundle pero agregaban bastante complejidad al pedo esto es mas simple y anda
-    public var imageTakenUri:Uri? = null;
+    public var imageTakenUri: Uri? = null;
 }

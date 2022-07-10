@@ -1,28 +1,28 @@
 package com.example.quecomohoy.ui.diets
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.quecomohoy.R
+import com.example.quecomohoy.data.model.diet.*
+import com.example.quecomohoy.data.repositories.DietRepository
 import com.example.quecomohoy.databinding.FragmentDietListBinding
-import com.example.quecomohoy.databinding.FragmentProfileBinding
 import com.example.quecomohoy.ui.diets.interfaces.OnClickDietListener
+import java.lang.Exception
 
 /**
  * A fragment representing a list of Items.
  */
-class DietsFragment : Fragment(), OnClickDietListener {
+class DietsFragment : Fragment() {
 
     private var _binding: FragmentDietListBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var dietModel: DietViewModel
-    private lateinit var dietAdapter: RecyclerView.Adapter<DietsAdapter.ViewHolder>;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,26 +34,20 @@ class DietsFragment : Fragment(), OnClickDietListener {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        dietModel = DietViewModel()
-        dietAdapter = DietsAdapter(dietModel.findDiets(), this)
+        dietModel = DietViewModel(DietRepository())
+        val sp = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val userId = sp.getInt("userId", -1)
 
-        with(binding.dietRecycler) {
-            layoutManager = LinearLayoutManager(context)
-            adapter = dietAdapter
+        dietModel.selectCurrentDiet(arguments?.getInt("dietID", 1)!!)
+
+        dietModel.radioButtonId.observe(viewLifecycleOwner){
+            binding.group.check(it)
         }
 
         binding.saveDietButton.setOnClickListener{
-            val name = dietModel.getCurrentDiet()?.name
-            Toast.makeText(context, name, Toast.LENGTH_SHORT)
-                .show()
+            dietModel.saveDiet(binding.group.checkedRadioButtonId,userId)
+            findNavController().popBackStack()
         }
     }
 
-
-    override fun onClick(dietIndex: Int) {
-        val prevIndex = dietModel.currentDietIndex
-        dietModel.selectNewDiet(dietIndex)
-        dietAdapter.notifyItemChanged(dietIndex)
-        dietAdapter.notifyItemChanged(prevIndex)
-    }
 }

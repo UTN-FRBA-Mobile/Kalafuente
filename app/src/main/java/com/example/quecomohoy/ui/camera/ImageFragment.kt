@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.quecomohoy.MainActivity
@@ -24,7 +25,7 @@ class ImageFragment: Fragment() {
         _binding = FragmentImageBinding.inflate(inflater, container, false)
 
         binding.button.setOnClickListener{
-          findNavController().navigate(R.id.action_imageFragment_to_searchFragment)
+          findNavController().navigate(R.id.action_imageFragment_to_scanIngredientsFragment)
         }
 
         binding.imageCameraResult.setImageURI((activity as MainActivity?)!!.imageTakenUri)

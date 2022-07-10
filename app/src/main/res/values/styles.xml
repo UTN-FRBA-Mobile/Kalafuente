@@ -4,4 +4,26 @@
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
+    <style name="InputText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <style name="InputLayout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/fragment_vertical_margin</item>
+        <item name="layout_constraintWidth_percent">0.8</item>
+    </style>
+
+    <style name="RadioButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@drawable/radio_button_background</item>
+    </style>
+
 </resources>
