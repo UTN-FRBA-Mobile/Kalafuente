@@ -7,9 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -18,29 +16,39 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quecomohoy.MainActivity
+import com.example.quecomohoy.R
 import com.example.quecomohoy.databinding.FragmentScanIngredientsBinding
+import com.example.quecomohoy.ui.RecipeViewModel
+import com.example.quecomohoy.ui.RecipeViewModelFactory
+import com.example.quecomohoy.ui.Status
+import com.example.quecomohoy.ui.favorites.FavouritesViewModel
+import com.example.quecomohoy.ui.favorites.FavouritesViewModelFactory
+import com.example.quecomohoy.ui.listeners.RecipeListener
+import com.example.quecomohoy.ui.listeners.ScanListener
+import com.example.quecomohoy.ui.searchrecipes.RecipesFragment
+import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
+import com.google.android.material.snackbar.Snackbar
 import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabeling
 import com.google.mlkit.vision.label.custom.CustomImageLabelerOptions
 import java.io.IOException
-import java.lang.StringBuilder
-import java.util.*
-import com.example.quecomohoy.R
-import com.example.quecomohoy.ui.listeners.RecipeListener
-import com.example.quecomohoy.ui.listeners.ScanListener
-import com.example.quecomohoy.ui.scanIngredients.adapters.ScanResultsAdapter
-import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
 
 
-class ScanIngredientsFragment: Fragment(), ScanListener {
+class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
+    private val favouriteViewModel : FavouritesViewModel by viewModels(factoryProducer = { FavouritesViewModelFactory() })
     private var _binding: FragmentScanIngredientsBinding? = null
     private val binding get() = _binding!!
-
+    private val recipeViewModel: RecipeViewModel by viewModels(
+        { requireParentFragment() },
+        { RecipeViewModelFactory() }
+    )
     companion object {
         private val REQUEST_GALLERY_IMAGE = 100
         private val REQUEST_PERMISSIONS = 13;
@@ -54,7 +62,6 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
         _binding = FragmentScanIngredientsBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.emptyResultsLabel.visibility = View.GONE
         binding.selectImageButton.setOnClickListener {
@@ -72,6 +79,24 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
         // If image has been loaded from camera, use it to display and send to ML vision
         (activity as MainActivity).imageTakenUri?.also {
             performCloudVisionRequest(it)
+        }
+
+        val adapter = RecipesAdapter(this)
+
+        binding.recipesRecycler.setLayoutManager(LinearLayoutManager(context));
+        binding.recipesRecycler.setHasFixedSize(true);
+        binding.recipesRecycler.adapter = adapter
+
+        recipeViewModel.recipes.observe(viewLifecycleOwner) {
+            when(it.status){
+                Status.SUCCESS -> {
+                    adapter.updateData(it.data.orEmpty())
+                }
+                Status.ERROR -> {
+                    Snackbar.make(view, "Hubo un error", Snackbar.LENGTH_SHORT)
+                }
+            }
+
         }
     }
 
@@ -147,15 +172,7 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
                 binding.emptyResultsLabel.visibility = View.VISIBLE
             } else {
                 binding.emptyResultsLabel.visibility = View.GONE
-                val viewAdapter = ScanResultsAdapter(
-                    scanListener = this,
-                    results = labels
-                )
-
-                binding.scanResultsRV.apply {
-                    layoutManager =  LinearLayoutManager(this.context)
-                    adapter = viewAdapter
-                }
+                recipeViewModel.getRecipesByName(labels.first().text)
             }
         }
     }
@@ -164,5 +181,16 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
         val args = Bundle()
         args.putString("searchTerm", title)
         findNavController().navigate(R.id.action_scanIngredientsFragment_to_recipesFragment, args)
+    }
+
+    override fun onMarkAsFavourite(recipeId: Int, marked: Boolean) {
+        val sp = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val userId = sp.getInt("userId", -1)
+        favouriteViewModel.markAsFavourite(recipeId, userId, marked);    }
+
+    override fun onClickRecipe(recipeId: Int) {
+        val args = Bundle()
+        args.putInt("id", recipeId)
+        findNavController().navigate( R.id.action_scanIngredientsFragment_to_recipeViewFragment, args)
     }
 }

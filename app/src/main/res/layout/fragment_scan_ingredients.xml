@@ -58,12 +58,12 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/scanResultsRV"
-        android:layout_width="381dp"
-        android:layout_height="643dp"
+        android:id="@+id/recipesRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@id/buttonsLinearLayout"
         android:layout_below="@+id/resultsTitleLabel"
-        android:layout_marginTop="8dp" />
+        tools:listitem="@layout/recipes_item" />
 
     <TextView
         android:id="@+id/emptyResultsLabel"

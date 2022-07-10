@@ -141,5 +141,8 @@
         <action
             android:id="@+id/action_scanIngredientsFragment_to_recipesFragment"
             app:destination="@id/recipesFragment" />
+        <action
+            android:id="@+id/action_scanIngredientsFragment_to_recipeViewFragment"
+            app:destination="@id/recipeViewFragment" />
     </fragment>
 </navigation>

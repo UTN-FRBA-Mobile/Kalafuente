@@ -103,6 +103,7 @@ class RecipesFragment : Fragment(), RecipeListener {
         val sp = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val userId = sp.getInt("userId", -1)
         favouriteViewModel.markAsFavourite(recipeId, userId, marked);
+
     }
 
     override fun onClickRecipe(recipeId: Int) {
