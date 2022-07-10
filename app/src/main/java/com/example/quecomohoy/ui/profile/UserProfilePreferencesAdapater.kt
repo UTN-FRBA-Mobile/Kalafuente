@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quecomohoy.R
 import com.example.quecomohoy.data.model.perfil.UserPreference
-import com.example.quecomohoy.data.model.perfil.UserPreferenceTypes
 import com.example.quecomohoy.ui.listeners.PreferenceListener
 
 class UserProfilePreferencesAdapater(val preferenceListner: PreferenceListener, val preferences: List<UserPreference>) :

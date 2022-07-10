@@ -12,20 +12,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quecomohoy.R
-import com.example.quecomohoy.data.model.perfil.UserPreference
+import com.example.quecomohoy.data.model.perfil.UserPreferences
 import com.example.quecomohoy.databinding.FragmentProfileBinding
-import com.example.quecomohoy.ui.RecommendationViewModel
-import com.example.quecomohoy.ui.RecommendationViewModelFactory
 import com.example.quecomohoy.ui.login.LoginViewModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import androidx.lifecycle.ViewModelProvider
+import com.example.quecomohoy.data.model.perfil.UserPreference
+import com.example.quecomohoy.ui.Status
 import com.example.quecomohoy.ui.listeners.PreferenceListener
 import com.example.quecomohoy.ui.login.LoginViewModelFactory
 
 
 class ProfileFragment : Fragment(), PreferenceListener {
-
     //private lateinit var registrationViewModel: RegistrationViewModel
     private var _binding: FragmentProfileBinding? = null
 
@@ -37,10 +36,12 @@ class ProfileFragment : Fragment(), PreferenceListener {
     private var adapter: RecyclerView.Adapter<UserProfilePreferencesAdapater.ViewHolder>? = null
 
     private lateinit var loginViewModel: LoginViewModel
-    private val recommendationsViewModel: RecommendationViewModel by viewModels(
-        factoryProducer = { RecommendationViewModelFactory() },
+
+    private val profileViewModel: ProfileViewModel by viewModels(
+        factoryProducer = { ProfileViewModelFactory() },
         ownerProducer = { requireParentFragment() }
     )
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,10 +61,8 @@ class ProfileFragment : Fragment(), PreferenceListener {
 
         layoutManager = LinearLayoutManager(context?.applicationContext)
         settings?.layoutManager = layoutManager
-        val listOfSettings = getListOfUserPreferences();
-        adapter = UserProfilePreferencesAdapater(this,listOfSettings);
-        settings?.adapter = adapter
 
+        getListOfUserPreferences()
         loginViewModel.userInformation.observe(
             viewLifecycleOwner
         ) { userInformation ->
@@ -86,17 +85,39 @@ class ProfileFragment : Fragment(), PreferenceListener {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun getListOfUserPreferences(): List<UserPreference> {
-        return listOf(
-            UserPreference(1, "Dietas", "Vegetariano"),
-            UserPreference(2, "Mis ingredientes", "Los ingredientes que me gustan"),
-            UserPreference(3, "Alergias", null),
-            UserPreference(
-                4,
-                "Ingredientes que no me gustan",
-                "Salmón, Huevos, Tomate, Lechuga, Carnes rojas, Pollos"
-            )
-        )
+    private fun mapToUserPreferenceList(userPreferences: UserPreferences): List<UserPreference>{
+        val diet = UserPreference(1, "Dieta", userPreferences.diet.name)
+        val likedIngredients = UserPreference(2, "Ingredientes que me gustan", userPreferences.likedIngredients.joinToString(separator = ", ", transform = {
+            it.name
+        }))
+        val unlikedIngredients = UserPreference(2, "Ingredientes que no me gustan", userPreferences.likedIngredients.joinToString(separator = ", ", transform = {
+            it.name
+        }))
+        return listOf(diet,likedIngredients,unlikedIngredients)
+    }
+
+    private fun getListOfUserPreferences() {
+        val settings = _binding?.preferences
+
+        profileViewModel.getPreferencesByUserId(1)
+        profileViewModel.profilePreferences.observe(viewLifecycleOwner){
+            when (it.status) {
+                Status.SUCCESS -> {
+                    if(it.data != null){
+                        adapter = UserProfilePreferencesAdapater(this,
+                            mapToUserPreferenceList(it.data)
+                        );
+                        settings?.adapter = adapter
+                    }
+                }
+                Status.LOADING -> {
+                    //TODO
+                }
+                Status.ERROR -> {
+                    //TODO
+                }
+            }
+        }
     }
 
     override fun onPreferenceClick(userPreference: UserPreference) {
