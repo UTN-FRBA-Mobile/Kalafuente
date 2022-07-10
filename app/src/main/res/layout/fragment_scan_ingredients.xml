@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:gravity="center"
         android:text="Selecciona o escanea un ingrediente:"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -46,15 +46,21 @@
 
         <ImageButton
             android:id="@+id/open_camera"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:src="@android:drawable/ic_menu_camera" />
+            android:layout_marginRight="8dp"
+            android:background="@drawable/secondarybutton"
+            android:src="@android:drawable/ic_menu_camera"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/select_image_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Buscar en la galeria" />
+            android:background="@drawable/secondarybutton"
+            android:paddingHorizontal="8dp"
+            android:text="Buscar en la galeria"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -72,6 +78,7 @@
         android:layout_below="@id/selected_image"
         android:layout_centerVertical="true"
         android:text="@string/no_scan_results"
+        android:textSize="18sp"
         android:visibility="visible"
         tools:layout_centerHorizontal="true"
         tools:visibility="visible" />
