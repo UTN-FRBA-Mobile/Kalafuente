@@ -92,6 +92,7 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
                 Status.SUCCESS -> {
                     binding.imageView.visibility =  View.GONE;
                     adapter.updateData(it.data.orEmpty())
+                    binding.recipesRecycler.visibility = View.VISIBLE
                 }
                 Status.ERROR -> {
                     Snackbar.make(view, "Hubo un error", Snackbar.LENGTH_SHORT)
@@ -171,6 +172,8 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
         labeler.process(image).addOnSuccessListener { labels ->
             if (labels.none { it.confidence > 0.3 }) {
                 binding.emptyResultsLabel.visibility = View.VISIBLE
+                binding.recipesRecycler.visibility = View.GONE
+                binding.imageView.visibility =  View.GONE;
             } else {
                 binding.emptyResultsLabel.visibility = View.GONE
                 recipeViewModel.getRecipesByName(labels.first().text)

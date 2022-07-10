@@ -80,11 +80,7 @@ class CameraFragment : Fragment() {
                     it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
                 }
 
-            imageCapture = ImageCapture.Builder()
-                //.setDefaultResolution(android.util.Size(240,240))
-                //.setFlashMode(FLASH_MODE_ON)
-                .setJpegQuality(15)
-                .build()
+            imageCapture = ImageCapture.Builder().build()
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 

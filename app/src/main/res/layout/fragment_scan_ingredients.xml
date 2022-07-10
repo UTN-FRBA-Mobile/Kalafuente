@@ -64,6 +64,7 @@
     />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
         android:layout_marginTop="30dp"
         android:id="@+id/recipesRecycler"
         android:layout_width="match_parent"
@@ -72,6 +73,8 @@
         tools:listitem="@layout/recipes_item" />
 
     <TextView
+        android:layout_marginBottom="60dp"
+        android:layout_above="@id/buttonsLinearLayout"
         android:id="@+id/emptyResultsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
