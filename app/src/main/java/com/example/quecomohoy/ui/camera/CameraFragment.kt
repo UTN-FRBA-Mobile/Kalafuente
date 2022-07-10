@@ -1,5 +1,6 @@
 package com.example.quecomohoy.ui.camera
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.os.Build
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.camera.core.*
+import androidx.camera.core.ImageCapture.FLASH_MODE_ON
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.fragment.app.Fragment
 import com.example.quecomohoy.databinding.FragmentCameraBinding
@@ -62,6 +64,7 @@ class CameraFragment : Fragment() {
         findNavController().navigate(R.id.action_cameraFragment_to_askPermissionFragment)
     }
 
+    @SuppressLint("RestrictedApi")
     fun startCamera() {
         val activity=(activity as MainActivity?)!!
 
@@ -77,7 +80,11 @@ class CameraFragment : Fragment() {
                     it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
                 }
 
-            imageCapture = ImageCapture.Builder().build()
+            imageCapture = ImageCapture.Builder()
+                //.setDefaultResolution(android.util.Size(240,240))
+                //.setFlashMode(FLASH_MODE_ON)
+                .setJpegQuality(15)
+                .build()
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -119,6 +126,8 @@ class CameraFragment : Fragment() {
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 contentValues)
             .build()
+
+        imageCapture.imageFormat
 
         // Set up image capture listener, which is triggered after photo has
         // been taken
