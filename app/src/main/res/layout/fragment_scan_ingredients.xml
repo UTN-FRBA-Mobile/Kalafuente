@@ -29,7 +29,7 @@
         android:layout_marginTop="10dp"/>
 
     <TextView
-        android:id="@+id/labels"
+        android:id="@+id/resultsTitleLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/selected_image"
@@ -37,28 +37,41 @@
         android:text="Resultados:"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv_label_results"
-        android:text="-"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/labels"
-        android:layout_marginTop="10dp"/>
-
     <LinearLayout
+        android:id="@+id/buttonsLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
+
         <ImageButton
             android:id="@+id/open_camera"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@android:drawable/ic_menu_camera" />
+
         <Button
             android:id="@+id/select_image_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buscar en la galeria" />
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/scanResultsRV"
+        android:layout_width="381dp"
+        android:layout_height="643dp"
+        android:layout_above="@id/buttonsLinearLayout"
+        android:layout_below="@+id/resultsTitleLabel"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/emptyResultsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="@string/no_scan_results"
+        android:visibility="visible"
+        tools:layout_centerHorizontal="true"
+        tools:visibility="visible" />
 </RelativeLayout>

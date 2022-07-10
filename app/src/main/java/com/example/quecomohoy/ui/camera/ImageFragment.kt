@@ -25,7 +25,7 @@ class ImageFragment: Fragment() {
         _binding = FragmentImageBinding.inflate(inflater, container, false)
 
         binding.button.setOnClickListener{
-          findNavController().navigate(R.id.action_imageFragment_to_searchFragment)
+          findNavController().navigate(R.id.action_imageFragment_to_scanIngredientsFragment)
         }
 
         binding.imageCameraResult.setImageURI((activity as MainActivity?)!!.imageTakenUri)

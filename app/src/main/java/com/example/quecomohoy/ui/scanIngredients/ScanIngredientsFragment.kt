@@ -3,11 +3,13 @@ package com.example.quecomohoy.ui.scanIngredients
 import android.Manifest
 import android.app.Activity
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -18,6 +20,8 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.quecomohoy.MainActivity
 import com.example.quecomohoy.databinding.FragmentScanIngredientsBinding
 import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
@@ -27,9 +31,13 @@ import java.io.IOException
 import java.lang.StringBuilder
 import java.util.*
 import com.example.quecomohoy.R
+import com.example.quecomohoy.ui.listeners.RecipeListener
+import com.example.quecomohoy.ui.listeners.ScanListener
+import com.example.quecomohoy.ui.scanIngredients.adapters.ScanResultsAdapter
+import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
 
 
-class ScanIngredientsFragment: Fragment() {
+class ScanIngredientsFragment: Fragment(), ScanListener {
     private var _binding: FragmentScanIngredientsBinding? = null
     private val binding get() = _binding!!
 
@@ -48,17 +56,28 @@ class ScanIngredientsFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            binding.selectImageButton.setOnClickListener {
-                if (checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
-                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    requestPermissions(permissions, PICK_FROM_GALLERY)
-                } else{
-                    chooseImageGallery();
-                }
+        binding.emptyResultsLabel.visibility = View.GONE
+        binding.selectImageButton.setOnClickListener {
+            if (checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
+                val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                requestPermissions(permissions, PICK_FROM_GALLERY)
+            } else{
+                chooseImageGallery();
             }
-            binding.openCamera.setOnClickListener{
-                findNavController().navigate(R.id.action_scanIngredientsFragment_to_cameraFragment);
-            }
+        }
+        binding.openCamera.setOnClickListener{
+            findNavController().navigate(R.id.action_scanIngredientsFragment_to_cameraFragment);
+        }
+
+        // If image has been loaded from camera, use it to display and send to ML vision
+        (activity as MainActivity).imageTakenUri?.also {
+            performCloudVisionRequest(it)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MainActivity).imageTakenUri = null
     }
 
     override fun onRequestPermissionsResult(
@@ -124,14 +143,26 @@ class ScanIngredientsFragment: Fragment() {
         val image = InputImage.fromBitmap(bitmap, 0)
 
         labeler.process(image).addOnSuccessListener { labels ->
-            val message = StringBuilder("")
-            labels.forEach { label ->
-                message.append(String.format(
-                    Locale.getDefault(), "%.3f: %s",
-                    label.confidence, label.text));
-                message.append("\n");
+            if (labels.none { it.confidence > 0.3 }) {
+                binding.emptyResultsLabel.visibility = View.VISIBLE
+            } else {
+                binding.emptyResultsLabel.visibility = View.GONE
+                val viewAdapter = ScanResultsAdapter(
+                    scanListener = this,
+                    results = labels
+                )
+
+                binding.scanResultsRV.apply {
+                    layoutManager =  LinearLayoutManager(this.context)
+                    adapter = viewAdapter
+                }
             }
-            binding.tvLabelResults.text = message.toString()
         }
+    }
+
+    override fun onClickScanResult(title: String) {
+        val args = Bundle()
+        args.putString("searchTerm", title)
+        findNavController().navigate(R.id.action_scanIngredientsFragment_to_recipesFragment, args)
     }
 }
