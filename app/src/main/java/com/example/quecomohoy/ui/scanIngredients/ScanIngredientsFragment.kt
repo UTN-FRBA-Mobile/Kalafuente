@@ -56,7 +56,9 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.emptyResultsLabel.visibility = View.GONE
+        binding.emptyResultsLabel.visibility = View.VISIBLE
+        binding.emptyResultsLabel.text = getString(R.string.scan_to_start)
+        binding.resultsTitleLabel.visibility = View.GONE
         binding.selectImageButton.setOnClickListener {
             if (checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
                 val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -143,13 +145,17 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
         val image = InputImage.fromBitmap(bitmap, 0)
 
         labeler.process(image).addOnSuccessListener { labels ->
-            if (labels.none { it.confidence > 0.3 }) {
+            val results = labels.filter { it.confidence > 0.3 }
+            if (results.isEmpty()) {
                 binding.emptyResultsLabel.visibility = View.VISIBLE
+                binding.resultsTitleLabel.visibility = View.GONE
+                binding.emptyResultsLabel.text = getString(R.string.no_scan_results)
             } else {
                 binding.emptyResultsLabel.visibility = View.GONE
+                binding.resultsTitleLabel.visibility = View.VISIBLE
                 val viewAdapter = ScanResultsAdapter(
                     scanListener = this,
-                    results = labels
+                    results = results
                 )
 
                 binding.scanResultsRV.apply {

@@ -34,6 +34,7 @@
     <string name="example_step">Lo que resta hacer es dar vuelta nuestro omelette una vez que ya esté bien cocido de un lado para que se cocine bien del otro y listo! Al terminar, lo retiramos con cuidado y lo servimos en un plato para degustarlo y ser felices.</string>
     <string name="username">Nombre de Usuario</string>
     <string name="no_scan_results">No se encontraron recetas o ingredientes en esta imagen. Intenta de nuevo con otra!</string>
+    <string name="scan_to_start">Escanea lo que tengas en tu cocina o busca una foto en tu galeria para buscar recetas</string>
     <string name="omnivore">Como de todo</string>
     <string name="vegetarian">Vegetariano</string>
     <string name="vegan">Vegano</string>
