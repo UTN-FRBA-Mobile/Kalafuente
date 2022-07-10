@@ -581,6 +581,39 @@
       "enabled": true,
       "randomResponse": false,
       "sequentialResponse": false
+    },
+    {
+      "uuid": "575020ec-44ff-4bbf-a9e0-8bb3f6146ff8",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "ingredients",
+      "responses": [
+        {
+          "uuid": "af676b4a-4d53-41fe-8c75-b8f536affedc",
+          "body": "[     \n    {\n       \"id\": 36,\n       \"name\": \"Espinaca fresca\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/espinaca1-0834e1be8c9ac732e715939074486136-640-0.png\"\n     },\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     },\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
     }
   ],
   "proxyMode": false,

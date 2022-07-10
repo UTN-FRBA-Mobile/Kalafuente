@@ -12,13 +12,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quecomohoy.R
-import com.example.quecomohoy.data.model.perfil.UserPreferences
 import com.example.quecomohoy.databinding.FragmentProfileBinding
 import com.example.quecomohoy.ui.login.LoginViewModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import androidx.lifecycle.ViewModelProvider
-import com.example.quecomohoy.data.model.perfil.UserPreference
+import com.example.quecomohoy.data.model.perfil.*
 import com.example.quecomohoy.ui.Status
 import com.example.quecomohoy.ui.listeners.PreferenceListener
 import com.example.quecomohoy.ui.login.LoginViewModelFactory
@@ -123,6 +122,23 @@ class ProfileFragment : Fragment(), PreferenceListener {
     override fun onPreferenceClick(userPreference: UserPreference) {
         val args = Bundle()
         args.putString("label", userPreference.name)
-        findNavController().navigate(R.id.action_profileFragment_to_preferencesFragment, args)
+        Log.d("userPreference----------------------------------------------------------------",userPreference.toString())
+        when(userPreference.code){
+            DIET ->{
+               // args.putString("idDiet", userPreference.value) TODO: sacar del contexto
+                findNavController().navigate(R.id.action_profileFragment_to_preferencesFragment, args)
+            }
+            LIKED_INGREDIENTS -> {
+                args.putInt("viewType", LIKED_INGREDIENTS)
+                findNavController().navigate(R.id.  action_profileFragment_to_userIngredientsFragment, args)
+            }
+            UNLIKED_INGREDIENTS -> {
+                args.putInt("viewType", UNLIKED_INGREDIENTS)
+                findNavController().navigate(R.id.action_profileFragment_to_userIngredientsFragment, args)
+            }
+            MEALTIME ->{
+
+            }
+        }
     }
 }
