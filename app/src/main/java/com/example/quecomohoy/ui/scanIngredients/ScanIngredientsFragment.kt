@@ -72,7 +72,7 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
 
         // If image has been loaded from camera, use it to display and send to ML vision
         (activity as MainActivity).imageTakenUri?.also {
-            performCloudVisionRequest(it)
+            performCloudVisionRequest(it, true)
         }
     }
 
@@ -113,20 +113,25 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
         }
     }
 
-    private fun performCloudVisionRequest(uri: Uri?) {
+    private fun performCloudVisionRequest(uri: Uri?, rotateImage: Boolean = false) {
         if (uri != null) {
             try {
                 val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getApplicationContext().getContentResolver(), uri)
                 callMLVision(bitmap)
-                setImageView(bitmap)
+                setImageView(bitmap, rotateImage)
             } catch (e: IOException) {
                 Log.e(TAG, e.localizedMessage)
             }
         }
     }
 
-    private fun setImageView(bitmap: Bitmap) {
-        binding.selectedImage.setImageBitmap(rotateImage(bitmap, 90f))
+    private fun setImageView(bitmap: Bitmap, rotateImage: Boolean) {
+        val rotationDegrees = if (rotateImage) {
+            90f
+        } else {
+            0f
+        }
+        binding.selectedImage.setImageBitmap(rotateImage(bitmap, rotationDegrees))
         binding.selectedImageTxt.text = "Imagen seleccionada:"
     }
 
