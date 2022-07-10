@@ -250,7 +250,9 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
         val matrix = Matrix()
         matrix.postRotate(degree)
         val rotatedImg = Bitmap.createBitmap(img, 0, 0, img.width, img.height, matrix, true)
-        img.recycle()
+        if (!img.isRecycled) {
+            img.recycle()
+        }
         return rotatedImg
     }
 
