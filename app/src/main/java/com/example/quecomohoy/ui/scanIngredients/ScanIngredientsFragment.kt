@@ -90,6 +90,7 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
         recipeViewModel.recipes.observe(viewLifecycleOwner) {
             when(it.status){
                 Status.SUCCESS -> {
+                    binding.imageView.visibility =  View.GONE;
                     adapter.updateData(it.data.orEmpty())
                 }
                 Status.ERROR -> {
@@ -151,7 +152,7 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
 
     private fun setImageView(bitmap: Bitmap) {
         binding.selectedImage.setImageBitmap(bitmap)
-        binding.selectedImageTxt.text = "Imagen seleccionada:"
+        binding.selectedImageTxt.text = "Imagen seleccionada"
     }
 
     private fun callMLVision(bitmap: Bitmap) {

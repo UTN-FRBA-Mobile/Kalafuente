@@ -11,12 +11,13 @@
     tools:context=".ui.scanIngredients.ScanIngredientsFragment">
 
     <TextView
+        android:fontFamily="sans-serif-light"
         android:id="@+id/selected_image_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:gravity="center"
-        android:text="Selecciona o escanea un ingrediente:"
+        android:text="Selecciona o escanea un ingrediente"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -28,15 +29,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:id="@+id/resultsTitleLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/selected_image"
-        android:layout_marginTop="10dp"
-        android:text="Resultados:"
-        android:textStyle="bold" />
-
     <LinearLayout
         android:id="@+id/buttonsLinearLayout"
         android:layout_width="wrap_content"
@@ -45,24 +37,38 @@
         android:layout_centerHorizontal="true">
 
         <ImageButton
+            android:padding="10dp"
             android:id="@+id/open_camera"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/button"
             android:src="@android:drawable/ic_menu_camera" />
 
         <Button
+            android:padding="10dp"
+            android:background="@drawable/secondarybutton"
+            android:textColor="@color/white"
             android:id="@+id/select_image_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buscar en la galeria" />
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/food"
+    />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="30dp"
         android:id="@+id/recipesRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/buttonsLinearLayout"
-        android:layout_below="@+id/resultsTitleLabel"
+        android:layout_below="@id/selected_image"
         tools:listitem="@layout/recipes_item" />
 
     <TextView
