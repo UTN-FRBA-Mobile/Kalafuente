@@ -92,7 +92,7 @@
       "responses": [
         {
           "uuid": "b0962714-5cf3-436b-bc5a-977f65cd0cd5",
-          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"isFavourite\": false\n  },\n    {\n    \"id\": 2,\n    \"name\": \"Espinacas a la crema\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n    \"isFavourite\": false\n  }\n]",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"isFavourite\": false\n  },\n    {\n    \"id\": 2,\n    \"name\": \"Espinacas a la crema\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n    \"isFavourite\": false\n  },\n  {\n    \"id\": 5,\n    \"name\": \"Wrap de vegetales\",\n    \"picture\": \"https://i1.wp.com/cocinavegano.com/wp-content/uploads/2017/01/wrap-de-vegetales-y-chipotle-2.jpg\",\n    \"isFavourite\": false\n  },\n  {\n    \"id\": 40,\n    \"name\": \"Ñoquis\",\n    \"picture\": \"https://assets.unileversolutions.com/recipes-v2/210909.png\",\n    \"isFavourite\": false\n  },\n {\n    \"id\": 42,\n    \"name\": \"Waffles\",\n    \"picture\": \"https://www.cocinavital.mx/wp-content/uploads/2017/10/masa-para-waffles.jpg\",\n    \"isFavourite\": false\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -190,23 +190,50 @@
       "endpoint": "recipes",
       "responses": [
         {
-          "uuid": "1f59071d-b6db-48bb-8388-746bcca7d730",
-          "body": "{}",
+          "uuid": "fb1064c7-c799-4813-aa91-cdbacdebc390",
+          "body": "[\n {\n   \"id\" : 3,\n   \"name\" : \"Pollo al limón\",\n   \"picture\" : \"https://www.paulinacocina.net/wp-content/uploads/2021/11/pollo-asado.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n {\n   \"id\" : 4,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/NCI_Visuals_Food_Hamburger.jpg/640px-NCI_Visuals_Food_Hamburger.jpg\",\n   \"authorName\" : \"Vladimir Putin\"\n },\n  {\n   \"id\" : 5,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n   \"authorName\" : \"Joe Biden\"\n },\n  {\n   \"id\" : 6,\n   \"name\" : \"Pancito con queso super crocante\",\n   \"picture\" : \"https://i0.wp.com/blog.marianlaquecocina.com/wp-content/uploads/2018/04/20180416_144118.jpg\",\n   \"authorName\" : \"La nona\"\n }\n]",
           "latency": 0,
-          "statusCode": 202,
+          "statusCode": 200,
           "label": "",
-          "headers": [],
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
           "filePath": "",
           "sendFileAsBody": false,
           "rules": [],
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
-          "default": true
+          "default": false
+        },
+        {
+          "uuid": "09e70684-7084-4f8c-a968-1c173df44351",
+          "body": "[\n {\n   \"id\" : 6,\n   \"name\" : \"Milanesas de berenjena con calabaza\",\n   \"picture\" : \"https://cloudfront-us-east-1.images.arcpublishing.com/radiomitre/4IBGLLLUDJAJFC6RPVHUWZIFGI.gif\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n  {\n   \"id\" : 60,\n   \"name\" : \"Berenjenas al Escabeche\",\n   \"picture\" : \"https://www.coosur.com/uploads/recetasaceiteoliva/berenjenas-y-zanahorias-al-escabeche.jpg\",\n   \"authorName\" : \"Iñaki\"\n }\n ]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "ingredients",
+              "value": "49,38",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         },
         {
           "uuid": "3f701067-96d5-46b3-b76d-c23053a441f2",
-          "body": "[\n {\n   \"id\" : 6,\n   \"name\" : \"Milanesa con puré\",\n   \"picture\" : \"https://www.unileverfoodsolutions.com.ar/dam/global-ufs/mcos/sla/argentina/calcmenu/recipes/AR-recipes/In-Development/milanesa-a-la-napolitana-con-pur%C3%A9/main-header.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n }\n ]",
+          "body": "[\n {\n   \"id\" : 6,\n   \"name\" : \"Milanesas de berenjena con calabaza\",\n   \"picture\" : \"https://cloudfront-us-east-1.images.arcpublishing.com/radiomitre/4IBGLLLUDJAJFC6RPVHUWZIFGI.gif\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n  {\n   \"id\" : 67,\n   \"name\" : \"Milanesas de soja finas y crujientes\",\n   \"picture\" : \"https://www.midietavegana.es/wp-content/uploads/2020/05/milanesas-e1589996331814.jpeg\",\n   \"authorName\" : \"Iñaki\"\n }\n ]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -224,23 +251,25 @@
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
-          "default": false
+          "default": true
         },
         {
-          "uuid": "fb1064c7-c799-4813-aa91-cdbacdebc390",
-          "body": "[\n {\n   \"id\" : 3,\n   \"name\" : \"Pollo al limón\",\n   \"picture\" : \"https://www.paulinacocina.net/wp-content/uploads/2021/11/pollo-asado.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n {\n   \"id\" : 4,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/NCI_Visuals_Food_Hamburger.jpg/640px-NCI_Visuals_Food_Hamburger.jpg\",\n   \"authorName\" : \"Vladimir Putin\"\n },\n  {\n   \"id\" : 5,\n   \"name\" : \"Hamburguesa con lechuga\",\n   \"picture\" : \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n   \"authorName\" : \"Joe Biden\"\n },\n  {\n   \"id\" : 6,\n   \"name\" : \"Pancito con queso super crocante\",\n   \"picture\" : \"https://i0.wp.com/blog.marianlaquecocina.com/wp-content/uploads/2018/04/20180416_144118.jpg\",\n   \"authorName\" : \"La nona\"\n }\n]",
+          "uuid": "ccc7b942-92c0-4fed-b25a-ca739218c9b4",
+          "body": "[\n {\n   \"id\" : 30,\n   \"name\" : \"Manzanas caramelizadas\",\n   \"picture\" : \"https://t1.rg.ltmcdn.com/es/posts/3/1/9/manzanas_caramelizadas_73913_600.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n {\n   \"id\" : 40,\n   \"name\" : \"Budín de manzana\",\n   \"picture\" : \"https://www.johaprato.com/files/styles/immagini_ricette/public/manzana_publicada.jpg?itok=aPYyxDXZ\",\n   \"authorName\" : \"Vladimir Putin\"\n }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
+          "headers": [],
           "filePath": "",
           "sendFileAsBody": false,
-          "rules": [],
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "[Apple]\\w+",
+              "operator": "regex"
+            }
+          ],
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
@@ -432,7 +461,7 @@
         },
         {
           "uuid": "56eb2f9a-78f3-4c0a-b645-1b625e87ad11",
-          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Omelette\",\n    \"picture\": \"https://viapais.com.ar/resizer/mUQiFA14EV_X7bln_vY2CaTJ6V4=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GIYWKYLGGVRTQNBYHA3TCOBXGU.jpg\",\n    \"authorName\": \"Mario Neta\"\n  }\n]",
+          "body": "[\n  {\n    \"id\": 1004,\n    \"name\": \"Verduras al horno\",\n    \"picture\": \"https://cocina-casera.com/wp-content/uploads/2022/04/verduras-horno.jpg\",\n    \"authorName\": \"Pepe Naranja\"\n  },\n  {\n    \"id\": 10,\n    \"name\": \"Pizza\",\n    \"picture\": \"https://www.saborusa.com/wp-content/uploads/2019/12/origen-de-la-pizza-1.jpg.webp\",\n    \"authorName\": \"Mario Neta\"\n  },\n  {\n    \"id\": 14,\n    \"name\": \"Flan Casero\",\n    \"picture\": \"https://cocina-casera.com/wp-content/uploads/2022/02/flan-pastelero-al-horno-770x485.jpg\",\n    \"authorName\": \"Paulina Cocina\"\n  },\n    {\n    \"id\": 31,\n    \"name\": \"Fresas maceradas en vinagre balsámico\",\n    \"picture\": \"https://cocina-casera.com/wp-content/uploads/2020/08/fresas-balsamicas-770x485.jpg\",\n    \"authorName\": \"Bruno Neta\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -609,6 +638,50 @@
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true
+        },
+        {
+          "uuid": "f1bb04ef-7c37-4547-92d4-d3114a773c22",
+          "body": "[     \n    {\n       \"id\": 49,\n       \"name\": \"Berenjena\",\n       \"picture\":\"https://imagenes.elpais.com/resizer/Lnrun8__zTplP8rrL99bxEA4Ijo=/1960x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/RW46CJPF2NKVGV6COSJ7LRECEE.jpg\"\n   }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "berenjena",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "13c25d12-b156-4996-9796-a02dd24a77d1",
+          "body": "[     \n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n    },\n    {\n       \"id\": 39,\n       \"name\": \"Aceite de girasol\",\n       \"picture\":\"https://megaahorro.online/wp-content/uploads/2020/05/Aceite-Girasol-2Lt.jpg\"\n    }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "aceite",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         }
       ],
       "enabled": true,
