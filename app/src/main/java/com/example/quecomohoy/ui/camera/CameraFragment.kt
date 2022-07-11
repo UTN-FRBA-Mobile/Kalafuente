@@ -83,7 +83,7 @@ class CameraFragment : Fragment() {
             imageCapture = ImageCapture.Builder()
                 //.setDefaultResolution(android.util.Size(240,240))
                 //.setFlashMode(FLASH_MODE_ON)
-                .setJpegQuality(15)
+                .setJpegQuality(10)
                 .build()
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -126,8 +126,6 @@ class CameraFragment : Fragment() {
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 contentValues)
             .build()
-
-        imageCapture.imageFormat
 
         // Set up image capture listener, which is triggered after photo has
         // been taken
