@@ -23,4 +23,16 @@ class ProfileViewModel(private val userRepository: UserRepository) : ViewModel()
             }
         }
     }
+
+     fun savePreferences(userId : Int, userPreference: UserPreferences) {
+         viewModelScope.launch {
+             try {
+                 val userP = userRepository.savePreferences(userId, userPreference)
+                 profilePreferences.postValue(Resource.success(userP,null))
+             }catch (e : Exception){
+                 Log.e(ContentValues.TAG, e.toString())
+                 profilePreferences.postValue(Resource.error("", null,null))
+             }
+         }
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.quecomohoy.ui.profile
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,6 +42,7 @@ class ProfileFragment : Fragment(), PreferenceListener {
         ownerProducer = { requireParentFragment() }
     )
 
+    var userPreferences : UserPreferences? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,25 +64,26 @@ class ProfileFragment : Fragment(), PreferenceListener {
         settings?.layoutManager = layoutManager
 
         getListOfUserPreferences()
-        loginViewModel.userInformation.observe(
-            viewLifecycleOwner
-        ) { userInformation ->
-            if (userInformation.displayName != "") {
-                binding.name.text = userInformation.displayName
-                binding.username.text = userInformation.userName
-                Picasso.get()
-                    .load(userInformation.image)
-                    .into(profilePic, object : Callback {
-                        override fun onSuccess() {
-                            Log.d(TAG, "success")
-                        }
 
-                        override fun onError(e: Exception?) {
-                            Log.e(TAG, "error", e)
-                        }
-                    })
-            }
-        }
+        val sp = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val userId = sp.getInt("userId", -1)
+        val userName = sp.getString("userName", "")
+        val name =  sp.getString("name", "")
+        val image = sp.getString("image", "")
+
+        binding.name.text = name
+        binding.username.text = userName
+        Picasso.get()
+            .load(image)
+            .into(profilePic, object : Callback {
+                override fun onSuccess() {
+                    Log.d(TAG, "success")
+                }
+                override fun onError(e: Exception?) {
+                    Log.e(TAG, "error", e)
+                }
+            })
+
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -103,6 +106,7 @@ class ProfileFragment : Fragment(), PreferenceListener {
             when (it.status) {
                 Status.SUCCESS -> {
                     if(it.data != null){
+                        userPreferences = it.data
                         adapter = UserProfilePreferencesAdapater(this,
                             mapToUserPreferenceList(it.data)
                         );
@@ -128,13 +132,10 @@ class ProfileFragment : Fragment(), PreferenceListener {
                // args.putString("idDiet", userPreference.value) TODO: sacar del contexto
                 findNavController().navigate(R.id.action_profileFragment_to_preferencesFragment, args)
             }
-            LIKED_INGREDIENTS -> {
-                args.putInt("viewType", LIKED_INGREDIENTS)
+            LIKED_INGREDIENTS, UNLIKED_INGREDIENTS -> {
+                args.putInt("preferenceCode", userPreference.code)
+                args.putSerializable("userPreferences", userPreferences)
                 findNavController().navigate(R.id.  action_profileFragment_to_userIngredientsFragment, args)
-            }
-            UNLIKED_INGREDIENTS -> {
-                args.putInt("viewType", UNLIKED_INGREDIENTS)
-                findNavController().navigate(R.id.action_profileFragment_to_userIngredientsFragment, args)
             }
             MEALTIME ->{
 

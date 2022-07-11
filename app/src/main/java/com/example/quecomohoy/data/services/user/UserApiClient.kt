@@ -18,4 +18,7 @@ interface UserApiClient {
         @Field("userName") username: String,
         @Field("password") password: String,
     ): Response<User>
+    @POST("/user/{id}/preferences")
+    suspend fun savePreferences(@Path("id") userId: Int, @Body preference: UserPreferences) : Response<UserPreferences>
+
 }

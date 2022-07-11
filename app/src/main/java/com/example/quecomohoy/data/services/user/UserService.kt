@@ -30,4 +30,11 @@ class UserService {
             response.body()
         }
     }
+
+    suspend fun savePreferences(userId : Int,preferences: UserPreferences) : UserPreferences {
+        return withContext(Dispatchers.IO) {
+            val response = retrofit.create(UserApiClient::class.java).savePreferences(userId, preferences)
+            response.body()!!
+        }
+    }
 }

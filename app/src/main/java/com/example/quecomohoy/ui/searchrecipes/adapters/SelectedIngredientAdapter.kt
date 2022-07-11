@@ -44,6 +44,7 @@ class SelectedIngredientAdapter(val ingredients : List<Ingredient>?,val onRemove
         notifyItemInserted(itemCount-1)
     }
 
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var picture: ImageView = view.findViewById(R.id.picture)
         var name : TextView = view.findViewById(R.id.name)

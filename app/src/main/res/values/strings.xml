@@ -38,4 +38,8 @@
     <string name="vegan">Vegano</string>
     <string name="pescetarian">Pescetariano</string>
     <string name="other">Otra</string>
+    <string name="lunch_channel">Almuerzo</string>
+    <string name="lunch_channel_desc">Recomendaciones a la hora del almuerzo</string>
+    <string name="dinner_channel">Cena</string>
+    <string name="dinner_channel_desc">Recomendaciones a la hora de la cena</string>
 </resources>

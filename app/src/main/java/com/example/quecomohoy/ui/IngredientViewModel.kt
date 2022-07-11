@@ -1,5 +1,6 @@
 package com.example.quecomohoy.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,26 +20,33 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
     val addedIngredient = MutableLiveData<Ingredient>()
 
 
-    fun getIngredientsByName(name : String){
+    fun getIngredientsByName(name: String) {
         val additionalData = mapOf("searchTerm" to name)
         ingredients.postValue(Resource.loading(additionalData))
         viewModelScope.launch {
             try {
                 val ingredientsByName = ingredientRepository.getIngredientsByName(name)
-                ingredients.postValue(Resource.success(ingredientsByName, additionalData))
-            }catch (e : Exception){
+                ingredients.postValue(Resource.success(ingredientsByName
+                    .filter { !getSelectedIngredientsIds().contains(it.id) }, additionalData))
+            } catch (e: Exception) {
+                Log.e("IngredientViewModel", e.toString())
                 ingredients.postValue(Resource.error("", null, additionalData))
             }
         }
     }
 
-    fun addIngredient(ingredient : Ingredient){
+    fun addIngredient(ingredient: Ingredient) {
         _selectedIngredients.add(ingredient)
         _selectedIngredientsData.postValue(_selectedIngredients)
         addedIngredient.postValue(ingredient)
     }
 
-    fun removeIngredient(index : Int){
+    fun addIngredients(ingredients: List<Ingredient>) {
+        _selectedIngredients.addAll(ingredients)
+        _selectedIngredientsData.postValue(_selectedIngredients)
+    }
+
+    fun removeIngredient(index: Int) {
         _selectedIngredients.removeAt(index)
         _selectedIngredientsData.postValue(_selectedIngredients)
     }
@@ -48,15 +56,15 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
     }
 
     fun getSelectedIngredientsIds(): IntArray {
-        val selectedIngredients =  getSelectedIngredients()
+        val selectedIngredients = getSelectedIngredients()
         return selectedIngredients.map { it.id }.toIntArray()
     }
 
     fun getSelectedIngredients(): List<Ingredient> {
-        return _selectedIngredientsData.value?: emptyList()
+        return _selectedIngredientsData.value ?: emptyList()
     }
 
-    fun cleanIngredients(){
+    fun cleanIngredients() {
         ingredients.postValue(Resource.success(emptyList(), null))
     }
 

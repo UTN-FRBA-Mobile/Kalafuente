@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
@@ -15,6 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QueComoHoy">
+        <receiver android:name=".notifications.MealRecommendationsNotification"
+            android:enabled="true"/>
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan"

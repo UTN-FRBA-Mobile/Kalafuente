@@ -8,4 +8,8 @@ class UserRepository {
     suspend fun getPreferences(id: Int): UserPreferences? {
         return api.getPreferences(id)
     }
+
+    suspend fun savePreferences(userid : Int, userPreference: UserPreferences) : UserPreferences {
+        return api.savePreferences(userid, userPreference)
+    }
 }
