@@ -38,9 +38,7 @@ class RecipesAdapter(
             checkBox.setOnCheckedChangeListener { _, isChecked ->
                 recipeListener.onMarkAsFavourite(recipe.id, isChecked)
             }
-            titleTextView.text = recipe.name
-            authorTextView.text = itemView.context.getString(R.string.by_author, recipe.authorName)
-            Picasso.get().load(recipe.picture).fit().into(imageView)
+            fill(recipe)
         }
     }
 
