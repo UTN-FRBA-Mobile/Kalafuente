@@ -73,4 +73,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 5
     }
+    
+    fun postUserInfo(id : Int, name : String, image : String, userName : String){
+        _userInformation.postValue(LoggedInUserView(name, userName, image, id))
+    }
 }

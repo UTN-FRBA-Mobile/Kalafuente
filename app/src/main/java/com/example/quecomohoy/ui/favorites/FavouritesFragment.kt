@@ -42,19 +42,6 @@ class FavouritesFragment : Fragment(), RecipeListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel = ViewModelProvider(requireActivity(), LoginViewModelFactory())
-            .get(LoginViewModel::class.java)
-
-        loginViewModel.userInformation.observe(viewLifecycleOwner,
-            Observer {userInformation ->
-                if(userInformation.displayName == ""){
-                    val action = R.id.action_recomendationsFragment_to_loginFragment
-                    findNavController().navigate(action)
-                } else{
-                    favouritesViewModel.getFavouritesByUser(userInformation.id)
-                }
-            })
-
 
         val viewManager = LinearLayoutManager(this.context)
 
@@ -85,6 +72,11 @@ class FavouritesFragment : Fragment(), RecipeListener {
                 }
             }
         }
+
+        val sp = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val userId = sp.getInt("userId", -1)
+
+        favouritesViewModel.getFavouritesByUser(userId)
     }
 
     override fun onMarkAsFavourite(recipeId: Int, marked: Boolean) {

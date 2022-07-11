@@ -16,6 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QueComoHoy">
+        <receiver android:name=".notifications.MealRecommendationsNotification"
+            android:enabled="true"/>
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan"

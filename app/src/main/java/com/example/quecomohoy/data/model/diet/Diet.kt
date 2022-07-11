@@ -1,5 +1,7 @@
 package com.example.quecomohoy.data.model.diet
 
+import java.io.Serializable
+
 const val OMNIVORE_ID = 1
 const val VEGAN_ID = 2
 const val VEGETARIAN = 3
@@ -11,5 +13,4 @@ data class Diet
     (
         var id: Int,
         var name : String,
-        var descrition : String,
-    )
+    ) : Serializable

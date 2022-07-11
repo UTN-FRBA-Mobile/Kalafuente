@@ -79,7 +79,6 @@ class LoginFragment : Fragment() {
                 }
                 loginResult.success?.let {
                     saveUser(it)
-                    updateUiWithUser(it)
                     NavHostFragment.findNavController(this).popBackStack()
                 }
             })
@@ -132,14 +131,11 @@ class LoginFragment : Fragment() {
         val sp = requireActivity().getPreferences(Context.MODE_PRIVATE)
         with(sp.edit()){
             putInt("userId", it.id)
+            putString("userName", it.userName)
+            putString("name", it.displayName)
+            putString("image", it.image)
             apply()
         }
-    }
-
-    private fun updateUiWithUser(model: LoggedInUserView) {
-       // val welcome = getString(R.string.welcome) + model.displayName
-        val appContext = context?.applicationContext ?: return
-      //  Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

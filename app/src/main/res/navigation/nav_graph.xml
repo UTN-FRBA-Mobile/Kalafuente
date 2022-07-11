@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_profileFragment_to_preferencesFragment"
             app:destination="@id/dieteFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_userIngredientsFragment"
+            app:destination="@id/userIngredientsFragment" />
     </fragment>
     <fragment
         android:id="@+id/dieteFragment"
@@ -145,4 +148,9 @@
             android:id="@+id/action_scanIngredientsFragment_to_recipeViewFragment"
             app:destination="@id/recipeViewFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userIngredientsFragment"
+        android:name="com.example.quecomohoy.ui.profile.UserIngredientsFragment"
+        android:label="UserIngredientsFragment"
+        tools:layout="@layout/fragment_user_ingredients" />
 </navigation>

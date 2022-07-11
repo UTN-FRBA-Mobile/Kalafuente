@@ -67,6 +67,9 @@ class IngredientsFragment : Fragment(){
                     binding.progress.isVisible = false
                     binding.notFound.isVisible = ingredients.isEmpty() && !searchTerm.isNullOrEmpty()
                     binding.verticalRecyclerView.isVisible = true
+                    showAddedIngredients(ingredients.isEmpty()
+                            && searchTerm.isNullOrEmpty()
+                            && ingredientViewModel.hasSelectedIngredients())
                     adpater.updateData(ingredients)
                 }
                 Status.LOADING -> {

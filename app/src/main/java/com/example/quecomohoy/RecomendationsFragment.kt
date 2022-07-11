@@ -29,7 +29,6 @@ import com.google.android.material.snackbar.Snackbar
 class RecomendationsFragment : Fragment(), RecipeListener {
     private var _binding: FragmentRecomendationsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var loginViewModel: LoginViewModel
     private val recommendationsViewModel: RecommendationViewModel by viewModels(
         factoryProducer = { RecommendationViewModelFactory() },
         ownerProducer = { requireParentFragment() }
@@ -52,19 +51,22 @@ class RecomendationsFragment : Fragment(), RecipeListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel = ViewModelProvider(requireActivity(), LoginViewModelFactory())
-            .get(LoginViewModel::class.java)
 
-        loginViewModel.userInformation.observe(
-            viewLifecycleOwner
-        ) { userInformation ->
-            if (userInformation.displayName == "") {
-                val action = R.id.action_recomendationsFragment_to_loginFragment
-                findNavController().navigate(action)
-            } else {
-                recommendationsViewModel.getRecommendationsByUser(userInformation.id)
-            }
+
+        val sp = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val userId = sp.getInt("userId", -1)
+        val userName = sp.getString("userName", "")
+        val name =  sp.getString("name", "")
+        val image = sp.getString("image", "")
+
+
+        if (userId == -1) {
+            val action = R.id.action_recomendationsFragment_to_loginFragment
+            findNavController().navigate(action)
+        } else {
+            recommendationsViewModel.getRecommendationsByUser(userId)
         }
+
 
         recommendationsViewModel.recommendations.observe(viewLifecycleOwner) {
             when (it.status) {
@@ -82,6 +84,7 @@ class RecomendationsFragment : Fragment(), RecipeListener {
                 }
             }
         }
+
     }
 
     override fun onMarkAsFavourite(recipeId: Int, marked: Boolean) {
