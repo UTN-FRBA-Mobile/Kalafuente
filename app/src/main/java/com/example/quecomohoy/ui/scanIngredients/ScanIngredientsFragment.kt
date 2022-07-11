@@ -39,6 +39,7 @@ import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabeling
 import com.google.mlkit.vision.label.custom.CustomImageLabelerOptions
+import com.squareup.picasso.Picasso
 import java.io.IOException
 import java.io.InputStream
 import java.util.*
@@ -154,12 +155,11 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
     }
 
     private fun setImageView(bitmap: Bitmap, rotateImage: Boolean) {
-        val rotationDegrees = if (rotateImage) {
-            90f
-        } else {
-            0f
-        }
-        binding.selectedImage.setImageBitmap(rotateImage(bitmap, rotationDegrees))
+        Picasso.get()
+            .load((activity as MainActivity?)!!.imageTakenUri).resize(2048, 1600)
+            .rotate(90f)
+            .onlyScaleDown() // the image will only be resized if it's bigger than 2048x 1600 pixels.
+            .into(binding.selectedImage);
         binding.selectedImageTxt.text = "Imagen seleccionada"
     }
 
