@@ -39,20 +39,23 @@
         <ImageButton
             android:padding="10dp"
             android:id="@+id/open_camera"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="25dp"
             android:background="@drawable/button"
-            android:src="@android:drawable/ic_menu_camera" />
+            android:layout_marginRight="8dp"
+            android:src="@android:drawable/ic_menu_camera"
+            android:textColor="@color/white" />
 
         <Button
             android:padding="10dp"
-            android:background="@drawable/secondarybutton"
-            android:textColor="@color/white"
             android:id="@+id/select_image_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Buscar en la galeria" />
+            android:background="@drawable/secondarybutton"
+            android:paddingHorizontal="8dp"
+            android:text="Buscar en la galeria"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <ImageView
@@ -73,13 +76,15 @@
         tools:listitem="@layout/recipes_item" />
 
     <TextView
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="40dp"
         android:layout_above="@id/buttonsLinearLayout"
         android:id="@+id/emptyResultsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/selected_image"
         android:layout_centerVertical="true"
         android:text="@string/no_scan_results"
+        android:textSize="18sp"
         android:visibility="visible"
         tools:layout_centerHorizontal="true"
         tools:visibility="visible" />

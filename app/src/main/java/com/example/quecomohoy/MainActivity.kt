@@ -1,23 +1,29 @@
 package com.example.quecomohoy
 
+import android.Manifest
+import android.app.*
+import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import android.Manifest
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import android.os.Build
+import com.example.quecomohoy.notifications.DINNER_CHANNEL_ID
+import com.example.quecomohoy.notifications.LUNCH_CHANNEL_ID
+import com.example.quecomohoy.notifications.LUNCH_NOTIFICATION_ID
+import com.example.quecomohoy.notifications.MealRecommendationsNotification
 import com.example.quecomohoy.ui.camera.CameraFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navController)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.white)))
         notShowBottomNavBarAndActionBarInFragments(navController, bottomNavigationView)
+        createNotificationChannel()
     }
 
     private fun notShowBottomNavBarAndActionBarInFragments(
@@ -110,6 +117,41 @@ class MainActivity : AppCompatActivity() {
                     add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 }
             }.toTypedArray()
+    }
+
+    private fun createNotificationChannel()
+    {
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        // The id of the group.
+        val groupId = "recomendations"
+        val groupName = "Recomendaciones"
+
+        var group = notificationManager.getNotificationChannelGroup(groupId)
+        if(group == null){
+            group = NotificationChannelGroup(groupId, groupName)
+            notificationManager.createNotificationChannelGroup(group)
+        }
+
+        if(notificationManager.getNotificationChannel(LUNCH_CHANNEL_ID) == null){
+            val name = getString(R.string.lunch_channel)
+            val desc = getString(R.string.lunch_channel_desc)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(LUNCH_CHANNEL_ID, name, importance)
+            channel.group = groupId
+            channel.description = desc
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        if(notificationManager.getNotificationChannel(DINNER_CHANNEL_ID) == null){
+            val name = getString(R.string.dinner_channel)
+            val desc = getString(R.string.dinner_channel_desc)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(DINNER_CHANNEL_ID, name, importance)
+            channel.group = groupId
+            channel.description = desc
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     //necesito una forma de comunicar fragments

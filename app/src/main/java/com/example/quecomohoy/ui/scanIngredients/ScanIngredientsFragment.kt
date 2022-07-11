@@ -7,6 +7,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,7 +19,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
-import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -31,7 +33,6 @@ import com.example.quecomohoy.ui.favorites.FavouritesViewModel
 import com.example.quecomohoy.ui.favorites.FavouritesViewModelFactory
 import com.example.quecomohoy.ui.listeners.RecipeListener
 import com.example.quecomohoy.ui.listeners.ScanListener
-import com.example.quecomohoy.ui.searchrecipes.RecipesFragment
 import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.google.mlkit.common.model.LocalModel
@@ -39,6 +40,8 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabeling
 import com.google.mlkit.vision.label.custom.CustomImageLabelerOptions
 import java.io.IOException
+import java.io.InputStream
+import java.util.*
 
 
 class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
@@ -63,7 +66,8 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.emptyResultsLabel.visibility = View.GONE
+        binding.emptyResultsLabel.visibility = View.VISIBLE
+        binding.emptyResultsLabel.text = getString(R.string.scan_to_start)
         binding.selectImageButton.setOnClickListener {
             if (checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
                 val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -78,7 +82,7 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
 
         // If image has been loaded from camera, use it to display and send to ML vision
         (activity as MainActivity).imageTakenUri?.also {
-            performCloudVisionRequest(it)
+            performCloudVisionRequest(it, true)
         }
 
         val adapter = RecipesAdapter(this)
@@ -139,20 +143,25 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
         }
     }
 
-    private fun performCloudVisionRequest(uri: Uri?) {
+    private fun performCloudVisionRequest(uri: Uri?, rotateImage: Boolean = false) {
         if (uri != null) {
             try {
                 val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getApplicationContext().getContentResolver(), uri)
                 callMLVision(bitmap)
-                setImageView(bitmap)
+                setImageView(bitmap, rotateImage)
             } catch (e: IOException) {
                 Log.e(TAG, e.localizedMessage)
             }
         }
     }
 
-    private fun setImageView(bitmap: Bitmap) {
-        binding.selectedImage.setImageBitmap(bitmap)
+    private fun setImageView(bitmap: Bitmap, rotateImage: Boolean) {
+        val rotationDegrees = if (rotateImage) {
+            90f
+        } else {
+            0f
+        }
+        binding.selectedImage.setImageBitmap(rotateImage(bitmap, rotationDegrees))
         binding.selectedImageTxt.text = "Imagen seleccionada"
     }
 
@@ -170,7 +179,9 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
         val image = InputImage.fromBitmap(bitmap, 0)
 
         labeler.process(image).addOnSuccessListener { labels ->
-            if (labels.none { it.confidence > 0.3 }) {
+            val results = labels.filter { it.confidence > 0.3 }
+            if (results.isEmpty()) {
+                binding.emptyResultsLabel.text = getString(R.string.no_scan_results)
                 binding.emptyResultsLabel.visibility = View.VISIBLE
                 binding.recipesRecycler.visibility = View.GONE
                 binding.imageView.visibility =  View.GONE;
@@ -196,5 +207,84 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
         val args = Bundle()
         args.putInt("id", recipeId)
         findNavController().navigate( R.id.action_scanIngredientsFragment_to_recipeViewFragment, args)
+    }
+    fun handleSamplingAndRotationBitmap(context: Context, selectedImage: Uri?): Bitmap? {
+        val MAX_HEIGHT = 1024
+        val MAX_WIDTH = 1024
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = true
+        var imageStream: InputStream? = context.contentResolver.openInputStream(selectedImage!!)
+        BitmapFactory.decodeStream(imageStream, null, options)
+        if (imageStream != null) {
+            imageStream.close()
+        }
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, MAX_WIDTH, MAX_HEIGHT)
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false
+        imageStream = context.contentResolver.openInputStream(selectedImage)
+        var img = BitmapFactory.decodeStream(imageStream, null, options)
+        img = rotateImageIfRequired(img!!, selectedImage)
+        return img
+    }
+
+    private fun calculateInSampleSize(
+        options: BitmapFactory.Options,
+        reqWidth: Int, reqHeight: Int
+    ): Int {
+        // Raw height and width of image
+        val height = options.outHeight
+        val width = options.outWidth
+        var inSampleSize = 1
+        if (height > reqHeight || width > reqWidth) {
+
+            // Calculate ratios of height and width to requested height and width
+            val heightRatio = Math.round(height.toFloat() / reqHeight.toFloat())
+            val widthRatio = Math.round(width.toFloat() / reqWidth.toFloat())
+
+            // Choose the smallest ratio as inSampleSize value, this will guarantee a final image
+            // with both dimensions larger than or equal to the requested height and width.
+            inSampleSize = if (heightRatio < widthRatio) heightRatio else widthRatio
+
+            // This offers some additional logic in case the image has a strange
+            // aspect ratio. For example, a panorama may have a much larger
+            // width than height. In these cases the total pixels might still
+            // end up being too large to fit comfortably in memory, so we should
+            // be more aggressive with sample down the image (=larger inSampleSize).
+            val totalPixels = (width * height).toFloat()
+
+            // Anything more than 2x the requested pixels we'll sample down further
+            val totalReqPixelsCap = (reqWidth * reqHeight * 2).toFloat()
+            while (totalPixels / (inSampleSize * inSampleSize) > totalReqPixelsCap) {
+                inSampleSize++
+            }
+        }
+        return inSampleSize
+    }
+
+    private fun rotateImageIfRequired(img: Bitmap, selectedImage: Uri): Bitmap? {
+        val ei = ExifInterface(selectedImage.path!!)
+        val orientation: Int =
+            ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+        return when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> rotateImage(img, 90f)
+            ExifInterface.ORIENTATION_ROTATE_180 -> rotateImage(img, 180f)
+            ExifInterface.ORIENTATION_ROTATE_270 -> rotateImage(img, 270f)
+            else -> img
+        }
+    }
+
+    private fun rotateImage(img: Bitmap, degree: Float): Bitmap? {
+        val matrix = Matrix()
+        matrix.postRotate(degree)
+        val rotatedImg = Bitmap.createBitmap(img, 0, 0, img.width, img.height, matrix, true)
+        /*if (!img.isRecycled) {
+            img.recycle()
+        }*/
+        return rotatedImg
     }
 }
