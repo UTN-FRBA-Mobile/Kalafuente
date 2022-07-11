@@ -20,7 +20,9 @@ class RecipeViewModel(private val recipeRepository : RecipeRepository) :
         viewModelScope.launch {
             try {
                 val recipesByName = recipeRepository.getRecipesByName(name)
-                recipes.postValue(Resource.success(recipesByName, mapOf("searchTerm" to name)))
+                if (recipesByName.isNotEmpty()){
+                    recipes.postValue(Resource.success(recipesByName, mapOf("searchTerm" to name)))
+                }
             } catch (e : Exception){
                 recipes.postValue(Resource.error("", null, null))
             }
