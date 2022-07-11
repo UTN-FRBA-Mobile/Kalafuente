@@ -135,6 +135,7 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == REQUEST_GALLERY_IMAGE && resultCode == Activity.RESULT_OK && data != null){
+            (activity as MainActivity).imageTakenUri = data.getData()
             performCloudVisionRequest(data.getData());
         }
         else {
@@ -155,11 +156,17 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
     }
 
     private fun setImageView(bitmap: Bitmap, rotateImage: Boolean) {
+        val rotationDegrees = if (rotateImage) {
+            90f
+        } else {
+            0f
+        }
         Picasso.get()
             .load((activity as MainActivity?)!!.imageTakenUri).resize(2048, 1600)
-            .rotate(90f)
-            .onlyScaleDown() // the image will only be resized if it's bigger than 2048x 1600 pixels.
+            .rotate(rotationDegrees)
+            .onlyScaleDown()
             .into(binding.selectedImage);
+
         binding.selectedImageTxt.text = "Imagen seleccionada"
     }
 
