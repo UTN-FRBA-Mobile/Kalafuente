@@ -8,7 +8,7 @@ data class Recipe(
     val name: String,
     val picture: String,
     val authorName: String,
-    val isFavourite: Boolean = false,
+    var isFavourite: Boolean = false,
     val ingredients : List<Ingredient> = listOf(),
     val steps : List<String> = listOf()
 ) : Serializable

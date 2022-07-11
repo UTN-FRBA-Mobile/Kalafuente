@@ -59,5 +59,24 @@ class RecipesAdapter(
         val authorTextView: TextView = view.findViewById(R.id.authorTextView)
         val imageView: ImageView = view.findViewById(R.id.coverImageView)
         val checkBox: CheckBox = view.findViewById(R.id.checkbox)
+        init {
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                /*
+                if (isChecked) {
+                    Toast.makeText(view.context, "Le diste like!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(view.context, "Le sacaste el like :c", Toast.LENGTH_SHORT).show()
+                }*/
+            }
+        }
+
+        fun fill(recipe: Recipe) {
+            titleTextView.text = recipe.name
+            authorTextView.text = itemView.context.getString(R.string.by_author, recipe.authorName)
+            if (recipe.picture.isNotEmpty()) {
+                Picasso.get().load(recipe.picture).fit().into(imageView)
+            }
+            checkBox.isChecked = recipe.isFavourite
+        }
     }
 }
