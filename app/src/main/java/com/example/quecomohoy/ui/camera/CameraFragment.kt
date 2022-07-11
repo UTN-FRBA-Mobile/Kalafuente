@@ -53,7 +53,9 @@ class CameraFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        cameraExecutor.shutdown()
+        if (this::cameraExecutor.isInitialized) {
+            cameraExecutor.shutdown()
+        }
     }
 
     private var imageCapture: ImageCapture? = null
