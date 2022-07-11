@@ -8,6 +8,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.example.quecomohoy.R
+import android.os.Bundle
+import androidx.annotation.IdRes
+import com.example.quecomohoy.ui.searchrecipes.RecipesFragment
 import java.util.*
 
 
@@ -28,7 +31,6 @@ class MealRecommendationsNotification: BroadcastReceiver() {
             .build()
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(notificationId, notification)
-
     }
 
     companion object {

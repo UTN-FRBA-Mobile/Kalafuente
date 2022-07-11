@@ -126,7 +126,9 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("text", binding.searchView.query.toString())
+        if (_binding != null) {
+            outState.putString("text", binding.searchView.query.toString())
+        }
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
