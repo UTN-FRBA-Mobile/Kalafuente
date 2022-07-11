@@ -20,26 +20,39 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quecomohoy.MainActivity
 import com.example.quecomohoy.R
 import com.example.quecomohoy.databinding.FragmentScanIngredientsBinding
+import com.example.quecomohoy.ui.RecipeViewModel
+import com.example.quecomohoy.ui.RecipeViewModelFactory
+import com.example.quecomohoy.ui.Status
+import com.example.quecomohoy.ui.favorites.FavouritesViewModel
+import com.example.quecomohoy.ui.favorites.FavouritesViewModelFactory
+import com.example.quecomohoy.ui.listeners.RecipeListener
 import com.example.quecomohoy.ui.listeners.ScanListener
-import com.example.quecomohoy.ui.scanIngredients.adapters.ScanResultsAdapter
+import com.example.quecomohoy.ui.searchrecipes.adapters.RecipesAdapter
+import com.google.android.material.snackbar.Snackbar
 import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabeling
 import com.google.mlkit.vision.label.custom.CustomImageLabelerOptions
+import com.squareup.picasso.Picasso
 import java.io.IOException
 import java.io.InputStream
 import java.util.*
 
 
-class ScanIngredientsFragment: Fragment(), ScanListener {
+class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
+    private val favouriteViewModel : FavouritesViewModel by viewModels(factoryProducer = { FavouritesViewModelFactory() })
     private var _binding: FragmentScanIngredientsBinding? = null
     private val binding get() = _binding!!
-
+    private val recipeViewModel: RecipeViewModel by viewModels(
+        { requireParentFragment() },
+        { RecipeViewModelFactory() }
+    )
     companion object {
         private val REQUEST_GALLERY_IMAGE = 100
         private val REQUEST_PERMISSIONS = 13;
@@ -53,11 +66,7 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
         _binding = FragmentScanIngredientsBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.emptyResultsLabel.visibility = View.VISIBLE
-        binding.emptyResultsLabel.text = getString(R.string.scan_to_start)
-        binding.resultsTitleLabel.visibility = View.GONE
         binding.selectImageButton.setOnClickListener {
             if (checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
                 val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -73,6 +82,26 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
         // If image has been loaded from camera, use it to display and send to ML vision
         (activity as MainActivity).imageTakenUri?.also {
             performCloudVisionRequest(it, true)
+        }
+
+        val adapter = RecipesAdapter(this)
+
+        binding.recipesRecycler.setLayoutManager(LinearLayoutManager(context));
+        binding.recipesRecycler.setHasFixedSize(true);
+        binding.recipesRecycler.adapter = adapter
+
+        recipeViewModel.recipes.observe(viewLifecycleOwner) {
+            when(it.status){
+                Status.SUCCESS -> {
+                    binding.imageView.visibility =  View.GONE;
+                    adapter.updateData(it.data.orEmpty())
+                    binding.recipesRecycler.visibility = View.VISIBLE
+                }
+                Status.ERROR -> {
+                    Snackbar.make(view, "Hubo un error", Snackbar.LENGTH_SHORT)
+                }
+            }
+
         }
     }
 
@@ -106,6 +135,7 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == REQUEST_GALLERY_IMAGE && resultCode == Activity.RESULT_OK && data != null){
+            (activity as MainActivity).imageTakenUri = data.getData()
             performCloudVisionRequest(data.getData());
         }
         else {
@@ -131,8 +161,13 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
         } else {
             0f
         }
-        binding.selectedImage.setImageBitmap(rotateImage(bitmap, rotationDegrees))
-        binding.selectedImageTxt.text = "Imagen seleccionada:"
+        Picasso.get()
+            .load((activity as MainActivity?)!!.imageTakenUri).resize(2048, 1600)
+            .rotate(rotationDegrees)
+            .onlyScaleDown()
+            .into(binding.selectedImage);
+
+        binding.selectedImageTxt.text = "Imagen seleccionada"
     }
 
     private fun callMLVision(bitmap: Bitmap) {
@@ -147,25 +182,19 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
             .build()
         val labeler = ImageLabeling.getClient(customImageLabelerOptions)
         val image = InputImage.fromBitmap(bitmap, 0)
+        binding.imageView.visibility =  View.GONE;
 
         labeler.process(image).addOnSuccessListener { labels ->
             val results = labels.filter { it.confidence > 0.3 }
             if (results.isEmpty()) {
+                binding.recipesRecycler.visibility = View.GONE
                 binding.emptyResultsLabel.visibility = View.VISIBLE
-                binding.resultsTitleLabel.visibility = View.GONE
-                binding.emptyResultsLabel.text = getString(R.string.no_scan_results)
-            } else {
-                binding.emptyResultsLabel.visibility = View.GONE
-                binding.resultsTitleLabel.visibility = View.VISIBLE
-                val viewAdapter = ScanResultsAdapter(
-                    scanListener = this,
-                    results = results
-                )
+                binding.instructions.visibility =  View.GONE;
 
-                binding.scanResultsRV.apply {
-                    layoutManager =  LinearLayoutManager(this.context)
-                    adapter = viewAdapter
-                }
+            } else {
+                binding.instructions.visibility =  View.GONE;
+                binding.emptyResultsLabel.visibility = View.GONE
+                recipeViewModel.getRecipesByName(labels.first().text)
             }
         }
     }
@@ -176,6 +205,16 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
         findNavController().navigate(R.id.action_scanIngredientsFragment_to_recipesFragment, args)
     }
 
+    override fun onMarkAsFavourite(recipeId: Int, marked: Boolean) {
+        val sp = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val userId = sp.getInt("userId", -1)
+        favouriteViewModel.markAsFavourite(recipeId, userId, marked);    }
+
+    override fun onClickRecipe(recipeId: Int) {
+        val args = Bundle()
+        args.putInt("id", recipeId)
+        findNavController().navigate( R.id.action_scanIngredientsFragment_to_recipeViewFragment, args)
+    }
     fun handleSamplingAndRotationBitmap(context: Context, selectedImage: Uri?): Bitmap? {
         val MAX_HEIGHT = 1024
         val MAX_WIDTH = 1024
@@ -255,5 +294,4 @@ class ScanIngredientsFragment: Fragment(), ScanListener {
         }*/
         return rotatedImg
     }
-
 }

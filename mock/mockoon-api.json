@@ -78,28 +78,6 @@
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": false
-        },
-        {
-          "uuid": "80ed8ee5-cd79-43a1-a4da-4cd724d670c1",
-          "body": "{\n   \"name\": \"Gazpacho\",\n   \"id\": 90,\n   \"picture\": \"https://www.laylita.com/recetas/wp-content/uploads/2018/08/Gazpacho-receta.jpg\",\n   \"authorName\": \"Layla Pujol\",\n   \"ingredients\": [\n     {\n       \"id\": 39,\n       \"name\": \"Tomates medianos\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/tomate_mediano1-5498f81038947199a815939090093651-640-0.png\"\n     },\n     {\n       \"id\": 45,\n       \"name\": \"Pimentones rojos\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     },\n    {\n       \"id\": 51,\n       \"name\": \"Pepino\",\n       \"picture\":\"https://lavegaapp.cl/wp-content/uploads/2020/06/Pimenton_Rojo_Productos_LaVegaApp.jpg\"\n     },\n     {\n       \"id\": 52,\n       \"name\": \"Cebolla\",\n       \"picture\":\"https://5aldia.cl/wp-content/uploads/2018/03/cebolla.jpg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Pele los tomates. Una manera fácil de hacerlo es hacer hervir agua en una olla mediana, hacer un corte cruzado o x en cada tomate, colocarlos en agua hirviendo durante un par de minutos hasta que se comiencen a pelar. Retire los tomates del agua caliente, páselos por agua fría y retire la piel.\",\n          \"Coloque los tomates pelados, los pimientos, el pepino, la cebolla, el ajo y la sal en una licuadora o procesador de alimentos. Pulse y mezcle hasta que obtenga la consistencia que desea para el gazpacho, puede ser muy suave o más grueso según su gusto personal. Pruebe y ajuste el sabor al gusto.\", \n          \"Vierta la mezcla de gazpacho en un tazón grande, cubra, y guárdelo refrigerado durante horas antes de servir..\",\n          \"Agregue el vinagre de jerez y el aceite de oliva justo antes de servir, y sirva con su elección de guarniciones.\"\n          ]\n}\n",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "params",
-              "modifier": "id",
-              "value": "90",
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
         }
       ],
       "enabled": true,
@@ -215,7 +193,7 @@
           "uuid": "1f59071d-b6db-48bb-8388-746bcca7d730",
           "body": "{}",
           "latency": 0,
-          "statusCode": 404,
+          "statusCode": 202,
           "label": "",
           "headers": [],
           "filePath": "",
@@ -269,8 +247,30 @@
           "default": false
         },
         {
-          "uuid": "7833421d-0789-4c1e-bdd8-17a5d5df4467",
-          "body": "[\n {\n   \"id\" : 90,\n   \"name\" : \"Sopa de Gazpacho\",\n   \"picture\" : \"https://i.blogs.es/a8ade0/gazpacho_tradicional/840_560.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n }\n ]",
+          "uuid": "f3737be2-6bb9-4454-8165-b30024320fac",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "name",
+              "value": "[Apple]\\w+",
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "ccc7b942-92c0-4fed-b25a-ca739218c9b4",
+          "body": "[\n {\n   \"id\" : 30,\n   \"name\" : \"Manzanas caramelizadas\",\n   \"picture\" : \"https://t1.rg.ltmcdn.com/es/posts/3/1/9/manzanas_caramelizadas_73913_600.jpg\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n {\n   \"id\" : 40,\n   \"name\" : \"Budín de manzana\",\n   \"picture\" : \"https://www.johaprato.com/files/styles/immagini_ricette/public/manzana_publicada.jpg?itok=aPYyxDXZ\",\n   \"authorName\" : \"Vladimir Putin\"\n }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -281,8 +281,8 @@
             {
               "target": "query",
               "modifier": "name",
-              "value": "Gazpacho",
-              "operator": "equals"
+              "value": "[Apple]\\w+",
+              "operator": "regex"
             }
           ],
           "rulesOperator": "OR",
@@ -498,7 +498,7 @@
         },
         {
           "uuid": "9537fef8-4a68-4391-9ae9-ab33ed1b7ab1",
-          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Lomito al champignon\",\n    \"picture\": \"https://www.johaprato.com/files/styles/flexslider_full/public/lomo_al_champignon.jpeg?itok=68SLM8Rx\",\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 8,\n    \"name\": \"Nuggets caseros\",\n    \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/08/nuggets-sw-pollo.jpg,\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Salmon al horno\",\n    \"picture\": \"https://wl-genial.cf.tsp.li/resize/728x/jpg/030/e5a/b7febd56d7a087336e3bc41b7e.jpg\",\n    \"authorName\": \"PaulinaCocina\"\n  },\n  {\n    \"id\": 7,\n    \"name\": \"Fideos con camarones\",\n    \"picture\": \"https://wl-genial.cf.tsp.li/resize/728x/jpg/c28/d91/db186353b18aa639dcee805b12.jpg\",\n    \"authorName\": \"Cocina facilita\"\n  }\n]",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Lomito al champignon\",\n    \"picture\": \"https://www.johaprato.com/files/styles/flexslider_full/public/lomo_al_champignon.jpeg?itok=68SLM8Rx\",\n    \"authorName\": \"PaulinaCocina\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -509,7 +509,7 @@
             {
               "target": "params",
               "modifier": "id",
-              "value": "2",
+              "value": "3",
               "operator": "equals"
             }
           ],
@@ -587,6 +587,72 @@
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "c8bc4106-aa98-4640-ad60-63b8ea0bbcb0",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "user/:id/preferences",
+      "responses": [
+        {
+          "uuid": "a1d75547-8a7b-48e6-8340-9e890a2fe391",
+          "body": "{\n  \"diet\": {\n    \"id\": 1,\n    \"name\": \"Vegetariana\"\n  },\n  \"likedIngredients\":[\n     {\n       \"id\": 36,\n       \"name\": \"Espinaca fresca\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/espinaca1-0834e1be8c9ac732e715939074486136-640-0.png\"\n     },\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     },\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n  ],\n  \"unlikedIngredients\": [\n     {\n       \"id\": 34,\n       \"name\": \"Huevo\",\n       \"picture\":\"https://www.collinsdictionary.com/images/full/eggs_110803370_1000.jpg\"\n     },\n     {\n       \"id\": 35,\n       \"name\": \"Queso\",\n       \"picture\":\"https://www.lanacion.com.py/resizer/XrkMfxRe9ZD6qrjb_t66lojqLWU=/1920x0/smart/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/lanacionpy/OCWNGLNYENAWLOBCAZWTNPWN6Q.jpeg\"\n     }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "575020ec-44ff-4bbf-a9e0-8bb3f6146ff8",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "ingredients",
+      "responses": [
+        {
+          "uuid": "af676b4a-4d53-41fe-8c75-b8f536affedc",
+          "body": "[     \n    {\n       \"id\": 36,\n       \"name\": \"Espinaca fresca\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/espinaca1-0834e1be8c9ac732e715939074486136-640-0.png\"\n     },\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     },\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "name",
+              "value": "",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
         }
       ],
       "enabled": true,
