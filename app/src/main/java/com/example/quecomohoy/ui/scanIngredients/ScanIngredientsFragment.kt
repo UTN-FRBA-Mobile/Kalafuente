@@ -165,7 +165,7 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
             0f
         }
         Picasso.get()
-            .load((activity as MainActivity?)!!.imageTakenUri).resize(2048, 1600)
+            .load((activity as MainActivity?)!!.imageTakenUri).resize(500, 700)
             .rotate(rotationDegrees)
             .onlyScaleDown()
             .into(binding.selectedImage);
@@ -188,7 +188,7 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
         binding.imageView.visibility =  View.GONE;
 
         labeler.process(image).addOnSuccessListener { labels ->
-            val results = labels.filter { it.confidence > 0.3 }
+            val results = labels.filter { it.confidence > 0.19 }
             if (results.isEmpty()) {
                 binding.recipesRecycler.visibility = View.GONE
                 binding.emptyResultsLabel.visibility = View.VISIBLE

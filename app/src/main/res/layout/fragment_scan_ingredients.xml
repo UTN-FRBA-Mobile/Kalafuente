@@ -85,6 +85,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/selected_image"
+        android:layout_above="@id/buttonsLinearLayout"
+
         tools:listitem="@layout/recipes_item" />
 
     <TextView

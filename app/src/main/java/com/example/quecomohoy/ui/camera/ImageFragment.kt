@@ -30,7 +30,7 @@ class ImageFragment: Fragment() {
         }
 
         Picasso.get()
-            .load((activity as MainActivity?)!!.imageTakenUri).resize(2048, 1600)
+            .load((activity as MainActivity?)!!.imageTakenUri).resize(500, 700)
             .rotate(90f)
             .onlyScaleDown() // the image will only be resized if it's bigger than 2048x 1600 pixels.
             .into(binding.imageCameraResult);
