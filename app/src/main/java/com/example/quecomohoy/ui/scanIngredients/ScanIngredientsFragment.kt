@@ -93,15 +93,18 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
         recipeViewModel.recipes.observe(viewLifecycleOwner) {
             when(it.status){
                 Status.SUCCESS -> {
-                    binding.imageView.visibility =  View.GONE;
-                    adapter.updateData(it.data.orEmpty())
-                    binding.recipesRecycler.visibility = View.VISIBLE
+                    if (it.data.orEmpty().isNotEmpty()){
+                        binding.instructions.visibility =  View.GONE;
+                        binding.emptyResultsLabel.visibility = View.GONE
+                        binding.imageView.visibility =  View.GONE;
+                        adapter.updateData(it.data.orEmpty())
+                        binding.recipesRecycler.visibility = View.VISIBLE
+                    }
                 }
                 Status.ERROR -> {
                     Snackbar.make(view, "Hubo un error", Snackbar.LENGTH_SHORT)
                 }
             }
-
         }
     }
 
@@ -192,8 +195,6 @@ class ScanIngredientsFragment: Fragment(), ScanListener, RecipeListener{
                 binding.instructions.visibility =  View.GONE;
 
             } else {
-                binding.instructions.visibility =  View.GONE;
-                binding.emptyResultsLabel.visibility = View.GONE
                 recipeViewModel.getRecipesByName(labels.first().text)
             }
         }
