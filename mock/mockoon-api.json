@@ -14,6 +14,28 @@
       "endpoint": "recipes/:id",
       "responses": [
         {
+          "uuid": "99d53493-8fc2-4d21-a638-7c33001d560c",
+          "body": "{\n   \"name\": \"Manzanas caramelizadas\",\n   \"id\": 2,\n   \"picture\": \"https://t1.rg.ltmcdn.com/es/posts/3/1/9/manzanas_caramelizadas_73913_600.jpg\",\n   \"authorName\": \"Karen Lafuente\",\n   \"ingredients\": [\n     {\n       \"id\": 36,\n       \"name\": \"Manzana\",\n       \"picture\":\"https://imgmedia.buenazo.pe/475x475/buenazo/original/2022/01/31/61f847d92b61d2649f3d4727.jpg\"\n     },\n     {\n       \"id\": 37,\n       \"name\": \"Azucar\",\n       \"picture\":\"https://www.crudivegania.org/wp-content/uploads/2019/06/sucre-midaok.jpg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Las espinacas frescas no debemos cocinarlas demasiado, para aprovechar mejor todas sus cualidades. Una de las opciones sería el cocerlas 7-8 minutos, pero yo prefiero rehogarlas en la sartén. Con la cocción quedan menos tiernas y más acuosas, por mucho que las escurramos.\",\n          \"En una sartén grande, vertemos el aceite y lo calentamos a fuego medio. Echamos las espinacas frescas y rehogamos, mezclando bien las verduras con el aceite.\", \n          \"Entonces, la idea es que cuando veamos que ya esta un poco cocido por debajo, pero arriba aún está bastante líquido, ese es el momento de agregar lo que quieran de relleno, en este caso, un pedacito de queso fresco de un lado del círculo que está formando nuestro huevo.\",\n          \"En un primer momento solo veréis un gran montón de espinacas en la sartén, pero no os preocupéis, poco a poco irán disminuyendo su volumen. Es importante ir removiendo uniformemente, para que todas queden cocinadas por igual. Su tamaño disminuirá mucho pero mantienen su color verde oscuro intenso.\"\n          ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "30",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
           "uuid": "7b05d0b1-d8fb-49a6-82c9-011a686eaa2e",
           "body": "{\n   \"name\": \"Espinacas a la crema\",\n   \"id\": 2,\n   \"picture\": \"https://dam.cocinafacil.com.mx/wp-content/uploads/2019/03/espinacas-a-la-crema.png\",\n   \"authorName\": \"Karen Lafuente\",\n   \"ingredients\": [\n     {\n       \"id\": 36,\n       \"name\": \"Espinaca fresca\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/espinaca1-0834e1be8c9ac732e715939074486136-640-0.png\"\n     },\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     },\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Las espinacas frescas no debemos cocinarlas demasiado, para aprovechar mejor todas sus cualidades. Una de las opciones sería el cocerlas 7-8 minutos, pero yo prefiero rehogarlas en la sartén. Con la cocción quedan menos tiernas y más acuosas, por mucho que las escurramos.\",\n          \"En una sartén grande, vertemos el aceite y lo calentamos a fuego medio. Echamos las espinacas frescas y rehogamos, mezclando bien las verduras con el aceite.\", \n          \"Entonces, la idea es que cuando veamos que ya esta un poco cocido por debajo, pero arriba aún está bastante líquido, ese es el momento de agregar lo que quieran de relleno, en este caso, un pedacito de queso fresco de un lado del círculo que está formando nuestro huevo.\",\n          \"En un primer momento solo veréis un gran montón de espinacas en la sartén, pero no os preocupéis, poco a poco irán disminuyendo su volumen. Es importante ir removiendo uniformemente, para que todas queden cocinadas por igual. Su tamaño disminuirá mucho pero mantienen su color verde oscuro intenso.\"\n          ]\n}\n",
           "latency": 0,
@@ -37,7 +59,7 @@
         },
         {
           "uuid": "c93cbb48-0a3a-48cd-a6a3-c0afb56dc841",
-          "body": "{\n   \"name\" : \"Milanesa con puré\",\n   \"id\": 6,\n   \"picture\": \"https://www.unileverfoodsolutions.com.ar/dam/global-ufs/mcos/sla/argentina/calcmenu/recipes/AR-recipes/In-Development/milanesa-a-la-napolitana-con-pur%C3%A9/main-header.jpg\",\n   \"authorName\": \"Bruno Cobos\",\n   \"ingredients\": [\n     {\n       \"id\": 360,\n       \"name\": \"Pan rallado\",\n       \"picture\":\"https://ardiaprod.vteximg.com.br/arquivos/ids/188735-1000-1000/Pan-Rallado-Pureza-Integral-350-Gr-_1.jpg?v=637427631170600000\"\n     },\n     {\n       \"id\": 34,\n       \"name\": \"Huevo\",\n       \"picture\":\"https://www.collinsdictionary.com/images/full/eggs_110803370_1000.jpg\"\n     },\n    {\n       \"id\": 380,\n       \"name\": \"Nalga\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/144/602/products/nalga-frigorifico-90-jpg1-b9689ea0e7f5a7e0cb15864446640651-640-0.png\"\n     },\n     {\n       \"id\": 381,\n       \"name\": \"Papas\",\n       \"picture\":\"https://www.cocinayvino.com/wp-content/uploads/2015/02/tipos-papa-1-1200x720.jpg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Tiernizar las milanesas\",\n          \"En un bowl incorporar los huevos, bastante queso rallado, nuez moscada, orégano y mostaza. Pasar todas las milanesas por pan rallado y una vez listas, pasamos las milanesas por la preparación de huevos al queso y pasamos nuevamente por pan rallado\", \n          \"Freír en abundante aceite. 👉 No tires la mezcla de huevo y queso!\",\n          \" Para el puré de papa, lavar muy bien las papas y hervir con cáscara.\",\n          \"Revolver y servir junto con las milanesas. Que lo disfrutes 😉.\"\n          ]\n}\n",
+          "body": "{\n   \"name\" : \"Milanesas de berenjena con calabaza\",\n   \"id\": 6,\n   \"picture\": \"https://cloudfront-us-east-1.images.arcpublishing.com/radiomitre/4IBGLLLUDJAJFC6RPVHUWZIFGI.gif\",\n   \"authorName\": \"Bruno Cobos\",\n   \"ingredients\": [\n     {\n       \"id\": 360,\n       \"name\": \"Pan rallado\",\n       \"picture\":\"https://ardiaprod.vteximg.com.br/arquivos/ids/188735-1000-1000/Pan-Rallado-Pureza-Integral-350-Gr-_1.jpg?v=637427631170600000\"\n     },\n     {\n       \"id\": 34,\n       \"name\": \"Huevo\",\n       \"picture\":\"https://www.collinsdictionary.com/images/full/eggs_110803370_1000.jpg\"\n     },\n    {\n       \"id\": 49,\n       \"name\": \"Berenjena\",\n       \"picture\":\"https://imagenes.elpais.com/resizer/Lnrun8__zTplP8rrL99bxEA4Ijo=/1960x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/RW46CJPF2NKVGV6COSJ7LRECEE.jpg\"\n   }\n     ],\n     \n   \"steps\": [\n          \"Tiernizar las milanesas\",\n          \"En un bowl incorporar los huevos, bastante queso rallado, nuez moscada, orégano y mostaza. Pasar todas las milanesas por pan rallado y una vez listas, pasamos las milanesas por la preparación de huevos al queso y pasamos nuevamente por pan rallado\", \n          \"Freír en abundante aceite. 👉 No tires la mezcla de huevo y queso!\",\n          \" Para el puré de papa, lavar muy bien las papas y hervir con cáscara.\",\n          \"Revolver y servir junto con las milanesas. Que lo disfrutes 😉.\"\n          ]\n}\n",
           "latency": 0,
           "statusCode": 200,
           "label": " (copy)",
@@ -71,6 +93,28 @@
               "target": "params",
               "modifier": "id",
               "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "50c9d333-7be8-4bf9-b2af-fa218325fba0",
+          "body": "{\n   \"name\": \"Verduras al horno\",\n   \"id\": 2,\n   \"picture\": \"https://cocina-casera.com/wp-content/uploads/2022/04/verduras-horno.jpg\",\n   \"authorName\": \"Karen Lafuente\",\n   \"ingredients\": [\n    {\n       \"id\": 36,\n       \"name\": \"Espinaca fresca\",\n       \"picture\":\"http://d3ugyf2ht6aenh.cloudfront.net/stores/001/252/117/products/espinaca1-0834e1be8c9ac732e715939074486136-640-0.png\"\n     },\n     {\n       \"id\": 37,\n       \"name\": \"Harina de trigo\",\n       \"picture\":\"https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/06/22/5e9977f7b0a30.jpeg\"\n     },\n    {\n       \"id\": 38,\n       \"name\": \"Aceite de oliva\",\n       \"picture\":\"https://i.blogs.es/350498/aceite_oliva2/840_560.jpg\"\n     }\n     ],\n     \n   \"steps\": [\n          \"Las espinacas frescas no debemos cocinarlas demasiado, para aprovechar mejor todas sus cualidades. Una de las opciones sería el cocerlas 7-8 minutos, pero yo prefiero rehogarlas en la sartén. Con la cocción quedan menos tiernas y más acuosas, por mucho que las escurramos.\",\n          \"En una sartén grande, vertemos el aceite y lo calentamos a fuego medio. Echamos las espinacas frescas y rehogamos, mezclando bien las verduras con el aceite.\", \n          \"Entonces, la idea es que cuando veamos que ya esta un poco cocido por debajo, pero arriba aún está bastante líquido, ese es el momento de agregar lo que quieran de relleno, en este caso, un pedacito de queso fresco de un lado del círculo que está formando nuestro huevo.\",\n          \"En un primer momento solo veréis un gran montón de espinacas en la sartén, pero no os preocupéis, poco a poco irán disminuyendo su volumen. Es importante ir removiendo uniformemente, para que todas queden cocinadas por igual. Su tamaño disminuirá mucho pero mantienen su color verde oscuro intenso.\"\n          ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "1004",
               "operator": "equals"
             }
           ],
@@ -210,28 +254,6 @@
           "default": false
         },
         {
-          "uuid": "09e70684-7084-4f8c-a968-1c173df44351",
-          "body": "[\n {\n   \"id\" : 6,\n   \"name\" : \"Milanesas de berenjena con calabaza\",\n   \"picture\" : \"https://cloudfront-us-east-1.images.arcpublishing.com/radiomitre/4IBGLLLUDJAJFC6RPVHUWZIFGI.gif\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n  {\n   \"id\" : 60,\n   \"name\" : \"Berenjenas al Escabeche\",\n   \"picture\" : \"https://www.coosur.com/uploads/recetasaceiteoliva/berenjenas-y-zanahorias-al-escabeche.jpg\",\n   \"authorName\" : \"Iñaki\"\n }\n ]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "ingredients",
-              "value": "49,38",
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false
-        },
-        {
           "uuid": "3f701067-96d5-46b3-b76d-c23053a441f2",
           "body": "[\n {\n   \"id\" : 6,\n   \"name\" : \"Milanesas de berenjena con calabaza\",\n   \"picture\" : \"https://cloudfront-us-east-1.images.arcpublishing.com/radiomitre/4IBGLLLUDJAJFC6RPVHUWZIFGI.gif\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n  {\n   \"id\" : 67,\n   \"name\" : \"Milanesas de soja finas y crujientes\",\n   \"picture\" : \"https://www.midietavegana.es/wp-content/uploads/2020/05/milanesas-e1589996331814.jpeg\",\n   \"authorName\" : \"Iñaki\"\n }\n ]",
           "latency": 0,
@@ -252,6 +274,28 @@
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true
+        },
+        {
+          "uuid": "09e70684-7084-4f8c-a968-1c173df44351",
+          "body": "[\n {\n   \"id\" : 6,\n   \"name\" : \"Milanesas de berenjena con calabaza\",\n   \"picture\" : \"https://cloudfront-us-east-1.images.arcpublishing.com/radiomitre/4IBGLLLUDJAJFC6RPVHUWZIFGI.gif\",\n   \"authorName\" : \"Bruno Cobos\"\n },\n  {\n   \"id\" : 60,\n   \"name\" : \"Berenjenas al Escabeche\",\n   \"picture\" : \"https://www.coosur.com/uploads/recetasaceiteoliva/berenjenas-y-zanahorias-al-escabeche.jpg\",\n   \"authorName\" : \"Iñaki\"\n }\n ]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "ingredients",
+              "value": "49,38",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         },
         {
           "uuid": "ccc7b942-92c0-4fed-b25a-ca739218c9b4",
